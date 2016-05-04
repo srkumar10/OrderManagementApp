@@ -1,0 +1,36 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://xmlns.oracle.com/ns/ordershipment"
+        xmlns:os="http://xmlns.oracle.com/ns/ordershipment"
+        elementFormDefault="qualified">
+    <element name="shippinginfo">
+        <complexType>
+            <sequence>
+                <element name="shipChoice" type="os:shipOptionType"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="shippingcompany">
+        <complexType>
+            <sequence>
+                <element name="carrier" type="os:carrierType"/>
+            </sequence>
+        </complexType>
+    </element>    
+    <simpleType name="carrierType">
+        <restriction base="string">
+            <enumeration value="USPS"/>
+            <enumeration value="UPS"/>
+            <enumeration value="FED_EX"/>
+            <enumeration value="NONE"/>
+        </restriction>
+    </simpleType>    
+    <simpleType name="shipOptionType">
+        <restriction base="string">
+            <enumeration value="STANDARD"/>
+            <enumeration value="SAMEDAY"/>
+            <enumeration value="TWO_DAY"/>
+            <enumeration value="INTERNATIONAL"/>
+        </restriction>
+    </simpleType>
+</schema>

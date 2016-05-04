@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+<JboProject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="InternalStoreSDO"
+  Version="11.1.1.64.93"
+  SeparateXMLFiles="true"
+  PackageName="techlabs">
+  <DesignTime>
+    <Attr Name="_jprName" Value="../../InternalStoreSDO.jpr"/>
+    <Attr Name="_NamedConnection" Value="SOADEMO"/>
+    <Attr Name="_appModuleNames0" Value="techlabs.InternalStoreAppModule"/>
+  </DesignTime>
+  <Containee
+    Name="techlabs"
+    PackageName="techlabs"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_EO" Value="true"/>
+      <Attr Name="_VO" Value="true"/>
+      <Attr Name="_AM" Value="true"/>
+    </DesignTime>
+  </Containee>
+</JboProject>

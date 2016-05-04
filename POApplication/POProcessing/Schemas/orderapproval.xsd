@@ -1,0 +1,21 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://xmlns.oracle.com/ns/orderapproval"
+        xmlns:po="http://xmlns.oracle.com/ns/orderapproval"
+        elementFormDefault="qualified">
+    <element name="approvalanddiscount">
+        <complexType>
+            <sequence>
+                <element name="discount" type="int"/>
+                <element name="approvalRequired" type="boolean"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="price">
+        <complexType>
+            <sequence>
+                <element name="totalPrice" type="decimal"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

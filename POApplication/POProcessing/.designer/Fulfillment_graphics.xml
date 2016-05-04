@@ -1,0 +1,41 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<graphics>
+   <diagram optimizeLayout="false" popupEditor="true" fixedWidthSwimlanes="true" roundedPartnerlinks="true" centerZoom="true" validateOnLoad="true" confirmBeforeDelete="true" selectedPartnerLinkColor="0,0,153" swimlaneBackground="240,240,240" swimlaneDividerBackground="218,218,218" graphBackground="255,255,255" selectedBorderBackground="49,105,198" connectedPartnerLinkColor="204,204,255" connectablePartnerLinkColor="0,0,255" unconnectedPartnerLinkColor="192,192,192"/>
+   <annotationfile/>
+   <iconize/>
+   <partnerlink_locations>
+      <partnerlink name="fulfillment_client" x="11" y="1169" side="left"/>
+      <partnerlink name="UPSJmsService" x="963" y="1918" side="right"/>
+      <partnerlink name="USPSJmsService" x="963" y="1975" side="right"/>
+      <partnerlink name="FedExJmsService" x="963" y="2032" side="right"/>
+      <partnerlink name="InternalStore" x="963" y="479" side="right"/>
+      <partnerlink name="OnlineStore" x="963" y="536" side="right"/>
+      <partnerlink name="OrdersService" x="963" y="365" side="right"/>
+      <partnerlink name="CustomerService" x="963" y="422" side="right"/>
+      <partnerlink name="ShippingRules.ShippingRulesService" x="963" y="18" side="right"/>
+   </partnerlink_locations>
+   <graph_layout viewport="0,1615,1093,386" show_swimlanes="true">
+      <layout_item collapsed="false" xpath="/process" type="process" showhandlers="true"/>
+      <layout_item collapsed="false" xpath="/process/sequence" type="sequence"/>
+      <layout_item collapsed="false" xpath="/process/sequence/scope[1]" type="scope" showhandlers="true"/>
+      <layout_item collapsed="false" xpath="/process/sequence/scope[1]/sequence" type="sequence"/>
+      <layout_item collapsed="false" xpath="/process/sequence/scope[2]" type="scope" showhandlers="true"/>
+      <layout_item collapsed="false" xpath="/process/sequence/scope[2]/sequence" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/scope[2]/sequence/flow" type="flow"/>
+      <layout_item collapsed="false" xpath="/process/sequence/scope[2]/sequence/flow/sequence[1]" type="sequence"/>
+      <layout_item collapsed="false" xpath="/process/sequence/scope[2]/sequence/flow/sequence[2]" type="sequence"/>
+      <layout_item collapsed="false" xpath="/process/sequence/scope[2]/sequence/switch" type="switch"/>
+      <layout_item collapsed="false" xpath="/process/sequence/scope[2]/sequence/switch/case[1]/sequence" type="sequence"/>
+      <layout_item collapsed="false" xpath="/process/sequence/scope[2]/sequence/switch/case[2]/sequence" type="sequence"/>
+      <layout_item collapsed="false" xpath="/process/sequence/switch" type="switch"/>
+      <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope" type="scope" showhandlers="true"/>
+      <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope/sequence" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/switch/case/scope/sequence/scope" type="rule" showhandlers="true"/>
+      <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope/sequence/scope/sequence" type="sequence"/>
+      <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope/sequence/switch" type="switch"/>
+      <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope/sequence/switch/case[1]/sequence" type="sequence"/>
+      <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope/sequence/switch/case[2]/sequence" type="sequence"/>
+      <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope/sequence/switch/case[3]/sequence" type="sequence"/>
+   </graph_layout>
+   <bookmarks/>
+</graphics>

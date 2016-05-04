@@ -1,0 +1,404 @@
+<wsdl:definitions
+     name="CustomerService"
+     targetNamespace="/techlabs/services/common/customers"
+     xmlns:errors="http://xmlns.oracle.com/adf/svc/errors/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="/techlabs/services/common/customers"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:types="/techlabs/services/common/customers/types/"
+    >
+    <wsdl:import namespace="http://xmlns.oracle.com/adf/svc/errors/" location="classpath:/META-INF/wsdl/ServiceException.wsdl"/>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="/techlabs/services/common/customers/types/" schemaLocation="CustomerService.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="CustomerService_getAddressVO1">
+        <wsdl:part name="parameters" element="types:getAddressVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_getAddressVO1Response">
+        <wsdl:part name="parameters" element="types:getAddressVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_createAddressVO1">
+        <wsdl:part name="parameters" element="types:createAddressVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_createAddressVO1Response">
+        <wsdl:part name="parameters" element="types:createAddressVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_updateAddressVO1">
+        <wsdl:part name="parameters" element="types:updateAddressVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_updateAddressVO1Response">
+        <wsdl:part name="parameters" element="types:updateAddressVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_deleteAddressVO1">
+        <wsdl:part name="parameters" element="types:deleteAddressVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_deleteAddressVO1Response">
+        <wsdl:part name="parameters" element="types:deleteAddressVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_mergeAddressVO1">
+        <wsdl:part name="parameters" element="types:mergeAddressVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_mergeAddressVO1Response">
+        <wsdl:part name="parameters" element="types:mergeAddressVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_findAddressVO1">
+        <wsdl:part name="parameters" element="types:findAddressVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_findAddressVO1Response">
+        <wsdl:part name="parameters" element="types:findAddressVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_processAddressVO1">
+        <wsdl:part name="parameters" element="types:processAddressVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_processAddressVO1Response">
+        <wsdl:part name="parameters" element="types:processAddressVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_processCSAddressVO1">
+        <wsdl:part name="parameters" element="types:processCSAddressVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_processCSAddressVO1Response">
+        <wsdl:part name="parameters" element="types:processCSAddressVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_getCustomersVO1">
+        <wsdl:part name="parameters" element="types:getCustomersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_getCustomersVO1Response">
+        <wsdl:part name="parameters" element="types:getCustomersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_createCustomersVO1">
+        <wsdl:part name="parameters" element="types:createCustomersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_createCustomersVO1Response">
+        <wsdl:part name="parameters" element="types:createCustomersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_updateCustomersVO1">
+        <wsdl:part name="parameters" element="types:updateCustomersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_updateCustomersVO1Response">
+        <wsdl:part name="parameters" element="types:updateCustomersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_deleteCustomersVO1">
+        <wsdl:part name="parameters" element="types:deleteCustomersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_deleteCustomersVO1Response">
+        <wsdl:part name="parameters" element="types:deleteCustomersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_mergeCustomersVO1">
+        <wsdl:part name="parameters" element="types:mergeCustomersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_mergeCustomersVO1Response">
+        <wsdl:part name="parameters" element="types:mergeCustomersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_findCustomersVO1">
+        <wsdl:part name="parameters" element="types:findCustomersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_findCustomersVO1Response">
+        <wsdl:part name="parameters" element="types:findCustomersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_processCustomersVO1">
+        <wsdl:part name="parameters" element="types:processCustomersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_processCustomersVO1Response">
+        <wsdl:part name="parameters" element="types:processCustomersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_processCSCustomersVO1">
+        <wsdl:part name="parameters" element="types:processCSCustomersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="CustomerService_processCSCustomersVO1Response">
+        <wsdl:part name="parameters" element="types:processCSCustomersVO1Response"/>
+    </wsdl:message>
+    <wsdl:portType name="CustomerService">
+        <wsdl:documentation>
+            <ViewInstance xmlns="http://xmlns.oracle.com/adf/svc/metadata/" Name="AddressVO1" xmlns:ns0="/techlabs/views/common/"
+                 SDOName="ns0:AddressVOSDO" CreateOpName="createAddressVO1" UpdateOpName="updateAddressVO1"
+                 DeleteOpName="deleteAddressVO1" MergeOpName="mergeAddressVO1" GetOpName="getAddressVO1"
+                 FindOpName="findAddressVO1" ProcessOpName="processAddressVO1" ProcessCSOpName="processCSAddressVO1"/>
+            <ViewInstance xmlns="http://xmlns.oracle.com/adf/svc/metadata/" Name="CustomersVO1" xmlns:ns0="/techlabs/views/common/"
+                 SDOName="ns0:CustomersVOSDO" CreateOpName="createCustomersVO1" UpdateOpName="updateCustomersVO1"
+                 DeleteOpName="deleteCustomersVO1" MergeOpName="mergeCustomersVO1" GetOpName="getCustomersVO1"
+                 FindOpName="findCustomersVO1" ProcessOpName="processCustomersVO1" ProcessCSOpName="processCSCustomersVO1"/>
+        </wsdl:documentation>
+        <wsdl:operation name="getAddressVO1">
+            <wsdl:input message="tns:CustomerService_getAddressVO1"/>
+            <wsdl:output message="tns:CustomerService_getAddressVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createAddressVO1">
+            <wsdl:input message="tns:CustomerService_createAddressVO1"/>
+            <wsdl:output message="tns:CustomerService_createAddressVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateAddressVO1">
+            <wsdl:input message="tns:CustomerService_updateAddressVO1"/>
+            <wsdl:output message="tns:CustomerService_updateAddressVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteAddressVO1">
+            <wsdl:input message="tns:CustomerService_deleteAddressVO1"/>
+            <wsdl:output message="tns:CustomerService_deleteAddressVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="mergeAddressVO1">
+            <wsdl:input message="tns:CustomerService_mergeAddressVO1"/>
+            <wsdl:output message="tns:CustomerService_mergeAddressVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="findAddressVO1">
+            <wsdl:input message="tns:CustomerService_findAddressVO1"/>
+            <wsdl:output message="tns:CustomerService_findAddressVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="processAddressVO1">
+            <wsdl:input message="tns:CustomerService_processAddressVO1"/>
+            <wsdl:output message="tns:CustomerService_processAddressVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="processCSAddressVO1">
+            <wsdl:input message="tns:CustomerService_processCSAddressVO1"/>
+            <wsdl:output message="tns:CustomerService_processCSAddressVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getCustomersVO1">
+            <wsdl:input message="tns:CustomerService_getCustomersVO1"/>
+            <wsdl:output message="tns:CustomerService_getCustomersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createCustomersVO1">
+            <wsdl:input message="tns:CustomerService_createCustomersVO1"/>
+            <wsdl:output message="tns:CustomerService_createCustomersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateCustomersVO1">
+            <wsdl:input message="tns:CustomerService_updateCustomersVO1"/>
+            <wsdl:output message="tns:CustomerService_updateCustomersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteCustomersVO1">
+            <wsdl:input message="tns:CustomerService_deleteCustomersVO1"/>
+            <wsdl:output message="tns:CustomerService_deleteCustomersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="mergeCustomersVO1">
+            <wsdl:input message="tns:CustomerService_mergeCustomersVO1"/>
+            <wsdl:output message="tns:CustomerService_mergeCustomersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="findCustomersVO1">
+            <wsdl:input message="tns:CustomerService_findCustomersVO1"/>
+            <wsdl:output message="tns:CustomerService_findCustomersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="processCustomersVO1">
+            <wsdl:input message="tns:CustomerService_processCustomersVO1"/>
+            <wsdl:output message="tns:CustomerService_processCustomersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="processCSCustomersVO1">
+            <wsdl:input message="tns:CustomerService_processCSCustomersVO1"/>
+            <wsdl:output message="tns:CustomerService_processCSCustomersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CustomerServiceSoapHttp" type="tns:CustomerService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAddressVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/getAddressVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createAddressVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/createAddressVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateAddressVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/updateAddressVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteAddressVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/deleteAddressVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="mergeAddressVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/mergeAddressVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="findAddressVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/findAddressVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="processAddressVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/processAddressVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="processCSAddressVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/processCSAddressVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getCustomersVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/getCustomersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createCustomersVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/createCustomersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateCustomersVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/updateCustomersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteCustomersVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/deleteCustomersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="mergeCustomersVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/mergeCustomersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="findCustomersVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/findCustomersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="processCustomersVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/processCustomersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="processCSCustomersVO1">
+            <soap:operation soapAction="/techlabs/services/common/customers/processCSCustomersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CustomerService">
+        <wsdl:port name="CustomerServiceSoapHttpPort" binding="tns:CustomerServiceSoapHttp">
+            <soap:address location="http://orafmw11.techlabs.local:7101/ADFBCApplication-CustomersSDO-context-root/CustomerService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,23 @@
+<xsd:schema xmlns:sdoJava="commonj.sdo/java" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="/techlabs/views/common/"
+     xmlns="/techlabs/views/common/" elementFormDefault="qualified" sdoJava:package="techlabs.views.common">
+    <xsd:import schemaLocation="classpath:/xml/sdoJava.xsd" namespace="commonj.sdo/java"/>
+    <xsd:complexType name="AddressVOSDO">
+        <xsd:annotation>
+            <xsd:appinfo source="http://xmlns.oracle.com/adf/svc/metadata/">
+                <key xmlns="http://xmlns.oracle.com/adf/svc/metadata/">
+                    <attribute>AddrId</attribute>
+                </key>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="AddrId" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="CustId" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="Street" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="City" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="State" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="Zip" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="Country" type="xsd:string" minOccurs="0" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="addressVOSDO" type="AddressVOSDO"/>
+</xsd:schema>

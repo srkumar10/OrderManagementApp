@@ -1,0 +1,24 @@
+Apr 28, 2016 2:58:08 PM oracle.mds
+NOTIFICATION: PManager instance is created without multitenancy support as JVM flag "oracle.multitenant.enabled" is not set to enable multitenancy support.
+Apr 28, 2016 2:58:08 PM oracle.security.jps.internal.config.xml.XmlConfigurationFactory initDefaultConfiguration
+SEVERE: java.io.FileNotFoundException: .\config\jps-config.xml (The system cannot find the path specified)
+Apr 28, 2016 2:58:08 PM oracle.mds
+NOTIFICATION: Auditing is disabled for component MDS.
+Apr 28, 2016 2:58:08 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
+INFO: XMLSchema incremental build enabled.
+Apr 28, 2016 2:58:08 PM com.collaxa.cube.CubeLogger info
+INFO: validating "CheckCCLimit.bpel" ...
+Apr 28, 2016 2:58:08 PM oracle.integration.platform.blocks.FabricConfigManager <clinit>
+WARNING: JRF is unable to determine the current application server platform.
+Apr 28, 2016 2:58:08 PM oracle.integration.platform.blocks.WLSPlatformConfigurationProvider <clinit>
+WARNING: JRF is unable to determine the current application server platform.
+Apr 28, 2016 2:58:09 PM com.collaxa.cube.CubeLogger info
+INFO: Composed "CheckCCLimit" in 90.2 milliseconds [nodes 15=0+15, 166.4 nodes/sec]
+Apr 28, 2016 2:58:10 PM com.collaxa.cube.CubeLogger info
+INFO: Compiled "CheckCCLimit" in 1.148 seconds
+Apr 28, 2016 2:58:10 PM com.collaxa.cube.CubeLogger info
+INFO: Gathered 3 files in 12.4 milliseconds
+
+Apr 28, 2016 2:58:10 PM com.collaxa.cube.CubeLogger info
+INFO: Packaged "CheckCCLimit" in 44.8 milliseconds
+

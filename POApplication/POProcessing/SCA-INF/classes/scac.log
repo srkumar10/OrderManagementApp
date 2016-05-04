@@ -1,0 +1,40 @@
+Apr 28, 2016 2:57:34 PM oracle.mds
+NOTIFICATION: PManager instance is created without multitenancy support as JVM flag "oracle.multitenant.enabled" is not set to enable multitenancy support.
+Apr 28, 2016 2:57:34 PM oracle.security.jps.internal.config.xml.XmlConfigurationFactory initDefaultConfiguration
+SEVERE: java.io.FileNotFoundException: .\config\jps-config.xml (The system cannot find the path specified)
+Apr 28, 2016 2:57:34 PM oracle.mds
+NOTIFICATION: Auditing is disabled for component MDS.
+Apr 28, 2016 2:57:36 PM oracle.fabric.common.wsdl.SchemaBuilder resolveWorkFlowSchemas
+WARNING: Ignoring composite local workflow schema of file:/E:/Oracle/JDeveloper11g/mywork/OrderProcessApp/POApplication/POProcessing/NotificationService.xsd as there is an MDS shared version of the schema used by workflow engine oramds:/soa/shared/workflow/NotificationService.xsd
+Apr 28, 2016 2:57:36 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
+INFO: XMLSchema incremental build enabled.
+Apr 28, 2016 2:57:37 PM com.collaxa.cube.CubeLogger info
+INFO: validating "Fulfillment.bpel" ...
+Apr 28, 2016 2:57:37 PM oracle.integration.platform.blocks.FabricConfigManager <clinit>
+WARNING: JRF is unable to determine the current application server platform.
+Apr 28, 2016 2:57:37 PM oracle.integration.platform.blocks.WLSPlatformConfigurationProvider <clinit>
+WARNING: JRF is unable to determine the current application server platform.
+Apr 28, 2016 2:57:38 PM oracle.fabric.common.wsdl.SchemaBuilder resolveWorkFlowSchemas
+WARNING: Ignoring composite local workflow schema of file:/E:/Oracle/JDeveloper11g/mywork/OrderProcessApp/POApplication/POProcessing/NotificationService.xsd as there is an MDS shared version of the schema used by workflow engine oramds:/soa/shared/workflow/NotificationService.xsd
+Apr 28, 2016 2:57:39 PM com.collaxa.cube.CubeLogger info
+INFO: Composed "Fulfillment" in 174.4 milliseconds [nodes 69=3+66, 395.7 nodes/sec]
+Apr 28, 2016 2:57:41 PM com.collaxa.cube.CubeLogger info
+INFO: Compiled "Fulfillment" in 2.074 seconds
+Apr 28, 2016 2:57:41 PM com.collaxa.cube.CubeLogger info
+INFO: Gathered 7 files in 12.2 milliseconds
+
+Apr 28, 2016 2:57:41 PM com.collaxa.cube.CubeLogger info
+INFO: Packaged "Fulfillment" in 69.1 milliseconds
+
+Apr 28, 2016 2:57:43 PM com.collaxa.cube.CubeLogger info
+INFO: validating "ApproveCCOrder.bpel" ...
+Apr 28, 2016 2:57:43 PM com.collaxa.cube.CubeLogger info
+INFO: Composed "ApproveCCOrder" in 120.6 milliseconds [nodes 75=6+69, 622.1 nodes/sec]
+Apr 28, 2016 2:57:44 PM com.collaxa.cube.CubeLogger info
+INFO: Compiled "ApproveCCOrder" in 1.143 seconds
+Apr 28, 2016 2:57:44 PM com.collaxa.cube.CubeLogger info
+INFO: Gathered 10 files in 15.1 milliseconds
+
+Apr 28, 2016 2:57:44 PM com.collaxa.cube.CubeLogger info
+INFO: Packaged "ApproveCCOrder" in 75.7 milliseconds
+

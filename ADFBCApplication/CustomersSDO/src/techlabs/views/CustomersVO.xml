@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CustomersVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="CustomersEO.CUST_ID, 
+       CustomersEO.FIRST_NAME, 
+       CustomersEO.LAST_NAME, 
+       CustomersEO.EMAIL"
+  FromList="CUSTOMERS CustomersEO"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  SdoGen="true"
+  SdoName="techlabs.views.common.CustomersVOSDO"
+  SdoNameSpace="/techlabs/views/common/">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
+  </DesignTime>
+  <EntityUsage
+    Name="CustomersEO"
+    Entity="techlabs.entities.CustomersEO"/>
+  <ViewAttribute
+    Name="CustId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CustId"
+    EntityUsage="CustomersEO"
+    AliasName="CUST_ID"/>
+  <ViewAttribute
+    Name="FirstName"
+    PrecisionRule="true"
+    EntityAttrName="FirstName"
+    EntityUsage="CustomersEO"
+    AliasName="FIRST_NAME"/>
+  <ViewAttribute
+    Name="LastName"
+    PrecisionRule="true"
+    EntityAttrName="LastName"
+    EntityUsage="CustomersEO"
+    AliasName="LAST_NAME"/>
+  <ViewAttribute
+    Name="Email"
+    PrecisionRule="true"
+    EntityAttrName="Email"
+    EntityUsage="CustomersEO"
+    AliasName="EMAIL"/>
+  <ViewLinkAccessor
+    Name="AddressVO"
+    ViewLink="techlabs.views.AddressCustomersFk1Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+</ViewObject>

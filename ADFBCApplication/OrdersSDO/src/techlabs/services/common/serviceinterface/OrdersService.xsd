@@ -1,0 +1,235 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="/techlabs/services/common/types/"
+     xmlns:tns="/techlabs/services/common/types/" xmlns:ns0="/techlabs/views/common/" xmlns:ns1="http://xmlns.oracle.com/adf/svc/types/">
+    <import namespace="http://xmlns.oracle.com/adf/svc/types/" schemaLocation="classpath:/META-INF/wsdl/BC4JService.xsd"/>
+    <import namespace="http://xmlns.oracle.com/adf/svc/types/" schemaLocation="classpath:/META-INF/wsdl/BC4JServiceCS.xsd"/>
+    <import namespace="/techlabs/views/common/" schemaLocation="../../../views/common/OrdersVOSDO.xsd"/>
+    <import namespace="/techlabs/views/common/" schemaLocation="../../../views/common/ItemsVOSDO.xsd"/>
+    <element name="getItemsVO1">
+        <complexType>
+            <sequence>
+                <element name="itemId" type="decimal"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getItemsVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:ItemsVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="createItemsVO1">
+        <complexType>
+            <sequence>
+                <element name="itemsVO1" type="ns0:ItemsVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="createItemsVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:ItemsVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateItemsVO1">
+        <complexType>
+            <sequence>
+                <element name="itemsVO1" type="ns0:ItemsVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateItemsVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:ItemsVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="deleteItemsVO1">
+        <complexType>
+            <sequence>
+                <element name="itemsVO1" type="ns0:ItemsVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="deleteItemsVO1Response">
+        <complexType>
+            <sequence/>
+        </complexType>
+    </element>
+    <element name="mergeItemsVO1">
+        <complexType>
+            <sequence>
+                <element name="itemsVO1" type="ns0:ItemsVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="mergeItemsVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:ItemsVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="findItemsVO1">
+        <complexType>
+            <sequence>
+                <element name="findCriteria" type="ns1:FindCriteria"/>
+                <element name="findControl" type="ns1:FindControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="findItemsVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:ItemsVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processItemsVO1">
+        <complexType>
+            <sequence>
+                <element name="changeOperation" type="string"/>
+                <element name="itemsVO1" type="ns0:ItemsVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+                <element name="processControl" type="ns1:ProcessControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processItemsVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:ItemsVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processCSItemsVO1">
+        <complexType>
+            <sequence>
+                <element name="processData" type="ns1:ProcessData"/>
+                <element name="processControl" type="ns1:ProcessControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processCSItemsVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:ProcessData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getOrdersVO1">
+        <complexType>
+            <sequence>
+                <element name="ordId" type="decimal"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getOrdersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:OrdersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="createOrdersVO1">
+        <complexType>
+            <sequence>
+                <element name="ordersVO1" type="ns0:OrdersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="createOrdersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:OrdersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateOrdersVO1">
+        <complexType>
+            <sequence>
+                <element name="ordersVO1" type="ns0:OrdersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateOrdersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:OrdersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="deleteOrdersVO1">
+        <complexType>
+            <sequence>
+                <element name="ordersVO1" type="ns0:OrdersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="deleteOrdersVO1Response">
+        <complexType>
+            <sequence/>
+        </complexType>
+    </element>
+    <element name="mergeOrdersVO1">
+        <complexType>
+            <sequence>
+                <element name="ordersVO1" type="ns0:OrdersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="mergeOrdersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:OrdersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="findOrdersVO1">
+        <complexType>
+            <sequence>
+                <element name="findCriteria" type="ns1:FindCriteria"/>
+                <element name="findControl" type="ns1:FindControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="findOrdersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:OrdersVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processOrdersVO1">
+        <complexType>
+            <sequence>
+                <element name="changeOperation" type="string"/>
+                <element name="ordersVO1" type="ns0:OrdersVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+                <element name="processControl" type="ns1:ProcessControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processOrdersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:OrdersVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processCSOrdersVO1">
+        <complexType>
+            <sequence>
+                <element name="processData" type="ns1:ProcessData"/>
+                <element name="processControl" type="ns1:ProcessControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processCSOrdersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:ProcessData"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="techlabs.services.CustomersSDOAppModule" default="CustomerService">
+      <AppModuleConfig name="CustomersSDOAppModuleLocal" ApplicationName="techlabs.services.CustomersSDOAppModule" DeployPlatform="LOCAL" jbo.project="techlabs.CustomersSDO">
+         <Security AppModuleJndiName="techlabs.services.CustomersSDOAppModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/SOADEMODS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="CustomersSDOAppModuleShared" ApplicationName="techlabs.services.CustomersSDOAppModule" DeployPlatform="LOCAL" jbo.project="techlabs.CustomersSDO">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Security AppModuleJndiName="techlabs.services.CustomersSDOAppModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/SOADEMODS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="SI" jbo.project="techlabs.CustomersSDO" name="CustomerService" ApplicationName="techlabs.services.CustomersSDOAppModule">
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="techlabs.services.CustomersSDOAppModule"/>
+         <Custom JDBCDataSource="jdbc/soademoDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

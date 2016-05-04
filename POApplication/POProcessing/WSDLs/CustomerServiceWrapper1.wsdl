@@ -1,0 +1,17 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="CustomerService"
+     targetNamespace="/techlabs/services/common/customers"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="/techlabs/services/common/customers"
+     xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    >
+    <plnk:partnerLinkType name="CustomerService">
+        <plnk:role name="CustomerService">
+            <plnk:portType name="tns:CustomerService"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="/techlabs/services/common/customers" location="http://orafmw11.techlabs.local:8001/CustomersSDO/CustomerService?WSDL"/>
+</wsdl:definitions>

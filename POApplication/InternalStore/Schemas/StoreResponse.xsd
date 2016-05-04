@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:str="http://xmlns.techlabs.com/ns/StoreRequest"
+            targetNamespace="http://xmlns.techlabs.com/ns/StoreRequest"
+            elementFormDefault="qualified">
+  <xsd:element name="StoreResponse" >
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="status" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    
+
+</xsd:schema>

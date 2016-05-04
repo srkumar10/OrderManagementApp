@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:po="http://xmlns.oracle.com/ns/order" targetNamespace="http://xmlns.oracle.com/ns/order" elementFormDefault="qualified">
+	<element name="fulfillmentRequest" type="po:orderType"/>
+	<complexType name="orderType">
+		<sequence>
+			<element name="customerId" type="string"/>
+			<element name="orderId" type="string"/>
+			<element name="payMethod" type="string" minOccurs="0"/>
+			<element name="shipMethod" type="string" minOccurs="0"/>
+			<element name="orderTotal" type="decimal" minOccurs="0"/>
+			<element name="status" type="string" minOccurs="0"/>
+			<element name="creditCard" type="po:ccInfoType" minOccurs="0"/>
+			<element name="items">
+				<complexType>
+					<sequence>
+						<element name="inStock" type="boolean" minOccurs="0"/>
+						<element name="item" type="po:itemType" maxOccurs="unbounded"/>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ccInfoType">
+		<sequence>
+			<element name="cardNumber" type="string"/>
+			<element name="cardType" type="string"/>
+		</sequence>
+	</complexType>
+	<complexType name="itemType">
+		<sequence>
+			<element name="prodId" type="string"/>
+			<element name="prodName" type="string"/>
+			<element name="price" type="decimal" minOccurs="0"/>
+			<element name="qty" type="decimal" minOccurs="0"/>
+			<element name="itemTotal" type="decimal" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="shippingRequestType">
+		<sequence>
+			<element name="orderId" type="string"/>
+			<element name="custName" type="string"/>
+			<element name="shippingAddress" type="po:shippingAddressType"/>
+		</sequence>
+	</complexType>
+	<element name="shippingRequest" type="po:shippingRequestType"/>
+	<element name="fulfillmentResponse" type="po:fulfillmentResponseType"/>
+	<complexType name="fulfillmentResponseType">
+		<sequence>
+			<element name="shipStatus" type="string"/>
+			<element name="carrier" type="string"/>
+		</sequence>
+	</complexType>
+	<complexType name="shippingAddressType">
+		<sequence>
+			<element name="street" type="string" minOccurs="0"/>
+			<element name="city" type="string" minOccurs="0"/>
+			<element name="state" type="string" minOccurs="0"/>
+			<element name="zip" minOccurs="0" type="decimal"/>
+			<element name="country" type="string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+</schema>

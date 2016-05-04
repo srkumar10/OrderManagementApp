@@ -1,0 +1,44 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="Fulfillment"
+     targetNamespace="http://ns.techlabs.com/POApplication/POProcessing/Fulfillment"
+     xmlns:ns2="http://xmlns.oracle.com/ns/order"
+     xmlns:ns1="http://xmlns.oracle.com/ns/order"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:ns3="/techlabs/common/types/"
+     xmlns:client="http://ns.techlabs.com/POApplication/POProcessing/Fulfillment"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <plnk:partnerLinkType name="Fulfillment">
+        <plnk:role name="FulfillmentProvider">
+            <plnk:portType name="client:Fulfillment"/>
+        </plnk:role>
+        <plnk:role name="FulfillmentRequester">
+            <plnk:portType name="client:FulfillmentCallback"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xmlns.oracle.com/ns/order"
+             xmlns:ns1="http://xmlns.oracle.com/ns/order" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+             xmlns:client="http://ns.techlabs.com/POApplication/POProcessing/Fulfillment"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns3="/techlabs/common/types/">
+            <import namespace="http://xmlns.oracle.com/ns/order" schemaLocation="../Schemas/fulfillment.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="FulfillmentResponseMessage">
+        <wsdl:part name="payload" element="ns2:fulfillmentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="FulfillmentRequestMessage">
+        <wsdl:part name="payload" element="ns2:fulfillmentRequest"/>
+    </wsdl:message>
+    <wsdl:portType name="FulfillmentCallback">
+        <wsdl:operation name="processResponse">
+            <wsdl:input message="client:FulfillmentResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="Fulfillment">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:FulfillmentRequestMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

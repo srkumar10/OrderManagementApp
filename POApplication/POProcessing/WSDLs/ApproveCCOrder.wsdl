@@ -1,0 +1,46 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ApproveCCOrder"
+     targetNamespace="http://ns.techlabs.com/POApplication/POProcessing/ApproveCCOrder"
+     xmlns:ns2="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard"
+     xmlns:ns1="http://xmlns.oracle.com/ns/order"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:ns3="/techlabs/services/common/customers/types/"
+     xmlns:client="http://ns.techlabs.com/POApplication/POProcessing/ApproveCCOrder"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <plnk:partnerLinkType name="ApproveCCOrder">
+        <plnk:role name="ApproveCCOrderProvider">
+            <plnk:portType name="client:ApproveCCOrder"/>
+        </plnk:role>
+        <plnk:role name="ApproveCCOrderRequester">
+            <plnk:portType name="client:ApproveCCOrderCallback"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard"
+         location="http://orafmw11.techlabs.local:8001/soa-infra/services/POApplication/CreditCardValidation/ValidateCreditCard.wsdl"/>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/ns/order" schemaLocation="../Schemas/internalorder.xsd"/>
+        </schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="/techlabs/services/common/customers/types/" schemaLocation="http://orafmw11.techlabs.local:8001/CustomersSDO/CustomerService?XSD=/techlabs/services/common/serviceinterface/CustomerService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ApproveCCOrderResponseMessage">
+        <wsdl:part name="payload" element="ns1:Order"/>
+    </wsdl:message>
+    <wsdl:message name="ApproveCCOrderRequestMessage">
+        <wsdl:part name="payload" element="ns1:Order"/>
+    </wsdl:message>
+    <wsdl:portType name="ApproveCCOrderCallback">
+        <wsdl:operation name="processResponse">
+            <wsdl:input message="client:ApproveCCOrderResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="ApproveCCOrder">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:ApproveCCOrderRequestMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

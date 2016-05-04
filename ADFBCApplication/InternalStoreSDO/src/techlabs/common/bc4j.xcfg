@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="techlabs.InternalStoreAppModule"
+                       default="InternalStoreService">
+      <AppModuleConfig name="InternalStoreSDOAppModuleLocal" ApplicationName="techlabs.InternalStoreAppModule" DeployPlatform="LOCAL" jbo.project="techlabs.InternalStoreSDO">
+         <Security AppModuleJndiName="techlabs.InternalStoreAppModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/SOADEMODS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="InternalStoreSDOAppModuleShared" ApplicationName="techlabs.InternalStoreAppModule" DeployPlatform="LOCAL" jbo.project="techlabs.InternalStoreSDO">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Security AppModuleJndiName="techlabs.InternalStoreAppModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/SOADEMODS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="SI" jbo.project="techlabs.InternalStoreSDO" name="InternalStoreService" ApplicationName="techlabs.InternalStoreAppModule">
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="techlabs.InternalStoreAppModule"/>
+         <Custom JDBCDataSource="jdbc/soademoDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

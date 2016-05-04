@@ -1,0 +1,404 @@
+<wsdl:definitions
+     name="OrdersService"
+     targetNamespace="/techlabs/services/common/"
+     xmlns:errors="http://xmlns.oracle.com/adf/svc/errors/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="/techlabs/services/common/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:types="/techlabs/services/common/types/"
+    >
+    <wsdl:import namespace="http://xmlns.oracle.com/adf/svc/errors/" location="classpath:/META-INF/wsdl/ServiceException.wsdl"/>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="/techlabs/services/common/types/" schemaLocation="OrdersService.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="OrdersService_getItemsVO1">
+        <wsdl:part name="parameters" element="types:getItemsVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_getItemsVO1Response">
+        <wsdl:part name="parameters" element="types:getItemsVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_createItemsVO1">
+        <wsdl:part name="parameters" element="types:createItemsVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_createItemsVO1Response">
+        <wsdl:part name="parameters" element="types:createItemsVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_updateItemsVO1">
+        <wsdl:part name="parameters" element="types:updateItemsVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_updateItemsVO1Response">
+        <wsdl:part name="parameters" element="types:updateItemsVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_deleteItemsVO1">
+        <wsdl:part name="parameters" element="types:deleteItemsVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_deleteItemsVO1Response">
+        <wsdl:part name="parameters" element="types:deleteItemsVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_mergeItemsVO1">
+        <wsdl:part name="parameters" element="types:mergeItemsVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_mergeItemsVO1Response">
+        <wsdl:part name="parameters" element="types:mergeItemsVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_findItemsVO1">
+        <wsdl:part name="parameters" element="types:findItemsVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_findItemsVO1Response">
+        <wsdl:part name="parameters" element="types:findItemsVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_processItemsVO1">
+        <wsdl:part name="parameters" element="types:processItemsVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_processItemsVO1Response">
+        <wsdl:part name="parameters" element="types:processItemsVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_processCSItemsVO1">
+        <wsdl:part name="parameters" element="types:processCSItemsVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_processCSItemsVO1Response">
+        <wsdl:part name="parameters" element="types:processCSItemsVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_getOrdersVO1">
+        <wsdl:part name="parameters" element="types:getOrdersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_getOrdersVO1Response">
+        <wsdl:part name="parameters" element="types:getOrdersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_createOrdersVO1">
+        <wsdl:part name="parameters" element="types:createOrdersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_createOrdersVO1Response">
+        <wsdl:part name="parameters" element="types:createOrdersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_updateOrdersVO1">
+        <wsdl:part name="parameters" element="types:updateOrdersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_updateOrdersVO1Response">
+        <wsdl:part name="parameters" element="types:updateOrdersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_deleteOrdersVO1">
+        <wsdl:part name="parameters" element="types:deleteOrdersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_deleteOrdersVO1Response">
+        <wsdl:part name="parameters" element="types:deleteOrdersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_mergeOrdersVO1">
+        <wsdl:part name="parameters" element="types:mergeOrdersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_mergeOrdersVO1Response">
+        <wsdl:part name="parameters" element="types:mergeOrdersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_findOrdersVO1">
+        <wsdl:part name="parameters" element="types:findOrdersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_findOrdersVO1Response">
+        <wsdl:part name="parameters" element="types:findOrdersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_processOrdersVO1">
+        <wsdl:part name="parameters" element="types:processOrdersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_processOrdersVO1Response">
+        <wsdl:part name="parameters" element="types:processOrdersVO1Response"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_processCSOrdersVO1">
+        <wsdl:part name="parameters" element="types:processCSOrdersVO1"/>
+    </wsdl:message>
+    <wsdl:message name="OrdersService_processCSOrdersVO1Response">
+        <wsdl:part name="parameters" element="types:processCSOrdersVO1Response"/>
+    </wsdl:message>
+    <wsdl:portType name="OrdersService">
+        <wsdl:documentation>
+            <ViewInstance xmlns="http://xmlns.oracle.com/adf/svc/metadata/" Name="ItemsVO1" xmlns:ns0="/techlabs/views/common/"
+                 SDOName="ns0:ItemsVOSDO" CreateOpName="createItemsVO1" UpdateOpName="updateItemsVO1"
+                 DeleteOpName="deleteItemsVO1" MergeOpName="mergeItemsVO1" GetOpName="getItemsVO1"
+                 FindOpName="findItemsVO1" ProcessOpName="processItemsVO1" ProcessCSOpName="processCSItemsVO1"/>
+            <ViewInstance xmlns="http://xmlns.oracle.com/adf/svc/metadata/" Name="OrdersVO1" xmlns:ns0="/techlabs/views/common/"
+                 SDOName="ns0:OrdersVOSDO" CreateOpName="createOrdersVO1" UpdateOpName="updateOrdersVO1"
+                 DeleteOpName="deleteOrdersVO1" MergeOpName="mergeOrdersVO1" GetOpName="getOrdersVO1"
+                 FindOpName="findOrdersVO1" ProcessOpName="processOrdersVO1" ProcessCSOpName="processCSOrdersVO1"/>
+        </wsdl:documentation>
+        <wsdl:operation name="getItemsVO1">
+            <wsdl:input message="tns:OrdersService_getItemsVO1"/>
+            <wsdl:output message="tns:OrdersService_getItemsVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createItemsVO1">
+            <wsdl:input message="tns:OrdersService_createItemsVO1"/>
+            <wsdl:output message="tns:OrdersService_createItemsVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateItemsVO1">
+            <wsdl:input message="tns:OrdersService_updateItemsVO1"/>
+            <wsdl:output message="tns:OrdersService_updateItemsVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteItemsVO1">
+            <wsdl:input message="tns:OrdersService_deleteItemsVO1"/>
+            <wsdl:output message="tns:OrdersService_deleteItemsVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="mergeItemsVO1">
+            <wsdl:input message="tns:OrdersService_mergeItemsVO1"/>
+            <wsdl:output message="tns:OrdersService_mergeItemsVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="findItemsVO1">
+            <wsdl:input message="tns:OrdersService_findItemsVO1"/>
+            <wsdl:output message="tns:OrdersService_findItemsVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="processItemsVO1">
+            <wsdl:input message="tns:OrdersService_processItemsVO1"/>
+            <wsdl:output message="tns:OrdersService_processItemsVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="processCSItemsVO1">
+            <wsdl:input message="tns:OrdersService_processCSItemsVO1"/>
+            <wsdl:output message="tns:OrdersService_processCSItemsVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getOrdersVO1">
+            <wsdl:input message="tns:OrdersService_getOrdersVO1"/>
+            <wsdl:output message="tns:OrdersService_getOrdersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createOrdersVO1">
+            <wsdl:input message="tns:OrdersService_createOrdersVO1"/>
+            <wsdl:output message="tns:OrdersService_createOrdersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateOrdersVO1">
+            <wsdl:input message="tns:OrdersService_updateOrdersVO1"/>
+            <wsdl:output message="tns:OrdersService_updateOrdersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteOrdersVO1">
+            <wsdl:input message="tns:OrdersService_deleteOrdersVO1"/>
+            <wsdl:output message="tns:OrdersService_deleteOrdersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="mergeOrdersVO1">
+            <wsdl:input message="tns:OrdersService_mergeOrdersVO1"/>
+            <wsdl:output message="tns:OrdersService_mergeOrdersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="findOrdersVO1">
+            <wsdl:input message="tns:OrdersService_findOrdersVO1"/>
+            <wsdl:output message="tns:OrdersService_findOrdersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="processOrdersVO1">
+            <wsdl:input message="tns:OrdersService_processOrdersVO1"/>
+            <wsdl:output message="tns:OrdersService_processOrdersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+        <wsdl:operation name="processCSOrdersVO1">
+            <wsdl:input message="tns:OrdersService_processCSOrdersVO1"/>
+            <wsdl:output message="tns:OrdersService_processCSOrdersVO1Response"/>
+            <wsdl:fault name="ServiceException" message="errors:ServiceException"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="OrdersServiceSoapHttp" type="tns:OrdersService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getItemsVO1">
+            <soap:operation soapAction="/techlabs/services/common/getItemsVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createItemsVO1">
+            <soap:operation soapAction="/techlabs/services/common/createItemsVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateItemsVO1">
+            <soap:operation soapAction="/techlabs/services/common/updateItemsVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteItemsVO1">
+            <soap:operation soapAction="/techlabs/services/common/deleteItemsVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="mergeItemsVO1">
+            <soap:operation soapAction="/techlabs/services/common/mergeItemsVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="findItemsVO1">
+            <soap:operation soapAction="/techlabs/services/common/findItemsVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="processItemsVO1">
+            <soap:operation soapAction="/techlabs/services/common/processItemsVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="processCSItemsVO1">
+            <soap:operation soapAction="/techlabs/services/common/processCSItemsVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getOrdersVO1">
+            <soap:operation soapAction="/techlabs/services/common/getOrdersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createOrdersVO1">
+            <soap:operation soapAction="/techlabs/services/common/createOrdersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateOrdersVO1">
+            <soap:operation soapAction="/techlabs/services/common/updateOrdersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteOrdersVO1">
+            <soap:operation soapAction="/techlabs/services/common/deleteOrdersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="mergeOrdersVO1">
+            <soap:operation soapAction="/techlabs/services/common/mergeOrdersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="findOrdersVO1">
+            <soap:operation soapAction="/techlabs/services/common/findOrdersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="processOrdersVO1">
+            <soap:operation soapAction="/techlabs/services/common/processOrdersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="processCSOrdersVO1">
+            <soap:operation soapAction="/techlabs/services/common/processCSOrdersVO1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceException">
+                <soap:fault name="ServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="OrdersService">
+        <wsdl:port name="OrdersServiceSoapHttpPort" binding="tns:OrdersServiceSoapHttp">
+            <soap:address location="http://orafmw11.techlabs.local:7101/ADFBCApplication-OrdersSDO-context-root/OrdersService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

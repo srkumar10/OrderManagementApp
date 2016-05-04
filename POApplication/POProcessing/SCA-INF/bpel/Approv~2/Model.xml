@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="ApproveCCOrder" targetNamespace="http://ns.techlabs.com/POApplication/POProcessing/ApproveCCOrder" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://ns.techlabs.com/POApplication/POProcessing/ApproveCCOrder" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns1="http://ns.techlabs.com/POApplication/POProcessing/Fulfillment" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns2="http://xmlns.oracle.com/ns/order" xmlns:ns3="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard" xmlns:ns4="http://techlabs.local/ns/CCAuthorizationService" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns5="http://xmlns.oracle.com/bpel/workflow/taskService" xmlns:ns6="/techlabs/services/common/customers" xmlns:task="http://xmlns.oracle.com/bpel/workflow/task" xmlns:wfcommon="http://xmlns.oracle.com/bpel/workflow/common" xmlns:wf="http://schemas.oracle.com/bpel/extensions/workflow" xmlns:ns7="/techlabs/views/common/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns8="http://xmlns.oracle.com/ias/pcbpel/NotificationService" xmlns:ns9="http://xmlns.oracle.com/ApprovalRules/ApprovalRulesService" xmlns:ns10="http://xmlns.oracle.com/ShippingRules/ShippingRulesService" xmlns:ns11="http://xmlns.oracle.com/bpel" xmlns:ns13="http://xmlns.oracle.com/bpel/workflow/TaskEvidenceService" xmlns:ns12="http://xmlns.oracle.com/ns/orderapproval" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="BpPrc0">
+         
+         
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+    <partnerLinks>
+        <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+        <partnerLink name="approveccorder_client" partnerLinkType="client:ApproveCCOrder" myRole="ApproveCCOrderProvider" partnerRole="ApproveCCOrderRequester"/>
+        <partnerLink name="Fulfillment.fulfillment_client" partnerLinkType="ns1:Fulfillment" partnerRole="FulfillmentProvider" myRole="FulfillmentRequester"/>
+        <partnerLink name="ValidateCCService" partnerLinkType="ns3:ValidateCCService" partnerRole="creditcardvalidation"/>
+        <partnerLink name="ManualApproval.TaskService" partnerLinkType="ns5:TaskService" partnerRole="TaskService" myRole="TaskServiceCallbackListener"/>
+        <partnerLink name="CustomerService" partnerLinkType="ns6:CustomerService" partnerRole="CustomerService"/>
+        <partnerLink name="NotificationService1" partnerLinkType="ns8:NotificationServiceLink" partnerRole="NotificationServiceProvider"/>
+        <partnerLink name="ApprovalRules.ApprovalRulesService" partnerLinkType="ns9:ApprovalRules.ApprovalRulesService" partnerRole="IDecisionService"/>
+    </partnerLinks>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        VARIABLES                                                        
+        List of messages and XML documents used within this BPEL process 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+    <variables>
+        <!-- Reference to the message passed as input during initiation -->
+        <variable name="inputVariable" messageType="client:ApproveCCOrderRequestMessage"/>
+        <!-- Reference to the message that will be sent back to the requester during callback -->
+        <variable name="outputVariable" messageType="client:ApproveCCOrderResponseMessage"/>
+        <variable name="creditFault" messageType="ns3:faultMessage"/>
+        <variable name="ManualApproval1_globalVariable" messageType="ns5:taskMessage"/>
+    </variables>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       ORCHESTRATION LOGIC                                               
+       Set of activities coordinating the flow of messages across the    
+       services integrated within this business process                  
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+    <sequence name="main" id="BpSeq0">
+        <!-- Receive input from requestor. (Note: This maps to operation defined in ApproveCCOrder.wsdl) -->
+        <receive name="receiveInput" partnerLink="approveccorder_client" portType="client:ApproveCCOrder" operation="process" variable="inputVariable" createInstance="yes" id="BpRcv0"/>
+        <assign name="Assign_orderinfo" id="BpAss0">
+            <copy>
+                <from variable="inputVariable" part="payload" query="/ns2:Order"/>
+                <to variable="outputVariable" part="payload" query="/ns2:Order"/>
+            </copy>
+        </assign>
+        <scope name="Scope_validatecc" variableAccessSerializable="no" id="BpScp0">
+            <variables>
+                <variable name="Invoke_validatecc_validatecreditcard_InputVariable" messageType="ns3:requestMessage"/>
+                <variable name="Invoke_validatecc_validatecreditcard_OutputVariable" messageType="ns3:replyMessage"/>
+                <variable name="approvalRequired" type="xsd:boolean"/>
+            </variables>
+            <faultHandlers id="BpFhs0">
+                <catch faultName="ns3:validateCCfault" faultVariable="creditFault" id="BpCFt0">
+                    <assign name="Assign_rejected" id="BpAss1">
+                        <copy>
+                            <from expression="'rejected'"/>
+                            <to variable="outputVariable" part="payload" query="/ns2:Order/ns2:status"/>
+                        </copy>
+                    </assign>
+                </catch>
+            </faultHandlers>
+            <sequence name="Sequence1" id="BpSeq1">
+                <assign name="Assign_ccinfo" id="BpAss2">
+                    <copy>
+                        <from variable="inputVariable" part="payload" query="/ns2:Order/ns2:creditCard/ns2:cardNumber"/>
+                        <to variable="Invoke_validatecc_validatecreditcard_InputVariable" part="CreditCheckRequest" query="/ns4:CreditCheckRequest/ns4:CCNumber"/>
+                    </copy>
+                    <copy>
+                        <from variable="inputVariable" part="payload" query="/ns2:Order/ns2:orderTotal"/>
+                        <to variable="Invoke_validatecc_validatecreditcard_InputVariable" part="CreditCheckRequest" query="/ns4:CreditCheckRequest/ns4:amount"/>
+                    </copy>
+                </assign>
+                <invoke name="Invoke_validatecc" bpelx:invokeAsDetail="no" inputVariable="Invoke_validatecc_validatecreditcard_InputVariable" outputVariable="Invoke_validatecc_validatecreditcard_OutputVariable" partnerLink="ValidateCCService" portType="ns3:creditcardvalidation" operation="validatecreditcard" id="BpInv0"/>
+                <switch name="Switch_ccvalid" id="BpSwt0">
+                    <case condition="bpws:getVariableData('Invoke_validatecc_validatecreditcard_OutputVariable','CreditCheckResponse','/ns4:CreditCheckResponse/ns4:status') = 'VALID'">
+                        <bpelx:annotation>
+                            <bpelx:pattern>Check valid status</bpelx:pattern>
+                            <bpelx:general>
+                                <bpelx:property name="userLabel">
+                                    <![CDATA[Valid]]>
+                                </bpelx:property>
+                            </bpelx:general>
+                        </bpelx:annotation>
+                        <sequence name="Sequence3" id="BpSeq2">
+                            <scope name="BusinessRule_approvalrule" variableAccessSerializable="no" id="BpScp1">
+                                <bpelx:annotation>
+                                    <bpelx:pattern patternName="bpelx:decide"/>
+                                </bpelx:annotation>
+                                <variables>
+                                    <variable name="dsIn" messageType="ns9:callFunctionStatelessMessage"/>
+                                    <variable name="dsOut" messageType="ns9:callFunctionStatelessDecisionMessage"/>
+                                </variables>
+                                <sequence name="Sequence6" id="BpSeq3">
+                                    <assign name="Facts_To_Rule_Service" id="BpAss3">
+                                        <copy>
+                                            <from variable="inputVariable" part="payload" query="/ns2:Order/ns2:orderTotal"/>
+                                            <to variable="dsIn" part="payload" query="/ns9:callFunctionStateless/ns9:parameterList/ns12:price/ns12:totalPrice"/>
+                                        </copy>
+                                    </assign>
+                                    <assign name="BPEL_Header" id="BpAss4">
+                                        <copy>
+                                            <from expression="&quot;ApprovalRulesService&quot;"/>
+                                            <to variable="dsIn" part="payload" query="@name"/>
+                                        </copy>
+                                    </assign>
+                                    <invoke name="Invoke" partnerLink="ApprovalRules.ApprovalRulesService" portType="ns9:IDecisionService" operation="callFunctionStateless" inputVariable="dsIn" outputVariable="dsOut" id="BpInv1"/>
+                                    <assign name="Rule_Service_To_Facts" id="BpAss5">
+                                        <copy>
+                                            <from query="/ns9:callFunctionStatelessDecision/ns9:resultList/ns12:approvalanddiscount/ns12:approvalRequired" variable="dsOut" part="payload"/>
+                                            <to variable="approvalRequired"/>
+                                        </copy>
+                                    </assign>
+                                </sequence>
+                            </scope>
+                            <switch name="Switch_checkapproval" id="BpSwt1">
+                                <case condition="bpws:getVariableData('approvalRequired') = true()">
+                                    <bpelx:annotation>
+                                        <bpelx:general>
+                                            <bpelx:property name="userLabel">
+                                                <![CDATA[Approval Required]]>
+                                            </bpelx:property>
+                                        </bpelx:general>
+                                    </bpelx:annotation>
+                                    <sequence id="BpSeq4">
+                                        <scope name="ManualApproval1" xmlns:wf="http://schemas.oracle.com/bpel/extensions/workflow" wf:key="ManualApproval1_globalVariable" id="BpScp2">
+                                            <bpelx:annotation>
+                                                <bpelx:pattern patternName="bpelx:workflow"/>
+                                            </bpelx:annotation>
+                                            <variables>
+                                                <variable name="initiateTaskInput" messageType="ns5:initiateTaskMessage"/>
+                                                <variable name="initiateTaskResponseMessage" messageType="ns5:initiateTaskResponseMessage"/>
+                                            </variables>
+                                            <sequence id="BpSeq5">
+                                                <assign name="ManualApproval1_AssignTaskAttributes" id="BpAss6">
+                                                    <copy>
+                                                        <from expression="number(3)"/>
+                                                        <to variable="initiateTaskInput" part="payload" query="/ns5:initiateTask/task:task/task:priority"/>
+                                                    </copy>
+                                                    <copy>
+                                                        <from><payload xmlns="http://xmlns.oracle.com/bpel/workflow/task">
+	<Order xmlns="http://xmlns.oracle.com/ns/order"/> 
+</payload></from>
+                                                        <to variable="initiateTaskInput" part="payload" query="/ns5:initiateTask/task:task/task:payload"/>
+                                                    </copy>
+                                                    <copy>
+                                                        <from variable="outputVariable" part="payload" query="/ns2:Order"/>
+                                                        <to variable="initiateTaskInput" part="payload" query="/ns5:initiateTask/task:task/task:payload/ns2:Order"/>
+                                                    </copy>
+                                                </assign>
+                                                <invoke name="initiateTask_ManualApproval1" partnerLink="ManualApproval.TaskService" operation="initiateTask" portType="ns5:TaskService" inputVariable="initiateTaskInput" outputVariable="initiateTaskResponseMessage" id="BpInv2"/>
+                                                <receive name="receiveCompletedTask_ManualApproval1" partnerLink="ManualApproval.TaskService" portType="ns5:TaskServiceCallback" operation="onTaskCompleted" variable="ManualApproval1_globalVariable" createInstance="no" id="BpRcv1"/>
+                                            </sequence>
+                                        </scope>
+                                        <switch name="taskSwitch" id="BpSwt2">
+                                            <case condition="$ManualApproval1_globalVariable.payload/task:systemAttributes/task:outcome = 'REJECT'">
+                                                <bpelx:annotation>
+                                                    <bpelx:pattern>Task outcome is REJECT</bpelx:pattern>
+                                                    <bpelx:general>
+                                                        <bpelx:property name="userLabel">
+                                                            <![CDATA[Task outcome is REJECT]]>
+                                                        </bpelx:property>
+                                                    </bpelx:general>
+                                                </bpelx:annotation>
+                                                <sequence id="BpSeq6">
+                                                    <assign id="BpAss7">
+                                                        <copy>
+                                                            <from variable="ManualApproval1_globalVariable" part="payload" query="/task:task/task:payload/ns2:Order"/>
+                                                            <to variable="outputVariable" part="payload" query="/ns2:Order"/>
+                                                        </copy>
+                                                    </assign>
+                                                    <assign name="Assign_manualreject" id="BpAss8">
+                                                        <copy>
+                                                            <from expression="'rejected'"/>
+                                                            <to variable="outputVariable" part="payload" query="/ns2:Order/ns2:status"/>
+                                                        </copy>
+                                                    </assign>
+                                                </sequence>
+                                            </case>
+                                            <case condition="$ManualApproval1_globalVariable.payload/task:systemAttributes/task:outcome = 'APPROVE'">
+                                                <bpelx:annotation>
+                                                    <bpelx:pattern>Task outcome is APPROVE</bpelx:pattern>
+                                                    <bpelx:general>
+                                                        <bpelx:property name="userLabel">
+                                                            <![CDATA[Task outcome is APPROVE]]>
+                                                        </bpelx:property>
+                                                    </bpelx:general>
+                                                </bpelx:annotation>
+                                                <sequence id="BpSeq7">
+                                                    <assign id="BpAss9">
+                                                        <copy>
+                                                            <from variable="ManualApproval1_globalVariable" part="payload" query="/task:task/task:payload/ns2:Order"/>
+                                                            <to variable="outputVariable" part="payload" query="/ns2:Order"/>
+                                                        </copy>
+                                                    </assign>
+                                                    <assign name="Assign_manualapprove" id="BpAss10">
+                                                        <copy>
+                                                            <from expression="'approved'"/>
+                                                            <to variable="outputVariable" part="payload" query="/ns2:Order/ns2:status"/>
+                                                        </copy>
+                                                    </assign>
+                                                </sequence>
+                                            </case>
+                                            <otherwise>
+                                                <sequence id="BpSeq8">
+                                                    <assign id="BpAss11">
+                                                        <copy>
+                                                            <from variable="ManualApproval1_globalVariable" part="payload" query="/task:task/task:payload/ns2:Order"/>
+                                                            <to variable="outputVariable" part="payload" query="/ns2:Order"/>
+                                                        </copy>
+                                                    </assign>
+                                                </sequence>
+                                            </otherwise>
+                                        </switch>
+                                    </sequence>
+                                </case>
+                                <otherwise>
+                                    <assign name="Assign_autoapproved" id="BpAss12">
+                                        <copy>
+                                            <from expression="'approved'"/>
+                                            <to variable="outputVariable" part="payload" query="/ns2:Order/ns2:status"/>
+                                        </copy>
+                                    </assign>
+                                </otherwise>
+                            </switch>
+                            <switch name="Switch_approved" id="BpSwt3">
+                                <case condition="bpws:getVariableData('outputVariable','payload','/ns2:Order/ns2:status') = 'approved'">
+                                    <bpelx:annotation>
+                                        <bpelx:general>
+                                            <bpelx:property name="userLabel">
+                                                <![CDATA[Fulfill approved orders]]>
+                                            </bpelx:property>
+                                        </bpelx:general>
+                                    </bpelx:annotation>
+                                    <scope name="Scope_fulfillment" variableAccessSerializable="no" id="BpScp3">
+                                        <variables>
+                                            <variable name="fulfillmentRequest" messageType="ns1:FulfillmentRequestMessage"/>
+                                            <variable name="fulfillmentResponse" messageType="ns1:FulfillmentResponseMessage"/>
+                                        </variables>
+                                        <sequence name="Sequence2" id="BpSeq9">
+                                            <assign name="Transform_fulfillment" id="BpAss13">
+                                                <bpelx:annotation>
+                                                    <bpelx:pattern>transformation</bpelx:pattern>
+                                                </bpelx:annotation>
+                                                <copy>
+                                                    <from expression="ora:doXSLTransformForDoc('xsl/Transformation_to_fulfillment.xsl', $outputVariable.payload)"/>
+                                                    <to variable="fulfillmentRequest" part="payload"/>
+                                                </copy>
+                                            </assign>
+                                            <invoke name="Invoke_fulfillment" inputVariable="fulfillmentRequest" partnerLink="Fulfillment.fulfillment_client" portType="ns1:Fulfillment" operation="process" bpelx:invokeAsDetail="no" id="BpInv3"/>
+                                            <receive name="Receive_fulfillment" createInstance="no" variable="fulfillmentResponse" partnerLink="Fulfillment.fulfillment_client" portType="ns1:FulfillmentCallback" operation="processResponse" id="BpRcv2"/>
+                                            <assign name="Assign_fulfillment_status" id="BpAss14">
+                                                <copy>
+                                                    <from variable="fulfillmentResponse" part="payload" query="/ns2:fulfillmentResponse/ns2:shipStatus"/>
+                                                    <to variable="outputVariable" part="payload" query="/ns2:Order/ns2:status"/>
+                                                </copy>
+                                            </assign>
+                                        </sequence>
+                                    </scope>
+                                </case>
+                                <otherwise/>
+                            </switch>
+                        </sequence>
+                    </case>
+                    <otherwise>
+                        <assign name="Assign_invalidcc" id="BpAss15">
+                            <copy>
+                                <from expression="'Invalid Credit Card'"/>
+                                <to variable="outputVariable" part="payload" query="/ns2:Order/ns2:status"/>
+                            </copy>
+                        </assign>
+                    </otherwise>
+                </switch>
+            </sequence>
+        </scope>
+        <scope name="Scope_notifycustomer" variableAccessSerializable="no" id="BpScp4">
+            <variables>
+                <variable name="customerEV" element="ns7:customersVOSDO" bpelx:entity.si="CustomerService"/>
+            </variables>
+            <sequence name="Sequence4" id="BpSeq10">
+                <bpelx:bindEntity name="BindEntity_customer" variable="customerEV" id="BpBnd0">
+                    <bpelx:key keyname="ns7:CustId">bpws:getVariableData('inputVariable','payload','/ns2:Order/ns2:customerId')</bpelx:key>
+                </bpelx:bindEntity>
+                <scope name="Email1" id="BpScp5">
+                    <bpelx:annotation>
+                        <bpelx:pattern patternName="bpelx:email"/>
+                    </bpelx:annotation>
+                    <variables>
+                        <variable name="varNotificationReq" messageType="ns8:EmailNotificationRequest"/>
+                        <variable name="varNotificationResponse" messageType="ns8:ArrayOfResponse"/>
+                        <variable name="NotificationServiceFaultVariable" messageType="ns8:NotificationServiceErrorMessage"/>
+                    </variables>
+                    <sequence name="Sequence5" id="BpSeq11">
+                        <assign name="EmailParamsAssign" id="BpAss16">
+                            <copy>
+                                <from expression="string('Default')"/>
+                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:FromAccountName"/>
+                            </copy>
+                            <copy>
+                                <from expression="string('')"/>
+                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:FromUserName"/>
+                            </copy>
+                            <copy>
+                                <from expression="string('')"/>
+                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:Bcc"/>
+                            </copy>
+                            <copy>
+                                <from expression="string('')"/>
+                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:Cc"/>
+                            </copy>
+                            <copy>
+                                <from expression="string('')"/>
+                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:ReplyToAddress"/>
+                            </copy>
+                            <copy>
+                                <from expression="concat(string('&quot;Your Order Status: &quot; '), bpws:getVariableData('outputVariable','payload','/ns2:Order/ns2:status'))"/>
+                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:Subject"/>
+                            </copy>
+                            <copy>
+                                <from expression="bpws:getVariableData('customerEV','/ns7:customersVOSDO/ns7:Email')"/>
+                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:To"/>
+                            </copy>
+                            <copy>
+                                <from expression="concat(string('&lt;p> Dear '), bpws:getVariableData('customerEV','/ns7:customersVOSDO/ns7:FirstName'), string(' &lt;/p> &lt;p> The status of your order is: &lt;b> '), bpws:getVariableData('outputVariable','payload','/ns2:Order/ns2:status'), string(' &lt;/b> &lt;/p> &lt;hr> &lt;p> Thank you for shopping with us. For more information contact customer support on 1-800-NUMBER. &lt;/p>'))"/>
+                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:Content/ns8:ContentBody"/>
+                            </copy>
+                            <copy>
+                                <from expression="string('text/html; charset=UTF-8')"/>
+                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:Content/ns8:MimeType"/>
+                            </copy>
+                        </assign>
+                        <invoke name="InvokeNotificationService" portType="ns8:NotificationService" partnerLink="NotificationService1" inputVariable="varNotificationReq" outputVariable="varNotificationResponse" operation="sendEmailNotification" id="BpInv4"/>
+                    </sequence>
+                </scope>
+            </sequence>
+        </scope>
+        <!-- 
+          Asynchronous callback to the requester. (Note: the callback location and correlation id is transparently handled using WS-addressing.)
+        -->
+        <invoke name="callbackClient" partnerLink="approveccorder_client" portType="client:ApproveCCOrderCallback" operation="processResponse" inputVariable="outputVariable" id="BpInv5"/>
+    </sequence>
+</process><!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Thu Mar 10 06:32:22 EST 2016
+  Author:  ramesh
+  Type: BPEL 1.1 Process
+  Purpose: Asynchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->

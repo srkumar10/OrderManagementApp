@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:st="http://xmlns.techlabs.com/ns/StoreRequest"
+            targetNamespace="http://xmlns.techlabs.com/ns/StoreRequest"
+            elementFormDefault="qualified">
+  <xsd:element name="StoreRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="product" maxOccurs="unbounded" minOccurs="1"
+                     type="st:product"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="product">
+    <xsd:sequence>
+      <xsd:element name="prodId" type="xsd:string"/>
+      <xsd:element name="qtyOrdered" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

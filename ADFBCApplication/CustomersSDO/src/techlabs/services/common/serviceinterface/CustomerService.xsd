@@ -1,0 +1,236 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="/techlabs/services/common/customers/types/"
+     xmlns:tns="/techlabs/services/common/customers/types/" xmlns:ns0="http://xmlns.oracle.com/adf/svc/types/"
+     xmlns:ns1="/techlabs/views/common/">
+    <import namespace="/techlabs/views/common/" schemaLocation="../../../views/common/AddressVOSDO.xsd"/>
+    <import namespace="/techlabs/views/common/" schemaLocation="../../../views/common/CustomersVOSDO.xsd"/>
+    <import namespace="http://xmlns.oracle.com/adf/svc/types/" schemaLocation="classpath:/META-INF/wsdl/BC4JService.xsd"/>
+    <import namespace="http://xmlns.oracle.com/adf/svc/types/" schemaLocation="classpath:/META-INF/wsdl/BC4JServiceCS.xsd"/>
+    <element name="getAddressVO1">
+        <complexType>
+            <sequence>
+                <element name="addrId" type="decimal"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getAddressVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:AddressVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="createAddressVO1">
+        <complexType>
+            <sequence>
+                <element name="addressVO1" type="ns1:AddressVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="createAddressVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:AddressVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateAddressVO1">
+        <complexType>
+            <sequence>
+                <element name="addressVO1" type="ns1:AddressVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateAddressVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:AddressVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="deleteAddressVO1">
+        <complexType>
+            <sequence>
+                <element name="addressVO1" type="ns1:AddressVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="deleteAddressVO1Response">
+        <complexType>
+            <sequence/>
+        </complexType>
+    </element>
+    <element name="mergeAddressVO1">
+        <complexType>
+            <sequence>
+                <element name="addressVO1" type="ns1:AddressVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="mergeAddressVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:AddressVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="findAddressVO1">
+        <complexType>
+            <sequence>
+                <element name="findCriteria" type="ns0:FindCriteria"/>
+                <element name="findControl" type="ns0:FindControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="findAddressVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:AddressVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processAddressVO1">
+        <complexType>
+            <sequence>
+                <element name="changeOperation" type="string"/>
+                <element name="addressVO1" type="ns1:AddressVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+                <element name="processControl" type="ns0:ProcessControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processAddressVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:AddressVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processCSAddressVO1">
+        <complexType>
+            <sequence>
+                <element name="processData" type="ns0:ProcessData"/>
+                <element name="processControl" type="ns0:ProcessControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processCSAddressVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:ProcessData"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getCustomersVO1">
+        <complexType>
+            <sequence>
+                <element name="custId" type="decimal"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getCustomersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:CustomersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="createCustomersVO1">
+        <complexType>
+            <sequence>
+                <element name="customersVO1" type="ns1:CustomersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="createCustomersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:CustomersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateCustomersVO1">
+        <complexType>
+            <sequence>
+                <element name="customersVO1" type="ns1:CustomersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateCustomersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:CustomersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="deleteCustomersVO1">
+        <complexType>
+            <sequence>
+                <element name="customersVO1" type="ns1:CustomersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="deleteCustomersVO1Response">
+        <complexType>
+            <sequence/>
+        </complexType>
+    </element>
+    <element name="mergeCustomersVO1">
+        <complexType>
+            <sequence>
+                <element name="customersVO1" type="ns1:CustomersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="mergeCustomersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:CustomersVOSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="findCustomersVO1">
+        <complexType>
+            <sequence>
+                <element name="findCriteria" type="ns0:FindCriteria"/>
+                <element name="findControl" type="ns0:FindControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="findCustomersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:CustomersVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processCustomersVO1">
+        <complexType>
+            <sequence>
+                <element name="changeOperation" type="string"/>
+                <element name="customersVO1" type="ns1:CustomersVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+                <element name="processControl" type="ns0:ProcessControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processCustomersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:CustomersVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processCSCustomersVO1">
+        <complexType>
+            <sequence>
+                <element name="processData" type="ns0:ProcessData"/>
+                <element name="processControl" type="ns0:ProcessControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processCSCustomersVO1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:ProcessData"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

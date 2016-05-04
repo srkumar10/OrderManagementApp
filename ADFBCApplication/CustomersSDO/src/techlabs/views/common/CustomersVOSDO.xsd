@@ -1,0 +1,22 @@
+<xsd:schema xmlns:sdoJava="commonj.sdo/java" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="/techlabs/views/common/"
+     xmlns="/techlabs/views/common/" elementFormDefault="qualified" sdoJava:package="techlabs.views.common">
+    <xsd:import schemaLocation="classpath:/xml/sdoJava.xsd" namespace="commonj.sdo/java"/>
+    <xsd:include schemaLocation="AddressVOSDO.xsd"/>
+    <xsd:complexType name="CustomersVOSDO">
+        <xsd:annotation>
+            <xsd:appinfo source="http://xmlns.oracle.com/adf/svc/metadata/">
+                <key xmlns="http://xmlns.oracle.com/adf/svc/metadata/">
+                    <attribute>CustId</attribute>
+                </key>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="CustId" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="FirstName" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="LastName" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="Email" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="AddressVO" type="AddressVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="customersVOSDO" type="CustomersVOSDO"/>
+</xsd:schema>

@@ -1,0 +1,121 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://xmlns.techlabs.local/oracle/apps/types/"
+     xmlns:tns="http://xmlns.techlabs.local/oracle/apps/types/" xmlns:ns0="http://xmlns.oracle.com/adf/svc/types/"
+     xmlns:ns1="/techlabs/common/">
+    <import namespace="/techlabs/common/" schemaLocation="../OnlineStoreViewSDO.xsd"/>
+    <import namespace="http://xmlns.oracle.com/adf/svc/types/" schemaLocation="classpath:/META-INF/wsdl/BC4JService.xsd"/>
+    <import namespace="http://xmlns.oracle.com/adf/svc/types/" schemaLocation="classpath:/META-INF/wsdl/BC4JServiceCS.xsd"/>
+    <element name="getOnlineStoreView1">
+        <complexType>
+            <sequence>
+                <element name="prodId" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getOnlineStoreView1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:OnlineStoreViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="createOnlineStoreView1">
+        <complexType>
+            <sequence>
+                <element name="onlineStoreView1" type="ns1:OnlineStoreViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="createOnlineStoreView1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:OnlineStoreViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateOnlineStoreView1">
+        <complexType>
+            <sequence>
+                <element name="onlineStoreView1" type="ns1:OnlineStoreViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="updateOnlineStoreView1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:OnlineStoreViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="deleteOnlineStoreView1">
+        <complexType>
+            <sequence>
+                <element name="onlineStoreView1" type="ns1:OnlineStoreViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="deleteOnlineStoreView1Response">
+        <complexType>
+            <sequence/>
+        </complexType>
+    </element>
+    <element name="mergeOnlineStoreView1">
+        <complexType>
+            <sequence>
+                <element name="onlineStoreView1" type="ns1:OnlineStoreViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="mergeOnlineStoreView1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:OnlineStoreViewSDO"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="findOnlineStoreView1">
+        <complexType>
+            <sequence>
+                <element name="findCriteria" type="ns0:FindCriteria"/>
+                <element name="findControl" type="ns0:FindControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="findOnlineStoreView1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:OnlineStoreViewSDO" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processOnlineStoreView1">
+        <complexType>
+            <sequence>
+                <element name="changeOperation" type="string"/>
+                <element name="onlineStoreView1" type="ns1:OnlineStoreViewSDO" minOccurs="0" maxOccurs="unbounded"/>
+                <element name="processControl" type="ns0:ProcessControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processOnlineStoreView1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns1:OnlineStoreViewSDO" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processCSOnlineStoreView1">
+        <complexType>
+            <sequence>
+                <element name="processData" type="ns0:ProcessData"/>
+                <element name="processControl" type="ns0:ProcessControl"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="processCSOnlineStoreView1Response">
+        <complexType>
+            <sequence>
+                <element name="result" type="ns0:ProcessData"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

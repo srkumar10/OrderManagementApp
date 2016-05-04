@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="Fulfillment" targetNamespace="http://ns.techlabs.com/POApplication/POProcessing/Fulfillment" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://ns.techlabs.com/POApplication/POProcessing/Fulfillment" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns1="http://xmlns.oracle.com/ns/order" xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/UPSJmsService" xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/USPSJmsService" xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/FedExJmsService" xmlns:ns5="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory" xmlns:ns6="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock" xmlns:ns7="http://xmlns.techlabs.com/ns/StoreRequest" xmlns:ns8="/techlabs/common/" xmlns:ns9="/techlabs/services/common/" xmlns:ns10="/techlabs/views/common/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns11="/techlabs/services/common/customers" xmlns:ns12="http://xmlns.oracle.com/ShippingRules/ShippingRulesService" xmlns:ns13="http://xmlns.oracle.com/bpel" xmlns:ns14="http://xmlns.oracle.com/ns/ordershipment" id="BpPrc0">
+
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+    <partnerLinks>
+        <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+        <partnerLink name="fulfillment_client" partnerLinkType="client:Fulfillment" myRole="FulfillmentProvider" partnerRole="FulfillmentRequester"/>
+        <partnerLink name="UPSJmsService" partnerLinkType="ns2:Produce_Message_plt" partnerRole="Produce_Message_role"/>
+        <partnerLink name="USPSJmsService" partnerLinkType="ns3:Produce_Message_plt" partnerRole="Produce_Message_role"/>
+        <partnerLink name="FedExJmsService" partnerLinkType="ns4:Produce_Message_plt" partnerRole="Produce_Message_role"/>
+        <partnerLink name="InternalStore" partnerLinkType="ns5:ManageInventory" myRole="ManageInventoryRequester" partnerRole="ManageInventoryProvider"/>
+        <partnerLink name="OnlineStore" partnerLinkType="ns6:ManageStock" myRole="ManageStockRequester" partnerRole="ManageStockProvider"/>
+        <partnerLink name="OrdersService" partnerLinkType="ns9:OrdersService" partnerRole="OrdersService"/>
+        <partnerLink name="CustomerService" partnerLinkType="ns11:CustomerService" partnerRole="CustomerService"/>
+        <partnerLink name="ShippingRules.ShippingRulesService" partnerLinkType="ns12:ShippingRules.ShippingRulesService" partnerRole="IDecisionService"/>
+    </partnerLinks>
+
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        VARIABLES                                                        
+        List of messages and XML documents used within this BPEL process 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+    <variables>
+        <!-- Reference to the message passed as input during initiation -->
+        <variable name="inputVariable" messageType="client:FulfillmentRequestMessage"/>
+
+        <!-- Reference to the message that will be sent back to the requester during callback -->
+        <variable name="outputVariable" messageType="client:FulfillmentResponseMessage"/>
+        <variable name="orderData" element="ns10:ordersVOSDO"/>
+        <variable name="ordersEV" element="ns10:ordersVOSDO" bpelx:entity.si="OrdersService"/>
+        <variable name="customerEV" element="ns10:customersVOSDO" bpelx:entity.si="CustomerService"/>
+        <variable name="addressEV" element="ns10:addressVOSDO" bpelx:entity.si="CustomerService"/>
+    </variables>
+
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       ORCHESTRATION LOGIC                                               
+       Set of activities coordinating the flow of messages across the    
+       services integrated within this business process                  
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+    <sequence name="main" id="BpSeq0">
+        <!-- Receive input from requestor. (Note: This maps to operation defined in Fulfillment.wsdl) -->
+        <receive name="receiveInput" partnerLink="fulfillment_client" portType="client:Fulfillment" operation="process" variable="inputVariable" createInstance="yes" id="BpRcv0"/>
+        <scope name="Scope_insertorder" variableAccessSerializable="no" id="BpScp0">
+            <sequence name="Sequence9" id="BpSeq1">
+                <assign name="Assign_orderid" id="BpAss0">
+                    <copy>
+                        <from expression="oraext:sequence-next-val('ORDER_SEQ', 'jdbc/soademoDS')"/>
+                        <to variable="inputVariable" part="payload" query="/ns1:fulfillmentRequest/ns1:orderId"/>
+                    </copy>
+                </assign>
+                <assign name="Transform_orderData" id="BpAss1">
+                    <bpelx:annotation>
+                        <bpelx:pattern>transformation</bpelx:pattern>
+                    </bpelx:annotation>
+                    <copy>
+                        <from expression="ora:doXSLTransformForDoc('xsl/Transformation_orderData.xsl', $inputVariable.payload)"/>
+                        <to variable="orderData"/>
+                    </copy>
+                </assign>
+                <bpelx:createEntity name="CreateEntity_order" variable="ordersEV" id="BpCre0">
+                    <bpelx:fromExpression>bpws:getVariableData('orderData')</bpelx:fromExpression>
+                </bpelx:createEntity>
+            </sequence>
+        </scope>
+        <scope name="Scope_checkstock" variableAccessSerializable="no" id="BpScp1">
+            <variables>
+                <variable name="Invoke_internalstore_checkStock_InputVariable" messageType="ns5:ManageInventoryRequestMessage"/>
+                <variable name="Receive_internalstore_checkStockResponse_InputVariable" messageType="ns5:ManageInventoryResponseMessage"/>
+                <variable name="Invoke_onlinestore_checkStock_InputVariable" messageType="ns6:ManageStockRequestMessage"/>
+                <variable name="Receive_onlinestore_checkStockResponse_InputVariable" messageType="ns6:ManageStockResponseMessage"/>
+                <variable name="Invoke_acquire_internalstore_acquireStock_InputVariable" messageType="ns5:ManageInventoryRequestMessage"/>
+                <variable name="Receive_acquireinternal_acquireStockResponse_InputVariable" messageType="ns5:ManageInventoryResponseMessage"/>
+                <variable name="Receive_acquireonline_acquireStockResponse_InputVariable" messageType="ns6:ManageStockResponseMessage"/>
+                <variable name="Invoke_acquire_onlinestore_acquireStock_InputVariable" messageType="ns6:ManageStockRequestMessage"/>
+            </variables>
+            <sequence name="Sequence6" id="BpSeq2">
+                <flow name="Flow_checkstock" id="BpFlw0">
+                    <sequence name="Sequence" id="BpSeq3">
+                        <assign name="Transform_internalstore" id="BpAss2">
+                            <bpelx:annotation>
+                                <bpelx:pattern>transformation</bpelx:pattern>
+                            </bpelx:annotation>
+                            <copy>
+                                <from expression="ora:doXSLTransformForDoc('xsl/Transformation_internalstore.xsl', $inputVariable.payload)"/>
+                                <to variable="Invoke_internalstore_checkStock_InputVariable" part="payload"/>
+                            </copy>
+                        </assign>
+                        <invoke name="Invoke_internalstore" bpelx:invokeAsDetail="no" inputVariable="Invoke_internalstore_checkStock_InputVariable" partnerLink="InternalStore" portType="ns5:ManageInventory" operation="checkStock" id="BpInv0"/>
+                        <receive name="Receive_internalstore" createInstance="no" variable="Receive_internalstore_checkStockResponse_InputVariable" partnerLink="InternalStore" portType="ns5:ManageInventoryCallback" operation="checkStockResponse" id="BpRcv1"/>
+                    </sequence>
+                    <sequence name="Sequence5" id="BpSeq4">
+                        <assign name="Transform_onlinestore" id="BpAss3">
+                            <bpelx:annotation>
+                                <bpelx:pattern>transformation</bpelx:pattern>
+                            </bpelx:annotation>
+                            <copy>
+                                <from expression="ora:doXSLTransformForDoc('xsl/Transformation_onlinestore.xsl', $inputVariable.payload)"/>
+                                <to variable="Invoke_onlinestore_checkStock_InputVariable" part="payload"/>
+                            </copy>
+                        </assign>
+                        <invoke name="Invoke_onlinestore" bpelx:invokeAsDetail="no" inputVariable="Invoke_onlinestore_checkStock_InputVariable" partnerLink="OnlineStore" portType="ns6:ManageStock" operation="checkStock" id="BpInv1"/>
+                        <receive name="Receive_onlinestore" createInstance="no" variable="Receive_onlinestore_checkStockResponse_InputVariable" partnerLink="OnlineStore" portType="ns6:ManageStockCallback" operation="checkStockResponse" id="BpRcv2"/>
+                    </sequence>
+                </flow>
+                <switch name="Switch_selectstore" id="BpSwt0">                    
+                    <case condition="bpws:getVariableData('Receive_internalstore_checkStockResponse_InputVariable','payload','/ns7:StoreResponse/ns7:status') = 'in-stock'">
+                        <bpelx:annotation>
+                            <bpelx:general>
+                                <bpelx:property name="userLabel">
+                                    <![CDATA[internalstore=in-stock]]>
+                                </bpelx:property>
+                            </bpelx:general>
+                        </bpelx:annotation>
+                        <sequence name="Sequence7" id="BpSeq5">
+                            <assign name="Assign_acquire_internalstore" id="BpAss4">
+                                <copy>
+                                    <from variable="Invoke_internalstore_checkStock_InputVariable" part="payload" query="/ns7:StoreRequest"/>
+                                    <to variable="Invoke_acquire_internalstore_acquireStock_InputVariable" part="payload" query="/ns7:StoreRequest"/>
+                                </copy>
+                                <copy>
+                                    <from expression="'completed'"/>
+                                    <to variable="ordersEV" query="/ns10:ordersVOSDO/ns10:Status"/>
+                                </copy>
+                                <copy>
+                                    <from expression="'completed'"/>
+                                    <to variable="outputVariable" part="payload" query="/ns1:fulfillmentResponse/ns1:shipStatus"/>
+                                </copy>
+                            </assign>
+                            <invoke name="Invoke_acquire_internalstore" bpelx:invokeAsDetail="no" inputVariable="Invoke_acquire_internalstore_acquireStock_InputVariable" partnerLink="InternalStore" portType="ns5:ManageInventory" operation="acquireStock" id="BpInv2"/>
+                            <receive name="Receive_acquireinternal" createInstance="no" variable="Receive_acquireinternal_acquireStockResponse_InputVariable" partnerLink="InternalStore" portType="ns5:ManageInventoryCallback" operation="acquireStockResponse" id="BpRcv3"/>
+                        </sequence>
+                    </case>
+                    <case condition="bpws:getVariableData('Receive_onlinestore_checkStockResponse_InputVariable','payload','/ns7:StoreResponse/ns7:status')='in-stock'">
+                        <bpelx:annotation>
+                            <bpelx:general>
+                                <bpelx:property name="userLabel">
+                                    <![CDATA[onlinestore=in-stock]]>
+                                </bpelx:property>
+                            </bpelx:general>
+                        </bpelx:annotation>
+                        <sequence name="Sequence8" id="BpSeq6">
+                            <assign name="Assign_acquire_onlinestore" id="BpAss5">
+                                <copy>
+                                    <from variable="Invoke_onlinestore_checkStock_InputVariable" part="payload" query="/ns7:StoreRequest"/>
+                                    <to variable="Invoke_acquire_onlinestore_acquireStock_InputVariable" part="payload" query="/ns7:StoreRequest"/>
+                                </copy>
+                                <copy>
+                                    <from expression="'completed'"/>
+                                    <to variable="ordersEV" query="/ns10:ordersVOSDO/ns10:Status"/>
+                                </copy>
+                                <copy>
+                                    <from expression="'completed'"/>
+                                    <to variable="outputVariable" part="payload" query="/ns1:fulfillmentResponse/ns1:shipStatus"/>
+                                </copy>
+                            </assign>
+                            <invoke name="Invoke_acquire_onlinestore" bpelx:invokeAsDetail="no" inputVariable="Invoke_acquire_onlinestore_acquireStock_InputVariable" partnerLink="OnlineStore" portType="ns6:ManageStock" operation="acquireStock" id="BpInv3"/>
+                            <receive name="Receive_acquireonline" createInstance="no" variable="Receive_acquireonline_acquireStockResponse_InputVariable" partnerLink="OnlineStore" portType="ns6:ManageStockCallback" operation="acquireStockResponse" id="BpRcv4"/>
+                        </sequence>
+                    </case>
+                    <otherwise>
+                        <assign name="Assign_waiting" id="BpAss6">
+                            <copy>
+                                <from expression="'waiting'"/>
+                                <to variable="outputVariable" part="payload" query="/ns1:fulfillmentResponse/ns1:shipStatus"/>
+                            </copy>
+                            <copy>
+                                <from expression="'waiting'"/>
+                                <to variable="ordersEV" query="/ns10:ordersVOSDO/ns10:Status"/>
+                            </copy>
+                        </assign>
+                    </otherwise>
+                </switch>
+            </sequence>
+        </scope>
+        <bpelx:bindEntity name="BindEntity_customer" variable="customerEV" id="BpBnd0">
+            <bpelx:key keyname="ns10:CustId">bpws:getVariableData('inputVariable','payload','/ns1:fulfillmentRequest/ns1:customerId')</bpelx:key>
+        </bpelx:bindEntity>
+        <switch name="Switch_orderstatus" id="BpSwt1">
+            <case condition="bpws:getVariableData('outputVariable','payload','/ns1:fulfillmentResponse/ns1:shipStatus') = 'completed'">
+                <bpelx:annotation>
+                    <bpelx:general>
+                        <bpelx:property name="userLabel">
+                            <![CDATA[order completed ?]]>
+                        </bpelx:property>
+                    </bpelx:general>
+                </bpelx:annotation>
+                <scope name="Scope_shiporder" variableAccessSerializable="no" id="BpScp2">
+                    <variables>
+                        <variable name="shippingRequest" element="ns1:shippingRequest"/>
+                        <variable name="Invoke_UPS_Produce_Message_InputVariable" messageType="ns2:Produce_Message_msg"/>
+                        <variable name="Invoke_USPS_Produce_Message_InputVariable" messageType="ns3:Produce_Message_msg"/>
+                        <variable name="Invoke_FedEx_Produce_Message_InputVariable" messageType="ns4:Produce_Message_msg"/>
+                    </variables>
+                    <sequence name="Sequence1" id="BpSeq7">
+                        <assign name="Assign_shiporder" id="BpAss7">
+                            <copy>
+                                <from variable="inputVariable" part="payload" query="/ns1:fulfillmentRequest/ns1:orderId"/>
+                                <to variable="shippingRequest" query="/ns1:shippingRequest/ns1:orderId"/>
+                            </copy>
+                            <copy>
+                                <from expression="xp20:current-dateTime()"/>
+                                <to variable="ordersEV" query="/ns10:ordersVOSDO/ns10:DateShipped"/>
+                            </copy>
+                            <copy>
+                                <from variable="inputVariable" part="payload" query="/ns1:fulfillmentRequest/ns1:customerId"/>
+                                <to variable="shippingRequest" query="/ns1:shippingRequest/ns1:custName"/>
+                            </copy>
+                        </assign>
+                        <bpelx:bindEntity name="BindEntity_address" variable="addressEV" id="BpBnd1">
+                            <bpelx:key keyname="ns10:AddrId">bpws:getVariableData('inputVariable','payload','/ns1:fulfillmentRequest/ns1:customerId')</bpelx:key>
+                        </bpelx:bindEntity>
+                        <assign name="Assign_shippingAddress" id="BpAss8">
+                            <copy>
+                                <from expression="concat(bpws:getVariableData('customerEV','/ns10:customersVOSDO/ns10:FirstName'), ' ', bpws:getVariableData('customerEV','/ns10:customersVOSDO/ns10:LastName') )"/>
+                                <to variable="shippingRequest" query="/ns1:shippingRequest/ns1:custName"/>
+                            </copy>
+                            <copy>
+                                <from variable="addressEV" query="/ns10:addressVOSDO/ns10:Street"/>
+                                <to variable="shippingRequest" query="/ns1:shippingRequest/ns1:shippingAddress/ns1:street"/>
+                            </copy>
+                            <copy>
+                                <from variable="addressEV" query="/ns10:addressVOSDO/ns10:City"/>
+                                <to variable="shippingRequest" query="/ns1:shippingRequest/ns1:shippingAddress/ns1:city"/>
+                            </copy>
+                            <copy>
+                                <from variable="addressEV" query="/ns10:addressVOSDO/ns10:State"/>
+                                <to variable="shippingRequest" query="/ns1:shippingRequest/ns1:shippingAddress/ns1:state"/>
+                            </copy>
+                            <copy>
+                                <from variable="addressEV" query="/ns10:addressVOSDO/ns10:Zip"/>
+                                <to variable="shippingRequest" query="/ns1:shippingRequest/ns1:shippingAddress/ns1:zip"/>
+                            </copy>
+                            <copy>
+                                <from variable="addressEV" query="/ns10:addressVOSDO/ns10:Country"/>
+                                <to variable="shippingRequest" query="/ns1:shippingRequest/ns1:shippingAddress/ns1:country"/>
+                            </copy>
+                        </assign>
+                        <scope name="Business_shippingrule" variableAccessSerializable="no" id="BpScp3">
+                            <bpelx:annotation>
+                                <bpelx:pattern patternName="bpelx:decide"/>
+                            </bpelx:annotation>
+                            <variables>
+                                <variable name="dsIn" messageType="ns12:callFunctionStatelessMessage"/>
+                                <variable name="dsOut" messageType="ns12:callFunctionStatelessDecisionMessage"/>
+                            </variables>
+                            <sequence name="Sequence10" id="BpSeq8">
+                                <assign name="Facts_To_Rule_Service" id="BpAss9">
+                                    <copy>
+                                        <from variable="inputVariable" part="payload" query="/ns1:fulfillmentRequest/ns1:shipMethod"/>
+                                        <to variable="dsIn" part="payload" query="/ns12:callFunctionStateless/ns12:parameterList/ns14:shippinginfo/ns14:shipChoice"/>
+                                    </copy>
+                                </assign>
+                                <assign name="BPEL_Header" id="BpAss10">
+                                    <copy>
+                                        <from expression="&quot;ShippingRulesService&quot;"/>
+                                        <to variable="dsIn" part="payload" query="@name"/>
+                                    </copy>
+                                </assign>
+                                <invoke name="Invoke" partnerLink="ShippingRules.ShippingRulesService" portType="ns12:IDecisionService" operation="callFunctionStateless" inputVariable="dsIn" outputVariable="dsOut" id="BpInv4"/>
+                                <assign name="Rule_Service_To_Facts" id="BpAss11">
+                                    <copy>
+                                        <from variable="dsOut" part="payload" query="/ns12:callFunctionStatelessDecision/ns12:resultList/ns14:shippingcompany/ns14:carrier"/>
+                                        <to variable="outputVariable" part="payload" query="/ns1:fulfillmentResponse/ns1:carrier"/>
+                                    </copy>
+                                </assign>
+                            </sequence>
+                        </scope>
+                        <switch name="Switch_shiporder" id="BpSwt2">
+                            <case condition="bpws:getVariableData('outputVariable','payload','/ns1:fulfillmentResponse/ns1:carrier') = 'FEDEX'">
+                                <bpelx:annotation>
+                                    <bpelx:general>
+                                        <bpelx:property name="userLabel">
+                                            <![CDATA[FEDEX]]>
+                                        </bpelx:property>
+                                    </bpelx:general>
+                                </bpelx:annotation>
+                                <sequence name="Sequence4" id="BpSeq9">
+                                    <assign name="Assign_toFedEx" id="BpAss12">
+                                        <copy>
+                                            <from variable="shippingRequest" query="/ns1:shippingRequest"/>
+                                            <to variable="Invoke_FedEx_Produce_Message_InputVariable" part="body" query="/ns1:shippingRequest"/>
+                                        </copy>
+                                        <bpelx:append>
+                                            <bpelx:from expression="' (FedEx)'"/>
+                                            <bpelx:to variable="Invoke_FedEx_Produce_Message_InputVariable" part="body" query="/ns1:shippingRequest/ns1:custName"/>
+                                        </bpelx:append>
+                                        <copy>
+                                            <from expression="'Completed'"/>
+                                            <to variable="outputVariable" part="payload" query="/ns1:fulfillmentResponse/ns1:shipStatus"/>
+                                        </copy>
+                                    </assign>
+                                    <invoke name="Invoke_FedEx" bpelx:invokeAsDetail="no" inputVariable="Invoke_FedEx_Produce_Message_InputVariable" partnerLink="FedExJmsService" portType="ns4:Produce_Message_ptt" operation="Produce_Message" id="BpInv5"/>
+                                </sequence>
+                            </case>
+                            <case condition="bpws:getVariableData('outputVariable','payload','/ns1:fulfillmentResponse/ns1:carrier') = 'USPS'">
+                                <bpelx:annotation>
+                                    <bpelx:general>
+                                        <bpelx:property name="userLabel">
+                                            <![CDATA[USPS]]>
+                                        </bpelx:property>
+                                    </bpelx:general>
+                                </bpelx:annotation>
+                                <sequence name="Sequence3" id="BpSeq10">
+                                    <assign name="Assign_toUSPS" id="BpAss13">
+                                        <copy>
+                                            <from variable="shippingRequest" query="/ns1:shippingRequest"/>
+                                            <to variable="Invoke_USPS_Produce_Message_InputVariable" part="body" query="/ns1:shippingRequest"/>
+                                        </copy>
+                                        <bpelx:append>
+                                            <bpelx:from expression="' (USPS)'"/>
+                                            <bpelx:to variable="Invoke_USPS_Produce_Message_InputVariable" part="body" query="/ns1:shippingRequest/ns1:custName"/>
+                                        </bpelx:append>
+                                        <copy>
+                                            <from expression="'Completed'"/>
+                                            <to variable="outputVariable" part="payload" query="/ns1:fulfillmentResponse/ns1:shipStatus"/>
+                                        </copy>
+                                    </assign>
+                                    <invoke name="Invoke_USPS" bpelx:invokeAsDetail="no" inputVariable="Invoke_USPS_Produce_Message_InputVariable" partnerLink="USPSJmsService" portType="ns3:Produce_Message_ptt" operation="Produce_Message" id="BpInv6"/>
+                                </sequence>
+                            </case>
+                            <case condition="bpws:getVariableData('outputVariable','payload','/ns1:fulfillmentResponse/ns1:carrier') = 'UPS'">
+                                <bpelx:annotation>
+                                    <bpelx:general>
+                                        <bpelx:property name="userLabel">
+                                            <![CDATA[UPS]]>
+                                        </bpelx:property>
+                                    </bpelx:general>
+                                </bpelx:annotation>
+                                <sequence name="Sequence2" id="BpSeq11">
+                                    <assign name="Assign_toUPS" id="BpAss14">
+                                        <copy>
+                                            <from variable="shippingRequest" query="/ns1:shippingRequest"/>
+                                            <to variable="Invoke_UPS_Produce_Message_InputVariable" part="body" query="/ns1:shippingRequest"/>
+                                        </copy>
+                                        <bpelx:append>
+                                            <bpelx:from expression="' (UPS)'"/>
+                                            <bpelx:to variable="Invoke_UPS_Produce_Message_InputVariable" part="body" query="/ns1:shippingRequest/ns1:custName"/>
+                                        </bpelx:append>
+                                        <copy>
+                                            <from expression="'Completed'"/>
+                                            <to variable="outputVariable" part="payload" query="/ns1:fulfillmentResponse/ns1:shipStatus"/>
+                                        </copy>
+                                    </assign>
+                                    <invoke name="Invoke_UPS" bpelx:invokeAsDetail="no" inputVariable="Invoke_UPS_Produce_Message_InputVariable" partnerLink="UPSJmsService" portType="ns2:Produce_Message_ptt" operation="Produce_Message" id="BpInv7"/>
+                                </sequence>
+                            </case>
+                        </switch>
+                    </sequence>
+                </scope>
+            </case>
+        </switch>
+        <!-- 
+          Asynchronous callback to the requester. (Note: the callback location and correlation id is transparently handled using WS-addressing.)
+        -->
+        <invoke name="callbackClient" partnerLink="fulfillment_client" portType="client:FulfillmentCallback" operation="processResponse" inputVariable="outputVariable" id="BpInv8"/>
+    </sequence>
+</process><!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Thu Mar 10 06:38:21 EST 2016
+  Author:  ramesh
+  Type: BPEL 1.1 Process
+  Purpose: Asynchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
