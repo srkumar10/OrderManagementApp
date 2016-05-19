@@ -1,0 +1,21 @@
+<xsd:schema xmlns:sdoJava="commonj.sdo/java" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="/techlabs/views/common/"
+     xmlns="/techlabs/views/common/" elementFormDefault="qualified" sdoJava:package="techlabs.views.common">
+    <xsd:import schemaLocation="classpath:/xml/sdoJava.xsd" namespace="commonj.sdo/java"/>
+    <xsd:complexType name="ItemsVOSDO">
+        <xsd:annotation>
+            <xsd:appinfo source="http://xmlns.oracle.com/adf/svc/metadata/">
+                <key xmlns="http://xmlns.oracle.com/adf/svc/metadata/">
+                    <attribute>ItemId</attribute>
+                </key>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ItemId" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="OrdId" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="ProdId" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="Price" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="Quantity" type="xsd:decimal" minOccurs="0" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="itemsVOSDO" type="ItemsVOSDO"/>
+</xsd:schema>

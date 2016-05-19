@@ -1,0 +1,26 @@
+<xsd:schema xmlns:sdoJava="commonj.sdo/java" xmlns:ns0="http://xmlns.oracle.com/adf/svc/types/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="/techlabs/views/common/" xmlns="/techlabs/views/common/" elementFormDefault="qualified"
+     sdoJava:package="techlabs.views.common">
+    <xsd:import schemaLocation="classpath:/META-INF/wsdl/BC4JService.xsd" namespace="http://xmlns.oracle.com/adf/svc/types/"/>
+    <xsd:import schemaLocation="classpath:/xml/sdoJava.xsd" namespace="commonj.sdo/java"/>
+    <xsd:include schemaLocation="ItemsVOSDO.xsd"/>
+    <xsd:complexType name="OrdersVOSDO">
+        <xsd:annotation>
+            <xsd:appinfo source="http://xmlns.oracle.com/adf/svc/metadata/">
+                <key xmlns="http://xmlns.oracle.com/adf/svc/metadata/">
+                    <attribute>OrdId</attribute>
+                </key>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="OrdId" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="CustId" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="TotalPrice" type="xsd:decimal" minOccurs="0" nillable="true"/>
+            <xsd:element name="DateOrdered" type="ns0:dateTime-Timestamp" minOccurs="0" nillable="true"/>
+            <xsd:element name="DateShipped" type="ns0:dateTime-Timestamp" minOccurs="0" nillable="true"/>
+            <xsd:element name="Status" type="xsd:string" minOccurs="0" nillable="true"/>
+            <xsd:element name="ItemsVO" type="ItemsVOSDO" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ordersVOSDO" type="OrdersVOSDO"/>
+</xsd:schema>

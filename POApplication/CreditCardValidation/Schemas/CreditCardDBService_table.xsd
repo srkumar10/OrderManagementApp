@@ -8,21 +8,9 @@
    </xs:complexType>
    <xs:complexType name="Creditcards">
       <xs:sequence>
-         <xs:element name="cardNumber">
-            <xs:simpleType>
-               <xs:restriction base="xs:string">
-                  <xs:maxLength value="20"/>
-               </xs:restriction>
-            </xs:simpleType>
-         </xs:element>
+         <xs:element name="cardNumber" type="string20"/>
          <xs:element name="creditLimit" type="xs:long" minOccurs="0" nillable="true"/>
-         <xs:element name="status" minOccurs="0">
-            <xs:simpleType>
-               <xs:restriction base="xs:string">
-                  <xs:maxLength value="20"/>
-               </xs:restriction>
-            </xs:simpleType>
-         </xs:element>
+         <xs:element name="status" type="string20" minOccurs="0"/>
       </xs:sequence>
    </xs:complexType>
    <xs:element name="CreditCardDBServiceSelect_ccNumInputParameters" type="CreditCardDBServiceSelect_ccNum"/>
@@ -31,4 +19,9 @@
          <xs:element name="ccNum" type="xs:string" minOccurs="1" maxOccurs="1"/>
       </xs:sequence>
    </xs:complexType>
+   <xs:simpleType name="string20">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="20"/>
+      </xs:restriction>
+   </xs:simpleType>
 </xs:schema>

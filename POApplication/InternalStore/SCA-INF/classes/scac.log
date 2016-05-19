@@ -1,24 +1,32 @@
-Apr 05, 2016 2:29:26 PM oracle.mds
-NOTIFICATION: PManager instance is created without multitenancy support as JVM flag "oracle.multitenant.enabled" is not set to enable multitenancy support.
-Apr 05, 2016 2:29:27 PM oracle.security.jps.internal.config.xml.XmlConfigurationFactory initDefaultConfiguration
-SEVERE: java.io.FileNotFoundException: .\config\jps-config.xml (The system cannot find the path specified)
-Apr 05, 2016 2:29:27 PM oracle.mds
-NOTIFICATION: Auditing is disabled for component MDS.
-Apr 05, 2016 2:29:27 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
+2016-05-12 16:03:08.875/1.935 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middleware12c/1221/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2016-05-12 16:03:08.943/2.004 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/Middleware12c/1221/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence-override-dev.xml"
+2016-05-12 16:03:08.948/2.008 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/tangosol-coherence-override.xml" is not specified
+2016-05-12 16:03:08.956/2.016 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
+2016-05-12 16:03:08.958/2.019 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
+2016-05-12 16:03:08.961/2.021 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+
+Oracle Coherence Version 12.2.1.0.0 Build 60603
+ Grid Edition: Development mode
+Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+
+2016-05-12 16:03:09.066/2.126 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded FMW commons version: 12.2.1-0-0-SNAPSHOT b60603
+2016-05-12 16:03:09.071/2.132 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
+2016-05-12 16:03:09.379/2.440 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): The cluster name has not been configured, a value of "sunkr196's cluster" has been automatically generated
+May 12, 2016 4:03:09 PM oracle.soa.scac.ValidateComposite loadWSDLs
+WARNING: Validating WSDLs from WSDLManager....  with option UseSoaInfraMds:false
+May 12, 2016 4:03:09 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
 INFO: XMLSchema incremental build enabled.
-Apr 05, 2016 2:29:27 PM com.collaxa.cube.CubeLogger info
+May 12, 2016 4:03:10 PM com.collaxa.cube.CubeLogger info
 INFO: validating "ManageInventory.bpel" ...
-Apr 05, 2016 2:29:27 PM oracle.integration.platform.blocks.FabricConfigManager <clinit>
+May 12, 2016 4:03:10 PM oracle.integration.platform.blocks.PlatformConfigurationProvider getPlatformConfigurationProvider
 WARNING: JRF is unable to determine the current application server platform.
-Apr 05, 2016 2:29:27 PM oracle.integration.platform.blocks.WLSPlatformConfigurationProvider <clinit>
-WARNING: JRF is unable to determine the current application server platform.
-Apr 05, 2016 2:29:27 PM com.collaxa.cube.CubeLogger info
-INFO: Composed "ManageInventory" in 50.9 milliseconds [nodes 35=0+35, 687.8 nodes/sec]
-Apr 05, 2016 2:29:28 PM com.collaxa.cube.CubeLogger info
-INFO: Compiled "ManageInventory" in 1.007 seconds
-Apr 05, 2016 2:29:28 PM com.collaxa.cube.CubeLogger info
-INFO: Gathered 3 files in 0.5 milliseconds
-
-Apr 05, 2016 2:29:28 PM com.collaxa.cube.CubeLogger info
-INFO: Packaged "ManageInventory" in 8.0 milliseconds
-
+May 12, 2016 4:03:10 PM com.collaxa.cube.CubeLogger info
+INFO: Composed "ManageInventory" in 222.9 milliseconds [nodes 35=0+35, 157.0 nodes/sec]
+May 12, 2016 4:03:12 PM com.collaxa.cube.CubeLogger info
+INFO: Compiled "ManageInventory" in 1.791 seconds
+May 12, 2016 4:03:12 PM com.collaxa.cube.CubeLogger info
+INFO: Gathered 5 files in 7.0 milliseconds
+May 12, 2016 4:03:12 PM com.collaxa.cube.CubeLogger info
+INFO: Packaged "ManageInventory" in 38.9 milliseconds
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=32m; support was removed in 8.0
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0

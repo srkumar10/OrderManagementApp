@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <adapter-config name="CreditCardDBService" adapter="db" wsdlLocation="WSDLs/CreditCardDBService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
   
   <connection-factory location="eis/DB/soademo" UIConnectionName="SOADEMO" adapterRef=""/>

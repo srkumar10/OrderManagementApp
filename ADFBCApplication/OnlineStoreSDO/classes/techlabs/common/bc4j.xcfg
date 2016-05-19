@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="techlabs.OnlineStoreAppModule" default="OnlineStoreService">
+      <AppModuleConfig name="OnlineStoreAppModuleLocal" ApplicationName="techlabs.OnlineStoreAppModule" DeployPlatform="LOCAL" jbo.project="techlabs.OnlineStoreSDO">
+         <Security AppModuleJndiName="techlabs.OnlineStoreAppModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/SOADEMODS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="OnlineStoreAppModuleShared" ApplicationName="techlabs.OnlineStoreAppModule" DeployPlatform="LOCAL" jbo.project="techlabs.OnlineStoreSDO">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Security AppModuleJndiName="techlabs.OnlineStoreAppModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/SOADEMODS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="SI" jbo.project="techlabs.OnlineStoreSDO" name="OnlineStoreService" ApplicationName="techlabs.OnlineStoreAppModule">
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="techlabs.OnlineStoreAppModule"/>
+         <Custom JDBCDataSource="jdbc/soademoDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

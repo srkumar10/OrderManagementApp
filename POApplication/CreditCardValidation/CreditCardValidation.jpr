@@ -406,5 +406,6 @@
       </hash>
    </hash>
    <value n="ProcessName" v="CheckCCLimit"/>
+   <value n="SOA_WSDL_FOLDER_NAME" v="WSDLs/"/>
    <value n="Template" v="BPEL_BASE_ON_WSDL"/>
 </jpr:project>

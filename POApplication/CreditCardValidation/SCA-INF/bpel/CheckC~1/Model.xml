@@ -1,12 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<process name="CheckCCLimit" targetNamespace="http://xmlns.oracle.com/POApplication/CreditCardValidation/CheckCCLimit" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/POApplication/CreditCardValidation/CheckCCLimit" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:ns1="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/POApplication/CreditCardValidation/CreditCardDBService" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns4="http://techlabs.local/ns/CCAuthorizationService" xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/top/CreditCardDBService" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" id="BpPrc0">
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Mon Apr 04 20:35:13 EDT 2016
+  Author:  ramesh
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--><process name="CheckCCLimit" targetNamespace="http://xmlns.oracle.com/POApplication/CreditCardValidation/CheckCCLimit" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/POApplication/CreditCardValidation/CheckCCLimit" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:ns1="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/POApplication/CreditCardValidation/CreditCardDBService" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns4="http://techlabs.local/ns/CCAuthorizationService" xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/top/CreditCardDBService" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" id="BpPrc0">
 
   <!-- 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       PARTNERLINKS                                                      
       List of services participating in this BPEL process               
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  --> 
+  -->
+  <bpelx:annotation>
+    <bpelx:analysis>
+      <bpelx:property name="wsdlFile">
+        WSDLs/ValidateCreditCardWrapper.wsdl
+      </bpelx:property>
+    </bpelx:analysis>
+  </bpelx:annotation>
   <partnerLinks>
     <!-- 
       The 'client' role represents the requester of this service. It is 
@@ -75,7 +90,7 @@
         <bpelx:annotation>
           <bpelx:general>
             <bpelx:property name="userLabel">
-              <![CDATA[Check status and limit]]>
+              Check status and limit
             </bpelx:property>
           </bpelx:general>
         </bpelx:annotation>
@@ -85,12 +100,4 @@
     <!-- Generate reply to synchronous request -->
     <reply name="replyOutput" partnerLink="checkcclimit_client" portType="ns1:creditcardvalidation" operation="validatecreditcard" variable="outputVariable" id="BpRpl1"/>
   </sequence>
-</process><!--
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  Oracle JDeveloper BPEL Designer 
-  
-  Created: Mon Apr 04 20:35:13 EDT 2016
-  Author:  ramesh
-  Purpose: Synchronous BPEL Process
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--->
+</process>

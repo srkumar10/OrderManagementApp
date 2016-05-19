@@ -1,214 +1,32 @@
-2016-05-04 14:04:48.494/2.789 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middleware12c/coherence/lib/coherence.jar!/tangosol-coherence.xml"
-2016-05-04 14:04:48.584/2.878 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/Middleware12c/coherence/lib/coherence.jar!/tangosol-coherence-override-dev.xml"
-2016-05-04 14:04:48.592/2.886 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/tangosol-coherence-override.xml" is not specified
-2016-05-04 14:04:48.607/2.901 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
-2016-05-04 14:04:48.611/2.906 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
-2016-05-04 14:04:48.614/2.908 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+2016-05-12 15:51:58.234/1.765 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middleware12c/1221/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2016-05-12 15:51:58.293/1.823 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/Middleware12c/1221/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence-override-dev.xml"
+2016-05-12 15:51:58.296/1.827 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/tangosol-coherence-override.xml" is not specified
+2016-05-12 15:51:58.301/1.831 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
+2016-05-12 15:51:58.303/1.834 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
+2016-05-12 15:51:58.306/1.836 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
 
 Oracle Coherence Version 12.2.1.0.0 Build 60603
  Grid Edition: Development mode
 Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
 
-2016-05-04 14:04:48.835/3.129 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded FMW commons version: 12.2.1-0-0-SNAPSHOT b60603
-2016-05-04 14:04:48.839/3.133 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
-2016-05-04 14:04:49.214/3.508 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): The cluster name has not been configured, a value of "sunkr196's cluster" has been automatically generated
-May 04, 2016 2:04:50 PM oracle.fabric.common.wsdl.WSDLManager loadWSDL
-WARNING: Failed to load WSDL from WSDLs/OnlineStoreServiceWrapper.wsdl due to: WSDLException: faultCode=INVALID_WSDL: Error reading import of file:/E:/Oracle/JDeveloper12.2.1/mywork/OrderManagementApp/POApplication/OnlineStore/WSDLs/OnlineStoreServiceWrapper.wsdl: oracle.j2ee.ws.wsdl.LocalizedWSDLException: WSDLException: faultCode=PARSER_ERROR: Failed to read wsdl file at: "file:/E:/Oracle/JDeveloper12.2.1/mywork/OrderManagementApp/POApplication/OnlineStore/WSDLs/WSDLs/OnlineStoreService.wsdl", caused by: java.io.FileNotFoundException.: java.io.FileNotFoundException: E:\Oracle\JDeveloper12.2.1\mywork\OrderManagementApp\POApplication\OnlineStore\WSDLs\WSDLs\OnlineStoreService.wsdl (The system cannot find the path specified)
-May 04, 2016 2:04:50 PM oracle.soa.scac.ValidateComposite loadWSDLs
+2016-05-12 15:51:58.512/2.042 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded FMW commons version: 12.2.1-0-0-SNAPSHOT b60603
+2016-05-12 15:51:58.516/2.046 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
+2016-05-12 15:51:58.850/2.381 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): The cluster name has not been configured, a value of "sunkr196's cluster" has been automatically generated
+May 12, 2016 3:51:59 PM oracle.soa.scac.ValidateComposite loadWSDLs
 WARNING: Validating WSDLs from WSDLManager....  with option UseSoaInfraMds:false
-May 04, 2016 2:04:50 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
+May 12, 2016 3:51:59 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
 INFO: XMLSchema incremental build enabled.
-May 04, 2016 2:04:50 PM com.collaxa.cube.CubeLogger info
+May 12, 2016 3:51:59 PM com.collaxa.cube.CubeLogger info
 INFO: validating "ManageStock.bpel" ...
-May 04, 2016 2:04:50 PM oracle.integration.platform.blocks.PlatformConfigurationProvider getPlatformConfigurationProvider
+May 12, 2016 3:51:59 PM oracle.integration.platform.blocks.PlatformConfigurationProvider getPlatformConfigurationProvider
 WARNING: JRF is unable to determine the current application server platform.
-May 04, 2016 2:04:51 PM oracle.fabric.common.wsdl.WSDLManager loadWSDL
-WARNING: Failed to load WSDL from WSDLs/OnlineStoreServiceWrapper.wsdl due to: WSDLException: faultCode=INVALID_WSDL: Error reading import of file:/E:/Oracle/JDeveloper12.2.1/mywork/OrderManagementApp/POApplication/OnlineStore/WSDLs/OnlineStoreServiceWrapper.wsdl: oracle.j2ee.ws.wsdl.LocalizedWSDLException: WSDLException: faultCode=PARSER_ERROR: Failed to read wsdl file at: "file:/E:/Oracle/JDeveloper12.2.1/mywork/OrderManagementApp/POApplication/OnlineStore/WSDLs/WSDLs/OnlineStoreService.wsdl", caused by: java.io.FileNotFoundException.: java.io.FileNotFoundException: E:\Oracle\JDeveloper12.2.1\mywork\OrderManagementApp\POApplication\OnlineStore\WSDLs\WSDLs\OnlineStoreService.wsdl (The system cannot find the path specified)
-May 04, 2016 2:04:51 PM BpelParser assertPartnerLink
-SEVERE: 
-java.io.FileNotFoundException: E:\Oracle\JDeveloper12.2.1\mywork\OrderManagementApp\POApplication\OnlineStore\WSDLs\WSDLs\OnlineStoreService.wsdl (The system cannot find the path specified)
-	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
-	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
-	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
-	at java.net.URL.openStream(URL.java:1038)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.openAsStreamConnection(WSDLReaderImpl.java:677)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readDocument(WSDLReaderImpl.java:465)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:404)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.parseImport(WSDLReaderImpl.java:1046)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.parseDefinition(WSDLReaderImpl.java:922)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:821)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:768)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:760)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:219)
-	at oracle.fabric.common.wsdl.WSDLManager.loadWSDL(WSDLManager.java:311)
-	at oracle.fabric.common.wsdl.WSDLManager.loadWSDL(WSDLManager.java:408)
-	at oracle.fabric.composite.model.CompositeModel.loadImports(CompositeModel.java:545)
-	at oracle.fabric.composite.model.CompositeModel.getWSDLManager(CompositeModel.java:251)
-	at com.collaxa.cube.lang.compiler.ComponentCompilationModel.getWSDLManager(ComponentCompilationModel.java:62)
-	at com.collaxa.cube.lang.compiler.BPELComponentCompilationModel.lookupPartnerLinkType(BPELComponentCompilationModel.java:253)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.assertWsdlPartnerLink(BpelParser.java:4929)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.assertPartnerLink(BpelParser.java:4907)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parsePartnerLink(BpelParser.java:1453)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.startElement(BpelParser.java:603)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseElement(BpelParser.java:528)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseElement(BpelParser.java:535)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseElement(BpelParser.java:535)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parse(BpelParser.java:481)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parse(BpelParser.java:431)
-	at com.collaxa.cube.lang.compiler.bpel.BPELValidator.step2_ParseAndValidate(BPELValidator.java:77)
-	at com.collaxa.cube.lang.compiler.bpel.BPELValidator.validate(BPELValidator.java:59)
-	at com.collaxa.cube.lang.compiler.BPEL1Processor.validate(BPEL1Processor.java:341)
-	at com.collaxa.cube.lang.compiler.BPEL1Processor.process(BPEL1Processor.java:162)
-	at oracle.fabric.bpel.bpelc.BPELComponentValidator.validate(BPELComponentValidator.java:87)
-	at oracle.soa.scac.ValidateComposite.validateComponentTypeServicesReferences(ValidateComposite.java:1161)
-	at oracle.soa.scac.ValidateComposite.doValidation0(ValidateComposite.java:598)
-	at oracle.soa.scac.ValidateComposite.doValidation(ValidateComposite.java:577)
-	at oracle.soa.scac.ValidateComposite.run0(ValidateComposite.java:228)
-	at oracle.soa.scac.ValidateComposite.run(ValidateComposite.java:209)
-	at oracle.soa.scac.ValidateComposite.main(ValidateComposite.java:201)
-
-May 04, 2016 2:04:51 PM oracle.fabric.common.wsdl.WSDLManager loadWSDL
-WARNING: Failed to load WSDL from WSDLs/OnlineStoreServiceWrapper.wsdl due to: WSDLException: faultCode=INVALID_WSDL: Error reading import of file:/E:/Oracle/JDeveloper12.2.1/mywork/OrderManagementApp/POApplication/OnlineStore/WSDLs/OnlineStoreServiceWrapper.wsdl: oracle.j2ee.ws.wsdl.LocalizedWSDLException: WSDLException: faultCode=PARSER_ERROR: Failed to read wsdl file at: "file:/E:/Oracle/JDeveloper12.2.1/mywork/OrderManagementApp/POApplication/OnlineStore/WSDLs/WSDLs/OnlineStoreService.wsdl", caused by: java.io.FileNotFoundException.: java.io.FileNotFoundException: E:\Oracle\JDeveloper12.2.1\mywork\OrderManagementApp\POApplication\OnlineStore\WSDLs\WSDLs\OnlineStoreService.wsdl (The system cannot find the path specified)
-May 04, 2016 2:04:51 PM BpelParser assertPartnerLink
-SEVERE: 
-java.io.FileNotFoundException: E:\Oracle\JDeveloper12.2.1\mywork\OrderManagementApp\POApplication\OnlineStore\WSDLs\WSDLs\OnlineStoreService.wsdl (The system cannot find the path specified)
-	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
-	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
-	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
-	at java.net.URL.openStream(URL.java:1038)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.openAsStreamConnection(WSDLReaderImpl.java:677)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readDocument(WSDLReaderImpl.java:465)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:404)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.parseImport(WSDLReaderImpl.java:1046)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.parseDefinition(WSDLReaderImpl.java:922)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:821)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:768)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:760)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:219)
-	at oracle.fabric.common.wsdl.WSDLManager.loadWSDL(WSDLManager.java:311)
-	at oracle.fabric.common.wsdl.WSDLManager.loadWSDL(WSDLManager.java:408)
-	at oracle.fabric.composite.model.CompositeModel.loadImports(CompositeModel.java:545)
-	at oracle.fabric.composite.model.CompositeModel.getWSDLManager(CompositeModel.java:251)
-	at com.collaxa.cube.lang.compiler.ComponentCompilationModel.getWSDLManager(ComponentCompilationModel.java:62)
-	at com.collaxa.cube.lang.compiler.BPELComponentCompilationModel.lookupPartnerLinkType(BPELComponentCompilationModel.java:253)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.assertWsdlPartnerLink(BpelParser.java:4929)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.assertPartnerLink(BpelParser.java:4907)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parsePartnerLink(BpelParser.java:1453)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.startElement(BpelParser.java:603)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseElement(BpelParser.java:528)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseElement(BpelParser.java:535)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseElement(BpelParser.java:535)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parse(BpelParser.java:481)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parse(BpelParser.java:431)
-	at com.collaxa.cube.lang.compiler.bpel.BPELValidator.step2_ParseAndValidate(BPELValidator.java:77)
-	at com.collaxa.cube.lang.compiler.bpel.BPELValidator.validate(BPELValidator.java:59)
-	at com.collaxa.cube.lang.compiler.BPEL1Processor.validate(BPEL1Processor.java:341)
-	at com.collaxa.cube.lang.compiler.BPEL1Processor.process(BPEL1Processor.java:162)
-	at oracle.fabric.bpel.bpelc.BPELComponentValidator.validate(BPELComponentValidator.java:87)
-	at oracle.soa.scac.ValidateComposite.validateComponentTypeServicesReferences(ValidateComposite.java:1161)
-	at oracle.soa.scac.ValidateComposite.doValidation0(ValidateComposite.java:598)
-	at oracle.soa.scac.ValidateComposite.doValidation(ValidateComposite.java:577)
-	at oracle.soa.scac.ValidateComposite.run0(ValidateComposite.java:228)
-	at oracle.soa.scac.ValidateComposite.run(ValidateComposite.java:209)
-	at oracle.soa.scac.ValidateComposite.main(ValidateComposite.java:201)
-
-May 04, 2016 2:04:51 PM oracle.fabric.common.wsdl.WSDLManager loadWSDL
-WARNING: Failed to load WSDL from WSDLs/OnlineStoreServiceWrapper.wsdl due to: WSDLException: faultCode=INVALID_WSDL: Error reading import of file:/E:/Oracle/JDeveloper12.2.1/mywork/OrderManagementApp/POApplication/OnlineStore/WSDLs/OnlineStoreServiceWrapper.wsdl: oracle.j2ee.ws.wsdl.LocalizedWSDLException: WSDLException: faultCode=PARSER_ERROR: Failed to read wsdl file at: "file:/E:/Oracle/JDeveloper12.2.1/mywork/OrderManagementApp/POApplication/OnlineStore/WSDLs/WSDLs/OnlineStoreService.wsdl", caused by: java.io.FileNotFoundException.: java.io.FileNotFoundException: E:\Oracle\JDeveloper12.2.1\mywork\OrderManagementApp\POApplication\OnlineStore\WSDLs\WSDLs\OnlineStoreService.wsdl (The system cannot find the path specified)
-May 04, 2016 2:04:51 PM BpelParser startElement
-SEVERE: 
-java.io.FileNotFoundException: E:\Oracle\JDeveloper12.2.1\mywork\OrderManagementApp\POApplication\OnlineStore\WSDLs\WSDLs\OnlineStoreService.wsdl (The system cannot find the path specified)
-	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
-	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
-	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
-	at java.net.URL.openStream(URL.java:1038)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.openAsStreamConnection(WSDLReaderImpl.java:677)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readDocument(WSDLReaderImpl.java:465)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:404)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.parseImport(WSDLReaderImpl.java:1046)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.parseDefinition(WSDLReaderImpl.java:922)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:821)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:768)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:760)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:219)
-	at oracle.fabric.common.wsdl.WSDLManager.loadWSDL(WSDLManager.java:311)
-	at oracle.fabric.common.wsdl.WSDLManager.loadWSDL(WSDLManager.java:408)
-	at oracle.fabric.composite.model.CompositeModel.loadImports(CompositeModel.java:545)
-	at oracle.fabric.composite.model.CompositeModel.getWSDLManager(CompositeModel.java:251)
-	at com.collaxa.cube.lang.compiler.ComponentCompilationModel.getWSDLManager(ComponentCompilationModel.java:62)
-	at com.collaxa.cube.lang.compiler.BPELComponentCompilationModel.lookupMessage(BPELComponentCompilationModel.java:185)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.assertMessageType(BpelParser.java:4603)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseVariable(BpelParser.java:1991)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.startElement(BpelParser.java:623)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseElement(BpelParser.java:528)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseElement(BpelParser.java:535)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseElement(BpelParser.java:535)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parse(BpelParser.java:481)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parse(BpelParser.java:431)
-	at com.collaxa.cube.lang.compiler.bpel.BPELValidator.step2_ParseAndValidate(BPELValidator.java:77)
-	at com.collaxa.cube.lang.compiler.bpel.BPELValidator.validate(BPELValidator.java:59)
-	at com.collaxa.cube.lang.compiler.BPEL1Processor.validate(BPEL1Processor.java:341)
-	at com.collaxa.cube.lang.compiler.BPEL1Processor.process(BPEL1Processor.java:162)
-	at oracle.fabric.bpel.bpelc.BPELComponentValidator.validate(BPELComponentValidator.java:87)
-	at oracle.soa.scac.ValidateComposite.validateComponentTypeServicesReferences(ValidateComposite.java:1161)
-	at oracle.soa.scac.ValidateComposite.doValidation0(ValidateComposite.java:598)
-	at oracle.soa.scac.ValidateComposite.doValidation(ValidateComposite.java:577)
-	at oracle.soa.scac.ValidateComposite.run0(ValidateComposite.java:228)
-	at oracle.soa.scac.ValidateComposite.run(ValidateComposite.java:209)
-	at oracle.soa.scac.ValidateComposite.main(ValidateComposite.java:201)
-
-May 04, 2016 2:04:51 PM BPELValidator validate
-SEVERE: ManageStock
-java.io.FileNotFoundException: E:\Oracle\JDeveloper12.2.1\mywork\OrderManagementApp\POApplication\OnlineStore\WSDLs\WSDLs\OnlineStoreService.wsdl (The system cannot find the path specified)
-	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
-	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
-	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
-	at java.net.URL.openStream(URL.java:1038)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.openAsStreamConnection(WSDLReaderImpl.java:677)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readDocument(WSDLReaderImpl.java:465)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:404)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.parseImport(WSDLReaderImpl.java:1046)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.parseDefinition(WSDLReaderImpl.java:922)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:821)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:768)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:760)
-	at oracle.j2ee.ws.wsdl.xml.WSDLReaderImpl.readWSDL(WSDLReaderImpl.java:219)
-	at oracle.fabric.common.wsdl.WSDLManager.loadWSDL(WSDLManager.java:311)
-	at oracle.fabric.common.wsdl.WSDLManager.loadWSDL(WSDLManager.java:408)
-	at oracle.fabric.composite.model.CompositeModel.loadImports(CompositeModel.java:545)
-	at oracle.fabric.composite.model.CompositeModel.getWSDLManager(CompositeModel.java:251)
-	at com.collaxa.cube.lang.compiler.ComponentCompilationModel.getWSDLManager(ComponentCompilationModel.java:62)
-	at com.collaxa.cube.lang.compiler.BPELComponentCompilationModel.lookupMessage(BPELComponentCompilationModel.java:185)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.assertMessageType(BpelParser.java:4603)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseVariable(BpelParser.java:1991)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.startElement(BpelParser.java:623)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseElement(BpelParser.java:528)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseElement(BpelParser.java:535)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parseElement(BpelParser.java:535)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parse(BpelParser.java:481)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.parse(BpelParser.java:431)
-	at com.collaxa.cube.lang.compiler.bpel.BPELValidator.step2_ParseAndValidate(BPELValidator.java:77)
-	at com.collaxa.cube.lang.compiler.bpel.BPELValidator.validate(BPELValidator.java:59)
-	at com.collaxa.cube.lang.compiler.BPEL1Processor.validate(BPEL1Processor.java:341)
-	at com.collaxa.cube.lang.compiler.BPEL1Processor.process(BPEL1Processor.java:162)
-	at oracle.fabric.bpel.bpelc.BPELComponentValidator.validate(BPELComponentValidator.java:87)
-	at oracle.soa.scac.ValidateComposite.validateComponentTypeServicesReferences(ValidateComposite.java:1161)
-	at oracle.soa.scac.ValidateComposite.doValidation0(ValidateComposite.java:598)
-	at oracle.soa.scac.ValidateComposite.doValidation(ValidateComposite.java:577)
-	at oracle.soa.scac.ValidateComposite.run0(ValidateComposite.java:228)
-	at oracle.soa.scac.ValidateComposite.run(ValidateComposite.java:209)
-	at oracle.soa.scac.ValidateComposite.main(ValidateComposite.java:201)
-
+May 12, 2016 3:52:00 PM com.collaxa.cube.CubeLogger info
+INFO: Composed "ManageStock" in 217.9 milliseconds [nodes 43=1+42, 197.3 nodes/sec]
+May 12, 2016 3:52:02 PM com.collaxa.cube.CubeLogger info
+INFO: Compiled "ManageStock" in 1.772 seconds
+May 12, 2016 3:52:02 PM com.collaxa.cube.CubeLogger info
+INFO: Gathered 7 files in 6.2 milliseconds
+May 12, 2016 3:52:02 PM com.collaxa.cube.CubeLogger info
+INFO: Packaged "ManageStock" in 63.3 milliseconds
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=32m; support was removed in 8.0
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0

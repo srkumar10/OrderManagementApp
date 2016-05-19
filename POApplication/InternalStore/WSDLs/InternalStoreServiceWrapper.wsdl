@@ -13,5 +13,5 @@
             <plnk:portType name="tns:InternalStoreService"/>
         </plnk:role>
     </plnk:partnerLinkType>
-    <wsdl:import namespace="http://xmlns.techlabs.local/oracle/apps" location="WSDLs/InternalStoreService.wsdl"/>
+    <wsdl:import namespace="http://xmlns.techlabs.local/oracle/apps" location="InternalStoreService.wsdl"/>
 </wsdl:definitions>

@@ -55,8 +55,7 @@
                      partnerLinkType="client:ManageStock"
                      myRole="ManageStockProvider"
                      partnerRole="ManageStockRequester"/>
-        <partnerLink name="OnlineStoreService"
-                     partnerLinkType="ns2:OnlineStoreService"
+        <partnerLink name="OnlineStoreService" partnerLinkType="ns2:OnlineStoreService"
                      partnerRole="OnlineStoreService"/>
     </partnerLinks>
     <!-- 

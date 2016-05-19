@@ -1,12 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<process name="ManageInventory" targetNamespace="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns1="http://xmlns.techlabs.local/oracle/apps" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns2="http://xmlns.techlabs.local/oracle/apps/types/" xmlns:ns3="http://xmlns.techlabs.com/ns/StoreRequest" xmlns:ns4="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:ns8="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:ns11="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:ns7="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ns9="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:ns5="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ns12="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:ns10="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:ns6="http://schemas.oracle.com/xpath/extension/ldap" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns13="/techlabs/common/" id="BpPrc0">
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Tue Mar 22 16:40:28 EDT 2016
+  Author:  sunkr196
+  Type: BPEL 1.1 Process
+  Purpose: Asynchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--><process name="ManageInventory" targetNamespace="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns1="http://xmlns.techlabs.local/oracle/apps" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns2="http://xmlns.techlabs.local/oracle/apps/types/" xmlns:ns3="http://xmlns.techlabs.com/ns/StoreRequest" xmlns:ns4="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:ns8="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:ns11="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:ns7="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ns9="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:ns5="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ns12="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:ns10="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:ns6="http://schemas.oracle.com/xpath/extension/ldap" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns13="/techlabs/common/" id="BpPrc0">
 
     <!-- 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         PARTNERLINKS                                                      
         List of services participating in this BPEL process               
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    --> 
+    -->
+    <bpelx:annotation>
+        <bpelx:analysis>
+            <bpelx:property name="wsdlFile">
+                ManageInventory.wsdl
+            </bpelx:property>
+        </bpelx:analysis>
+    </bpelx:annotation>
     <partnerLinks>
         <!-- 
       The 'client' role represents the requester of this service. It is 
@@ -89,7 +105,7 @@
                         <bpelx:annotation>
                             <bpelx:general>
                                 <bpelx:property name="userLabel">
-                                    <![CDATA[operation=check]]>
+                                    operation=check
                                 </bpelx:property>
                             </bpelx:general>
                         </bpelx:annotation>
@@ -129,7 +145,7 @@
                 <bpelx:annotation>
                     <bpelx:general>
                         <bpelx:property name="userLabel">
-                            <![CDATA[operation=check]]>
+                            operation=check
                         </bpelx:property>
                     </bpelx:general>
                 </bpelx:annotation>
@@ -139,7 +155,7 @@
                             <bpelx:annotation>
                                 <bpelx:general>
                                     <bpelx:property name="userLabel">
-                                        <![CDATA[case InStock]]>
+                                        case InStock
                                     </bpelx:property>
                                 </bpelx:general>
                             </bpelx:annotation>
@@ -178,13 +194,4 @@
           Asynchronous callback to the requester. (Note: the callback location and correlation id is transparently handled using WS-addressing.)
         -->
     </sequence>
-</process><!--
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  Oracle JDeveloper BPEL Designer 
-  
-  Created: Tue Mar 22 16:40:28 EDT 2016
-  Author:  sunkr196
-  Type: BPEL 1.1 Process
-  Purpose: Asynchronous BPEL Process
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--->
+</process>
