@@ -14,5 +14,5 @@
         </plnk:role>
     </plnk:partnerLinkType>
     <wsdl:import namespace="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard"
-         location="http://orafmw11.techlabs.local:8001/soa-infra/services/POApplication/CreditCardValidation/ValidateCreditCard.wsdl"/>
+         location="oramds:/apps/POApplication/WSDLs/ValidateCreditCard.wsdl"/>
 </wsdl:definitions>

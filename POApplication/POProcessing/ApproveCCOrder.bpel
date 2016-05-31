@@ -85,8 +85,7 @@
         <partnerLink name="NotificationService1"
                      partnerLinkType="ns8:NotificationServiceLink"
                      partnerRole="NotificationServiceProvider"/>
-        <partnerLink name="ApprovalRules.ApprovalRulesService"
-                     partnerLinkType="ns9:ApprovalRules.ApprovalRulesService"
+        <partnerLink name="ApprovalRules.ApprovalRulesService" partnerLinkType="ns9:ApprovalRules.ApprovalRulesService"
                      partnerRole="IDecisionService"/>
     </partnerLinks>
     <!-- 
@@ -169,6 +168,40 @@
                         partnerLink="ValidateCCService"
                         portType="ns3:creditcardvalidation"
                         operation="validatecreditcard"/>
+                <scope name="BusinessRule_approvalrule">
+                    <bpelx:annotation>
+                        <bpelx:pattern patternName="bpelx:decide"/>
+                    </bpelx:annotation>
+                    <variables>
+                        <variable name="dsIn" messageType="ns9:callFunctionStatelessMessage"/>
+                        <variable name="dsOut" messageType="ns9:callFunctionStatelessDecisionMessage"/>
+                    </variables>
+                    <sequence name="Sequence6">
+                        <assign name="Facts_To_Rule_Service">
+                            <copy>
+                                <from variable="inputVariable" part="payload" query="/ns2:Order/ns2:orderTotal"/>
+                                <to variable="dsIn" part="payload"
+                                    query="/ns9:callFunctionStateless/ns9:parameterList/ns12:price/ns12:totalPrice"/>
+                            </copy>
+                        </assign>
+                        <assign name="BPEL_Header">
+                            <copy>
+                                <from expression='"ApprovalRulesService"'/>
+                                <to variable="dsIn" part="payload" query="@name"/>
+                            </copy>
+                        </assign>
+                        <invoke name="Invoke" partnerLink="ApprovalRules.ApprovalRulesService"
+                                portType="ns9:IDecisionService" operation="callFunctionStateless" inputVariable="dsIn"
+                                outputVariable="dsOut"/>
+                        <assign name="Rule_Service_To_Facts">
+                            <copy>
+                                <from variable="dsOut" part="payload"
+                                      query="/ns9:callFunctionStatelessDecision/ns9:resultList/ns12:approvalanddiscount/ns12:approvalRequired"/>
+                                <to variable="approvalRequired"/>
+                            </copy>
+                        </assign>
+                    </sequence>
+                </scope>
                 <switch name="Switch_ccvalid">
                     <case condition="bpws:getVariableData('Invoke_validatecc_validatecreditcard_OutputVariable','CreditCheckResponse','/ns4:CreditCheckResponse/ns4:status') = 'VALID'">
                         <bpelx:annotation>
@@ -180,50 +213,6 @@
                             </bpelx:general>
                         </bpelx:annotation>
                         <sequence name="Sequence3">
-                            <scope name="BusinessRule_approvalrule"
-                                   variableAccessSerializable="no">
-                                <bpelx:annotation>
-                                    <bpelx:pattern patternName="bpelx:decide"></bpelx:pattern>
-                                </bpelx:annotation>
-                                <variables>
-                                    <variable name="dsIn"
-                                              messageType="ns9:callFunctionStatelessMessage"/>
-                                    <variable name="dsOut"
-                                              messageType="ns9:callFunctionStatelessDecisionMessage"/>
-                                </variables>
-                                <sequence name="Sequence6">
-                                    <assign name="Facts_To_Rule_Service">
-                                        <copy>
-                                            <from variable="inputVariable"
-                                                  part="payload"
-                                                  query="/ns2:Order/ns2:orderTotal"/>
-                                            <to variable="dsIn" part="payload"
-                                                query="/ns9:callFunctionStateless/ns9:parameterList/ns12:price/ns12:totalPrice"/>
-                                        </copy>
-                                    </assign>
-                                    <assign name="BPEL_Header">
-                                        <copy>
-                                            <from expression='"ApprovalRulesService"'/>
-                                            <to variable="dsIn" part="payload"
-                                                query="@name"/>
-                                        </copy>
-                                    </assign>
-                                    <invoke name="Invoke"
-                                            partnerLink="ApprovalRules.ApprovalRulesService"
-                                            portType="ns9:IDecisionService"
-                                            operation="callFunctionStateless"
-                                            inputVariable="dsIn"
-                                            outputVariable="dsOut"/>
-                                    <assign name="Rule_Service_To_Facts">
-                                        <copy>
-                                            <from query="/ns9:callFunctionStatelessDecision/ns9:resultList/ns12:approvalanddiscount/ns12:approvalRequired"
-                                                  variable="dsOut"
-                                                  part="payload"/>
-                                            <to variable="approvalRequired"/>
-                                        </copy>
-                                    </assign>
-                                </sequence>
-                            </scope>
                             <switch name="Switch_checkapproval">
                                 <case condition="bpws:getVariableData('approvalRequired') = true()">
                                     <bpelx:annotation>
@@ -427,7 +416,9 @@
                                         </sequence>
                                     </scope>
                                 </case>
-                                <otherwise/>
+                                <otherwise>
+                                    <empty name="Empty1"/>
+                                </otherwise>
                             </switch>
                         </sequence>
                     </case>

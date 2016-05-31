@@ -134,7 +134,7 @@
                 </switch>
                 <assign name="Assign_next_n" id="BpAss6">
                     <copy>
-                        <from expression="bpws:getVariableData('n') - 1"/>
+                        <from expression="bpws:getVariableData('n') - 1" bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"/>
                         <to variable="n"/>
                     </copy>
                 </assign>

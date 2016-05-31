@@ -64,7 +64,7 @@
             <replace>C:\Oracle\labs\podata</replace>
          </property>
          <binding type="jca"/>
-      </reference>
+      </reference>      
    </composite>
    <!--To configure monitor.config: 
 	<property name="enabled"><replace>true</replace></property>

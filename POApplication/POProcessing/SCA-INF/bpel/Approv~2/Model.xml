@@ -1,5 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<process name="ApproveCCOrder" targetNamespace="http://ns.techlabs.com/POApplication/POProcessing/ApproveCCOrder" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://ns.techlabs.com/POApplication/POProcessing/ApproveCCOrder" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns1="http://ns.techlabs.com/POApplication/POProcessing/Fulfillment" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns2="http://xmlns.oracle.com/ns/order" xmlns:ns3="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard" xmlns:ns4="http://techlabs.local/ns/CCAuthorizationService" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns5="http://xmlns.oracle.com/bpel/workflow/taskService" xmlns:ns6="/techlabs/services/common/customers" xmlns:task="http://xmlns.oracle.com/bpel/workflow/task" xmlns:wfcommon="http://xmlns.oracle.com/bpel/workflow/common" xmlns:wf="http://schemas.oracle.com/bpel/extensions/workflow" xmlns:ns7="/techlabs/views/common/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns8="http://xmlns.oracle.com/ias/pcbpel/NotificationService" xmlns:ns9="http://xmlns.oracle.com/ApprovalRules/ApprovalRulesService" xmlns:ns10="http://xmlns.oracle.com/ShippingRules/ShippingRulesService" xmlns:ns11="http://xmlns.oracle.com/bpel" xmlns:ns13="http://xmlns.oracle.com/bpel/workflow/TaskEvidenceService" xmlns:ns12="http://xmlns.oracle.com/ns/orderapproval" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="BpPrc0">
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Thu Mar 10 06:32:22 EST 2016
+  Author:  ramesh
+  Type: BPEL 1.1 Process
+  Purpose: Asynchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--><process name="ApproveCCOrder" targetNamespace="http://ns.techlabs.com/POApplication/POProcessing/ApproveCCOrder" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://ns.techlabs.com/POApplication/POProcessing/ApproveCCOrder" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns1="http://ns.techlabs.com/POApplication/POProcessing/Fulfillment" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns2="http://xmlns.oracle.com/ns/order" xmlns:ns3="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard" xmlns:ns4="http://techlabs.local/ns/CCAuthorizationService" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns5="http://xmlns.oracle.com/bpel/workflow/taskService" xmlns:ns6="/techlabs/services/common/customers" xmlns:task="http://xmlns.oracle.com/bpel/workflow/task" xmlns:wfcommon="http://xmlns.oracle.com/bpel/workflow/common" xmlns:wf="http://schemas.oracle.com/bpel/extensions/workflow" xmlns:ns7="/techlabs/views/common/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns8="http://xmlns.oracle.com/ias/pcbpel/NotificationService" xmlns:ns9="http://xmlns.oracle.com/ApprovalRules/ApprovalRulesService" xmlns:ns10="http://xmlns.oracle.com/ShippingRules/ShippingRulesService" xmlns:ns11="http://xmlns.oracle.com/bpel" xmlns:ns13="http://xmlns.oracle.com/bpel/workflow/TaskEvidenceService" xmlns:ns12="http://xmlns.oracle.com/ns/orderapproval" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="BpPrc0">
          
          
     <!-- 
@@ -8,6 +17,13 @@
         List of services participating in this BPEL process               
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     -->
+    <bpelx:annotation>
+        <bpelx:analysis>
+            <bpelx:property name="wsdlFile">
+                ApproveCCOrder.wsdl
+            </bpelx:property>
+        </bpelx:analysis>
+    </bpelx:annotation>
     <partnerLinks>
         <!-- 
       The 'client' role represents the requester of this service. It is 
@@ -80,58 +96,58 @@
                     </copy>
                 </assign>
                 <invoke name="Invoke_validatecc" bpelx:invokeAsDetail="no" inputVariable="Invoke_validatecc_validatecreditcard_InputVariable" outputVariable="Invoke_validatecc_validatecreditcard_OutputVariable" partnerLink="ValidateCCService" portType="ns3:creditcardvalidation" operation="validatecreditcard" id="BpInv0"/>
+                <scope name="BusinessRule_approvalrule" id="BpScp1">
+                    <bpelx:annotation>
+                        <bpelx:pattern patternName="bpelx:decide"/>
+                    </bpelx:annotation>
+                    <variables>
+                        <variable name="dsIn" messageType="ns9:callFunctionStatelessMessage"/>
+                        <variable name="dsOut" messageType="ns9:callFunctionStatelessDecisionMessage"/>
+                    </variables>
+                    <sequence name="Sequence6" id="BpSeq2">
+                        <assign name="Facts_To_Rule_Service" id="BpAss3">
+                            <copy>
+                                <from variable="inputVariable" part="payload" query="/ns2:Order/ns2:orderTotal"/>
+                                <to variable="dsIn" part="payload" query="/ns9:callFunctionStateless/ns9:parameterList/ns12:price/ns12:totalPrice"/>
+                            </copy>
+                        </assign>
+                        <assign name="BPEL_Header" id="BpAss4">
+                            <copy>
+                                <from expression="&quot;ApprovalRulesService&quot;"/>
+                                <to variable="dsIn" part="payload" query="@name"/>
+                            </copy>
+                        </assign>
+                        <invoke name="Invoke" partnerLink="ApprovalRules.ApprovalRulesService" portType="ns9:IDecisionService" operation="callFunctionStateless" inputVariable="dsIn" outputVariable="dsOut" id="BpInv1"/>
+                        <assign name="Rule_Service_To_Facts" id="BpAss5">
+                            <copy>
+                                <from variable="dsOut" part="payload" query="/ns9:callFunctionStatelessDecision/ns9:resultList/ns12:approvalanddiscount/ns12:approvalRequired"/>
+                                <to variable="approvalRequired"/>
+                            </copy>
+                        </assign>
+                    </sequence>
+                </scope>
                 <switch name="Switch_ccvalid" id="BpSwt0">
                     <case condition="bpws:getVariableData('Invoke_validatecc_validatecreditcard_OutputVariable','CreditCheckResponse','/ns4:CreditCheckResponse/ns4:status') = 'VALID'">
                         <bpelx:annotation>
                             <bpelx:pattern>Check valid status</bpelx:pattern>
                             <bpelx:general>
                                 <bpelx:property name="userLabel">
-                                    <![CDATA[Valid]]>
+                                    Valid
                                 </bpelx:property>
                             </bpelx:general>
                         </bpelx:annotation>
-                        <sequence name="Sequence3" id="BpSeq2">
-                            <scope name="BusinessRule_approvalrule" variableAccessSerializable="no" id="BpScp1">
-                                <bpelx:annotation>
-                                    <bpelx:pattern patternName="bpelx:decide"/>
-                                </bpelx:annotation>
-                                <variables>
-                                    <variable name="dsIn" messageType="ns9:callFunctionStatelessMessage"/>
-                                    <variable name="dsOut" messageType="ns9:callFunctionStatelessDecisionMessage"/>
-                                </variables>
-                                <sequence name="Sequence6" id="BpSeq3">
-                                    <assign name="Facts_To_Rule_Service" id="BpAss3">
-                                        <copy>
-                                            <from variable="inputVariable" part="payload" query="/ns2:Order/ns2:orderTotal"/>
-                                            <to variable="dsIn" part="payload" query="/ns9:callFunctionStateless/ns9:parameterList/ns12:price/ns12:totalPrice"/>
-                                        </copy>
-                                    </assign>
-                                    <assign name="BPEL_Header" id="BpAss4">
-                                        <copy>
-                                            <from expression="&quot;ApprovalRulesService&quot;"/>
-                                            <to variable="dsIn" part="payload" query="@name"/>
-                                        </copy>
-                                    </assign>
-                                    <invoke name="Invoke" partnerLink="ApprovalRules.ApprovalRulesService" portType="ns9:IDecisionService" operation="callFunctionStateless" inputVariable="dsIn" outputVariable="dsOut" id="BpInv1"/>
-                                    <assign name="Rule_Service_To_Facts" id="BpAss5">
-                                        <copy>
-                                            <from query="/ns9:callFunctionStatelessDecision/ns9:resultList/ns12:approvalanddiscount/ns12:approvalRequired" variable="dsOut" part="payload"/>
-                                            <to variable="approvalRequired"/>
-                                        </copy>
-                                    </assign>
-                                </sequence>
-                            </scope>
+                        <sequence name="Sequence3" id="BpSeq3">
                             <switch name="Switch_checkapproval" id="BpSwt1">
                                 <case condition="bpws:getVariableData('approvalRequired') = true()">
                                     <bpelx:annotation>
                                         <bpelx:general>
                                             <bpelx:property name="userLabel">
-                                                <![CDATA[Approval Required]]>
+                                                Approval Required
                                             </bpelx:property>
                                         </bpelx:general>
                                     </bpelx:annotation>
                                     <sequence id="BpSeq4">
-                                        <scope name="ManualApproval1" xmlns:wf="http://schemas.oracle.com/bpel/extensions/workflow" wf:key="ManualApproval1_globalVariable" id="BpScp2">
+                                        <scope name="ManualApproval1" wf:key="ManualApproval1_globalVariable" id="BpScp2">
                                             <bpelx:annotation>
                                                 <bpelx:pattern patternName="bpelx:workflow"/>
                                             </bpelx:annotation>
@@ -166,7 +182,7 @@
                                                     <bpelx:pattern>Task outcome is REJECT</bpelx:pattern>
                                                     <bpelx:general>
                                                         <bpelx:property name="userLabel">
-                                                            <![CDATA[Task outcome is REJECT]]>
+                                                            Task outcome is REJECT
                                                         </bpelx:property>
                                                     </bpelx:general>
                                                 </bpelx:annotation>
@@ -190,7 +206,7 @@
                                                     <bpelx:pattern>Task outcome is APPROVE</bpelx:pattern>
                                                     <bpelx:general>
                                                         <bpelx:property name="userLabel">
-                                                            <![CDATA[Task outcome is APPROVE]]>
+                                                            Task outcome is APPROVE
                                                         </bpelx:property>
                                                     </bpelx:general>
                                                 </bpelx:annotation>
@@ -236,7 +252,7 @@
                                     <bpelx:annotation>
                                         <bpelx:general>
                                             <bpelx:property name="userLabel">
-                                                <![CDATA[Fulfill approved orders]]>
+                                                Fulfill approved orders
                                             </bpelx:property>
                                         </bpelx:general>
                                     </bpelx:annotation>
@@ -251,7 +267,7 @@
                                                     <bpelx:pattern>transformation</bpelx:pattern>
                                                 </bpelx:annotation>
                                                 <copy>
-                                                    <from expression="ora:doXSLTransformForDoc('xsl/Transformation_to_fulfillment.xsl', $outputVariable.payload)"/>
+                                                    <from expression="ora:doXSLTransformForDoc('Transformations/Transformation_to_fulfillment.xsl', $outputVariable.payload)"/>
                                                     <to variable="fulfillmentRequest" part="payload"/>
                                                 </copy>
                                             </assign>
@@ -266,7 +282,9 @@
                                         </sequence>
                                     </scope>
                                 </case>
-                                <otherwise/>
+                                <otherwise>
+                                    <empty name="Empty1" id="BpEmp0"/>
+                                </otherwise>
                             </switch>
                         </sequence>
                     </case>
@@ -347,13 +365,4 @@
         -->
         <invoke name="callbackClient" partnerLink="approveccorder_client" portType="client:ApproveCCOrderCallback" operation="processResponse" inputVariable="outputVariable" id="BpInv5"/>
     </sequence>
-</process><!--
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  Oracle JDeveloper BPEL Designer 
-  
-  Created: Thu Mar 10 06:32:22 EST 2016
-  Author:  ramesh
-  Type: BPEL 1.1 Process
-  Purpose: Asynchronous BPEL Process
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--->
+</process>

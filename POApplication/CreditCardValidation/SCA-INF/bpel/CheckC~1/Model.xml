@@ -7,7 +7,7 @@
   Author:  ramesh
   Purpose: Synchronous BPEL Process
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
---><process name="CheckCCLimit" targetNamespace="http://xmlns.oracle.com/POApplication/CreditCardValidation/CheckCCLimit" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/POApplication/CreditCardValidation/CheckCCLimit" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:ns1="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/POApplication/CreditCardValidation/CreditCardDBService" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns4="http://techlabs.local/ns/CCAuthorizationService" xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/top/CreditCardDBService" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" id="BpPrc0">
+--><process name="CheckCCLimit" targetNamespace="http://xmlns.oracle.com/POApplication/CreditCardValidation/CheckCCLimit" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/POApplication/CreditCardValidation/CheckCCLimit" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:ns1="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/POApplication/CreditCardValidation/CreditCardDBService" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns4="http://techlabs.local/ns/CCAuthorizationService" xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/top/CreditCardDBService" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ess="http://xmlns.oracle.com/scheduler" id="BpPrc0">
 
   <!-- 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,14 +49,8 @@
     <variable messageType="ns1:faultMessage" name="creditFault"/>
   </variables>
   <faultHandlers id="BpFhs0">
-    <catch faultName="ns1:validateCCfault" faultVariable="creditFault" id="BpCFt0">
+    <catch faultName="ns1:validateCCfault" faultVariable="creditFault" bpelx:name="CCFault" id="BpCFt0">
       <sequence name="Sequence1" id="BpSeq0">
-        <assign name="Assign_ccerror" id="BpAss0">
-          <copy>
-            <from expression="concat('Error: Order total exceeds the credit limit of ', bpws:getVariableData('Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable','CreditcardsCollection','/ns3:CreditcardsCollection/ns3:Creditcards/ns3:creditLimit'))"/>
-            <to variable="creditFault" part="CreditCheckFault" query="/ns4:CreditCheckFault/ns4:error"/>
-          </copy>
-        </assign>
         <reply name="Reply_ccerror" faultName="ns1:validateCCfault" variable="creditFault" partnerLink="checkcclimit_client" portType="ns1:creditcardvalidation" operation="validatecreditcard" id="BpRpl0"/>
       </sequence>
     </catch>
@@ -72,20 +66,42 @@
 
     <!-- Receive input from requestor. (Note: This maps to operation defined in CheckCCLimit.wsdl) -->
     <receive name="receiveInput" partnerLink="checkcclimit_client" portType="ns1:creditcardvalidation" operation="validatecreditcard" variable="inputVariable" createInstance="yes" id="BpRcv0"/>
-    <assign name="Assign_ccinfo" id="BpAss1">
+    <assign name="Assign_ccinfo" id="BpAss0">
       <copy>
         <from variable="inputVariable" part="CreditCheckRequest" query="/ns4:CreditCheckRequest/ns4:CCNumber"/>
         <to variable="Invoke_ccservice_CreditCardDBServiceSelect_InputVariable" part="CreditCardDBServiceSelect_inputParameters" query="/ns3:CreditCardDBServiceSelect_ccNumInputParameters/ns3:ccNum"/>
       </copy>
     </assign>
     <invoke name="Invoke_ccservice" bpelx:invokeAsDetail="no" inputVariable="Invoke_ccservice_CreditCardDBServiceSelect_InputVariable" outputVariable="Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable" partnerLink="CreditCardDBService" portType="ns2:CreditCardDBService_ptt" operation="CreditCardDBServiceSelect" id="BpInv0"/>
-    <assign name="Assign_ccstatus" id="BpAss2">
-      <copy>
-        <from variable="Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable" part="CreditcardsCollection" query="/ns3:CreditcardsCollection/ns3:Creditcards/ns3:status"/>
-        <to variable="outputVariable" part="CreditCheckResponse" query="/ns4:CreditCheckResponse/ns4:status"/>
-      </copy>
-    </assign>
-    <switch name="Switch_cclimit" id="BpSwt0">
+    <switch name="Switch1" id="BpSwt0">
+      <case condition="count(bpws:getVariableData('Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable','CreditcardsCollection','/ns3:CreditcardsCollection/ns3:Creditcards')) > 0">
+        <bpelx:annotation>
+          <bpelx:general>
+            <bpelx:property name="userLabel">
+              Check dbService output
+            </bpelx:property>
+          </bpelx:general>
+        </bpelx:annotation>
+        <assign name="Assign_ccstatus" id="BpAss1">
+          <copy>
+            <from variable="Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable" part="CreditcardsCollection" query="/ns3:CreditcardsCollection/ns3:Creditcards/ns3:status"/>
+            <to variable="outputVariable" part="CreditCheckResponse" query="/ns4:CreditCheckResponse/ns4:status"/>
+          </copy>
+        </assign>
+      </case>
+      <otherwise>
+        <sequence name="Sequence3" id="BpSeq2">
+          <assign name="Assign_ccerror" id="BpAss2">
+            <copy>
+              <from expression="&quot;Invalid CC&quot;"/>
+              <to bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" variable="creditFault" part="CreditCheckFault" query="/ns4:CreditCheckFault/ns4:error"/>
+            </copy>
+          </assign>
+          <throw name="Throw_invalidCCFault" faultVariable="creditFault" faultName="ns1:validateCCfault" id="BpThw0"/>
+        </sequence>
+      </otherwise>
+    </switch>
+    <switch name="Switch_cclimit" id="BpSwt1">
       <case condition="bpws:getVariableData('outputVariable','CreditCheckResponse','/ns4:CreditCheckResponse/ns4:status') = 'VALID' and number(bpws:getVariableData('inputVariable','CreditCheckRequest','/ns4:CreditCheckRequest/ns4:amount')) > number(bpws:getVariableData('Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable','CreditcardsCollection','/ns3:CreditcardsCollection/ns3:Creditcards/ns3:creditLimit'))">
         <bpelx:annotation>
           <bpelx:general>
@@ -94,7 +110,15 @@
             </bpelx:property>
           </bpelx:general>
         </bpelx:annotation>
-        <throw name="Throw_validateccfault" faultName="ns1:validateCCfault" faultVariable="creditFault" id="BpThw0"/>
+        <sequence name="Sequence2" id="BpSeq3">
+          <assign name="Assign_ccerror" id="BpAss3">
+            <copy>
+              <from expression="concat('Error: Order total exceeds the credit limit of ', bpws:getVariableData('Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable','CreditcardsCollection','/ns3:CreditcardsCollection/ns3:Creditcards/ns3:creditLimit'))"/>
+              <to bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" variable="creditFault" part="CreditCheckFault" query="/ns4:CreditCheckFault/ns4:error"/>
+            </copy>
+          </assign>
+          <throw name="Throw_validateccfault" faultName="ns1:validateCCfault" faultVariable="creditFault" id="BpThw1"/>
+        </sequence>
       </case>
     </switch>
     <!-- Generate reply to synchronous request -->

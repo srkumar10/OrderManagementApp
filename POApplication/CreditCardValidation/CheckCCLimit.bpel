@@ -29,7 +29,7 @@
          xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
          xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
          xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
-         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap">
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ess="http://xmlns.oracle.com/scheduler">
 
   <!-- 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,15 +75,8 @@
     <variable messageType="ns1:faultMessage" name="creditFault"/>
   </variables>
   <faultHandlers>
-    <catch faultName="ns1:validateCCfault" faultVariable="creditFault">
+    <catch faultName="ns1:validateCCfault" faultVariable="creditFault" bpelx:name="CCFault">
       <sequence name="Sequence1">
-        <assign name="Assign_ccerror">
-          <copy>
-            <from expression="concat('Error: Order total exceeds the credit limit of ', bpws:getVariableData('Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable','CreditcardsCollection','/ns3:CreditcardsCollection/ns3:Creditcards/ns3:creditLimit'))"/>
-            <to variable="creditFault" part="CreditCheckFault"
-                query="/ns4:CreditCheckFault/ns4:error"/>
-          </copy>
-        </assign>
         <reply name="Reply_ccerror" faultName="ns1:validateCCfault"
                variable="creditFault" partnerLink="checkcclimit_client"
                portType="ns1:creditcardvalidation"
@@ -117,15 +110,36 @@
             partnerLink="CreditCardDBService"
             portType="ns2:CreditCardDBService_ptt"
             operation="CreditCardDBServiceSelect"/>
-    <assign name="Assign_ccstatus">
-      <copy>
-        <from variable="Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable"
-              part="CreditcardsCollection"
-              query="/ns3:CreditcardsCollection/ns3:Creditcards/ns3:status"/>
-        <to variable="outputVariable" part="CreditCheckResponse"
-            query="/ns4:CreditCheckResponse/ns4:status"/>
-      </copy>
-    </assign>
+    <switch name="Switch1">
+      <case condition="count(bpws:getVariableData('Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable','CreditcardsCollection','/ns3:CreditcardsCollection/ns3:Creditcards')) > 0">
+        <bpelx:annotation>
+          <bpelx:general>
+            <bpelx:property name="userLabel">
+              <![CDATA[Check dbService output]]>
+            </bpelx:property>
+          </bpelx:general>
+        </bpelx:annotation>
+        <assign name="Assign_ccstatus">
+          <copy>
+            <from variable="Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable" part="CreditcardsCollection"
+                  query="/ns3:CreditcardsCollection/ns3:Creditcards/ns3:status"/>
+            <to variable="outputVariable" part="CreditCheckResponse" query="/ns4:CreditCheckResponse/ns4:status"/>
+          </copy>
+        </assign>
+      </case>
+      <otherwise>
+        <sequence name="Sequence3">
+          <assign name="Assign_ccerror">
+            <copy>
+              <from expression='"Invalid CC"'/>
+              <to bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" variable="creditFault"
+                  part="CreditCheckFault" query="/ns4:CreditCheckFault/ns4:error"/>
+            </copy>
+          </assign>
+          <throw name="Throw_invalidCCFault" faultVariable="creditFault" faultName="ns1:validateCCfault"/>
+        </sequence>
+      </otherwise>
+    </switch>
     <switch name="Switch_cclimit">
       <case condition="bpws:getVariableData('outputVariable','CreditCheckResponse','/ns4:CreditCheckResponse/ns4:status') = 'VALID' and number(bpws:getVariableData('inputVariable','CreditCheckRequest','/ns4:CreditCheckRequest/ns4:amount')) > number(bpws:getVariableData('Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable','CreditcardsCollection','/ns3:CreditcardsCollection/ns3:Creditcards/ns3:creditLimit'))">
         <bpelx:annotation>
@@ -135,8 +149,16 @@
             </bpelx:property>
           </bpelx:general>
         </bpelx:annotation>
-        <throw name="Throw_validateccfault" faultName="ns1:validateCCfault"
-               faultVariable="creditFault"/>
+        <sequence name="Sequence2">
+          <assign name="Assign_ccerror">
+            <copy>
+              <from expression="concat('Error: Order total exceeds the credit limit of ', bpws:getVariableData('Invoke_ccservice_CreditCardDBServiceSelect_OutputVariable','CreditcardsCollection','/ns3:CreditcardsCollection/ns3:Creditcards/ns3:creditLimit'))"/>
+              <to bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" variable="creditFault"
+                  part="CreditCheckFault" query="/ns4:CreditCheckFault/ns4:error"/>
+            </copy>
+          </assign>
+          <throw name="Throw_validateccfault" faultName="ns1:validateCCfault" faultVariable="creditFault"/>
+        </sequence>
       </case>
     </switch>
     <!-- Generate reply to synchronous request -->

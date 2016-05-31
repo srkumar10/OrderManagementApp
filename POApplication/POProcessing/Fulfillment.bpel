@@ -81,9 +81,8 @@
         <partnerLink name="CustomerService"
                      partnerLinkType="ns11:CustomerService"
                      partnerRole="CustomerService"/>
-        <partnerLink name="ShippingRules.ShippingRulesService"
-                     partnerLinkType="ns12:ShippingRules.ShippingRulesService"
-                     partnerRole="IDecisionService"/>
+        <partnerLink name="ShippingRules.ShippingRulesService" partnerLinkType="ns12:IDecisionService_PLT"
+                     partnerRole="IDecisionService_Role"/>
     </partnerLinks>
 
     <!-- 
@@ -397,22 +396,18 @@
                                     query="/ns1:shippingRequest/ns1:shippingAddress/ns1:country"/>
                             </copy>
                         </assign>
-                        <scope name="Business_shippingrule"
-                               variableAccessSerializable="no">
+                        <scope name="BusinessRule_shippingrule">
                             <bpelx:annotation>
-                                <bpelx:pattern patternName="bpelx:decide"></bpelx:pattern>
+                                <bpelx:pattern patternName="bpelx:decide"/>
                             </bpelx:annotation>
                             <variables>
-                                <variable name="dsIn"
-                                          messageType="ns12:callFunctionStatelessMessage"/>
-                                <variable name="dsOut"
-                                          messageType="ns12:callFunctionStatelessDecisionMessage"/>
+                                <variable name="dsIn" messageType="ns12:callFunctionStatelessMessage"/>
+                                <variable name="dsOut" messageType="ns12:callFunctionStatelessDecisionMessage"/>
                             </variables>
                             <sequence name="Sequence10">
                                 <assign name="Facts_To_Rule_Service">
                                     <copy>
-                                        <from variable="inputVariable"
-                                              part="payload"
+                                        <from variable="inputVariable" part="payload"
                                               query="/ns1:fulfillmentRequest/ns1:shipMethod"/>
                                         <to variable="dsIn" part="payload"
                                             query="/ns12:callFunctionStateless/ns12:parameterList/ns14:shippinginfo/ns14:shipChoice"/>
@@ -421,22 +416,17 @@
                                 <assign name="BPEL_Header">
                                     <copy>
                                         <from expression='"ShippingRulesService"'/>
-                                        <to variable="dsIn" part="payload"
-                                            query="@name"/>
+                                        <to variable="dsIn" part="payload" query="@name"/>
                                     </copy>
                                 </assign>
-                                <invoke name="Invoke"
-                                        partnerLink="ShippingRules.ShippingRulesService"
-                                        portType="ns12:IDecisionService"
-                                        operation="callFunctionStateless"
-                                        inputVariable="dsIn"
-                                        outputVariable="dsOut"/>
+                                <invoke name="Invoke" partnerLink="ShippingRules.ShippingRulesService"
+                                        portType="ns12:IDecisionService" operation="callFunctionStateless"
+                                        inputVariable="dsIn" outputVariable="dsOut"/>
                                 <assign name="Rule_Service_To_Facts">
                                     <copy>
                                         <from variable="dsOut" part="payload"
                                               query="/ns12:callFunctionStatelessDecision/ns12:resultList/ns14:shippingcompany/ns14:carrier"/>
-                                        <to variable="outputVariable"
-                                            part="payload"
+                                        <to variable="outputVariable" part="payload"
                                             query="/ns1:fulfillmentResponse/ns1:carrier"/>
                                     </copy>
                                 </assign>

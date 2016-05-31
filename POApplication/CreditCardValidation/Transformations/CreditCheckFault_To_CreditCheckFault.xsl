@@ -10,7 +10,7 @@
       </oracle-xsl-mapper:mapSources>
       <oracle-xsl-mapper:mapTargets>
          <oracle-xsl-mapper:target type="WSDL">
-            <oracle-xsl-mapper:schema location="../WSDLs/ValidateCreditCard.wsdl"/>
+            <oracle-xsl-mapper:schema location="oramds:/apps/POApplication/WSDLs/ValidateCreditCard.wsdl"/>
             <oracle-xsl-mapper:rootElement name="CreditCheckFault" namespace="http://techlabs.local/ns/CCAuthorizationService"/>
          </oracle-xsl-mapper:target>
       </oracle-xsl-mapper:mapTargets>

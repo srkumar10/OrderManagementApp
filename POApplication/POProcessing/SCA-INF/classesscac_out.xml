@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>warning</severity>
+      <loc>/ns:composite/ns:reference[@name='ValidateCCService']</loc>
+      <line>199</line>
+      <col>114</col>
+      <file>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</file>
+      <name>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</name>
+      <fix/>
+      <msg>Failed to Find Binding "ValidateCCService":"{http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard}creditcardvalidation_pt" in WSDL Manager</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc>/ns:composite/ns:reference[@name='NotificationService1']</loc>
+      <line>251</line>
+      <col>113</col>
+      <file>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</file>
+      <name>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</name>
+      <fix/>
+      <msg>Failed to Find Binding "NotificationService1":"{http://xmlns.oracle.com/ias/pcbpel/NotificationService}JavaPort" in WSDL Manager</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc>/process/sequence/switch/case/scope/sequence/scope/sequence/assign/copy</loc>
+      <line>409</line>
+      <col/>
+      <file>Fulfillment.bpel</file>
+      <name>Fulfillment.bpel</name>
+      <fix>Make sure that the return value of from-spec query is compatible with the to-spec query</fix>
+      <msg>&lt;from> value type "{http://www.w3.org/2001/XMLSchema}string" is not compatible with &lt;to> value type "{http://xmlns.oracle.com/ns/ordershipment}shipOptionType"</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>ManualApproval.task</file>
+      <name>ManualApproval.task</name>
+      <fix/>
+      <msg>Task owner not specified</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>ManualApproval.task</file>
+      <name>ManualApproval.task</name>
+      <fix/>
+      <msg>Error assignee not specified</msg>
+   </Fault>
+</Faults>

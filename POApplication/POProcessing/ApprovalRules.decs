@@ -9,13 +9,24 @@
         <catalog>ApprovalRules</catalog>
         <pattern name="CallFunctionStateless">
             <arguments>
-                <call>poprocessing.ApprovalRules.ApprovalRulesService</call>
+                <call>poprocessing.ApprovalRules.ApprovalRuleService</call>
             </arguments>
         </pattern>
         <pattern name="CallFunctionStateful">
             <arguments>
-                <call>poprocessing.ApprovalRules.ApprovalRulesService</call>
+                <call>poprocessing.ApprovalRules.ApprovalRuleService</call>
             </arguments>
         </pattern>
     </decisionService>
+    <schemaInformation>
+        <dictionary fqnPackage="poprocessing" fqnName="ApprovalRules" updateNumber="42">
+            <schemaBrowser>
+                <package>com.oracle.xmlns.ns.orderapproval</package>
+                <namespace>http://xmlns.oracle.com/ns/orderapproval</namespace>
+            </schemaBrowser>
+            <schemaImport namespace="http://xmlns.oracle.com/ns/orderapproval" localPart="orderapproval.xsd" schemaLocation="Schemas/orderapproval.xsd">
+                <import namespace="http://xmlns.oracle.com/ns/orderapproval" localPart="orderapproval.xsd" schemaLocation="Schemas/orderapproval.xsd"/>
+            </schemaImport>
+        </dictionary>
+    </schemaInformation>
 </decisionServices>

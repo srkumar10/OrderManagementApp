@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/ApprovalRules/ApprovalRulesService" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:tns="http://xmlns.oracle.com/ApprovalRules/ApprovalRulesService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:bpelpm="http://xmlns.oracle.com/bpel" xmlns:rules="http://xmlns.oracle.com/bpel/rules" xmlns:ns1="http://xmlns.oracle.com/ns/orderapproval">
-   <import namespace="http://xmlns.oracle.com/ns/orderapproval" schemaLocation="orderapproval.xsd"/>
+   <import namespace="http://xmlns.oracle.com/ns/orderapproval" schemaLocation="../Schemas/orderapproval.xsd"/>
    <import namespace="http://xmlns.oracle.com/bpel"/>
    <import namespace="http://xmlns.oracle.com/bpel/rules" schemaLocation="DecisionServicePrimitiveTypes.xsd"/>
    <include schemaLocation="ApprovalRulesServiceTypes.xsd"/>

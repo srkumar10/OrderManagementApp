@@ -13,11 +13,11 @@
   <import namespace="http://xmlns.techlabs.local/oracle/apps"
           location="WSDLs/InternalStoreService.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory"
-          location="WSDLs/ManageInventory.wsdl" importType="wsdl"/>
+          location="oramds:/apps/POApplication/WSDLs/ManageInventory.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.techlabs.local/oracle/apps"
           location="WSDLs/InternalStoreServiceWrapper.wsdl" importType="wsdl"/>
   <service name="manageinventory_client_ep"
-           ui:wsdlLocation="WSDLs/ManageInventory.wsdl">
+           ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ManageInventory.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventory)"
                     callbackInterface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventoryCallback)"/>
     <binding.ws port="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.endpoint(manageinventory_client_ep/ManageInventory_pt)"/>
@@ -32,7 +32,7 @@
     <implementation.bpel src="ManageInventory.bpel"/>
     <componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
                    xmlns:ui="http://xmlns.oracle.com/soa/designer/">
-      <service name="manageinventory_client" ui:wsdlLocation="WSDLs/ManageInventory.wsdl">
+      <service name="manageinventory_client" ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ManageInventory.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventory)"
                         callbackInterface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventoryCallback)"/>
       </service>

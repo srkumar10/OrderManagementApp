@@ -1,6 +1,6 @@
 <adapter-config name="CreditCardDBService" adapter="db" wsdlLocation="WSDLs/CreditCardDBService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
   
-  <connection-factory location="eis/DB/soademo" UIConnectionName="SOADEMO" adapterRef=""/>
+  <connection-factory location="eis/DB/soademo" UIConnectionName="soademo" adapterRef=""/>
   <endpoint-interaction portType="CreditCardDBService_ptt" operation="CreditCardDBServiceSelect">
     <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
       <property name="DescriptorName" value="CreditCardDBService.Creditcards"/>

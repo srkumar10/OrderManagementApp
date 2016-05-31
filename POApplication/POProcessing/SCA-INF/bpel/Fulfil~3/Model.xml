@@ -1,12 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<process name="Fulfillment" targetNamespace="http://ns.techlabs.com/POApplication/POProcessing/Fulfillment" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://ns.techlabs.com/POApplication/POProcessing/Fulfillment" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns1="http://xmlns.oracle.com/ns/order" xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/UPSJmsService" xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/USPSJmsService" xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/FedExJmsService" xmlns:ns5="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory" xmlns:ns6="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock" xmlns:ns7="http://xmlns.techlabs.com/ns/StoreRequest" xmlns:ns8="/techlabs/common/" xmlns:ns9="/techlabs/services/common/" xmlns:ns10="/techlabs/views/common/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns11="/techlabs/services/common/customers" xmlns:ns12="http://xmlns.oracle.com/ShippingRules/ShippingRulesService" xmlns:ns13="http://xmlns.oracle.com/bpel" xmlns:ns14="http://xmlns.oracle.com/ns/ordershipment" id="BpPrc0">
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Thu Mar 10 06:38:21 EST 2016
+  Author:  ramesh
+  Type: BPEL 1.1 Process
+  Purpose: Asynchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--><process name="Fulfillment" targetNamespace="http://ns.techlabs.com/POApplication/POProcessing/Fulfillment" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://ns.techlabs.com/POApplication/POProcessing/Fulfillment" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns1="http://xmlns.oracle.com/ns/order" xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/UPSJmsService" xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/USPSJmsService" xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/FedExJmsService" xmlns:ns5="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory" xmlns:ns6="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock" xmlns:ns7="http://xmlns.techlabs.com/ns/StoreRequest" xmlns:ns8="/techlabs/common/" xmlns:ns9="/techlabs/services/common/" xmlns:ns10="/techlabs/views/common/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns11="/techlabs/services/common/customers" xmlns:ns12="http://xmlns.oracle.com/ShippingRules/ShippingRulesService" xmlns:ns13="http://xmlns.oracle.com/bpel" xmlns:ns14="http://xmlns.oracle.com/ns/ordershipment" id="BpPrc0">
 
     <!-- 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         PARTNERLINKS                                                      
         List of services participating in this BPEL process               
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    --> 
+    -->
+    <bpelx:annotation>
+        <bpelx:analysis>
+            <bpelx:property name="wsdlFile">
+                Fulfillment.wsdl
+            </bpelx:property>
+        </bpelx:analysis>
+    </bpelx:annotation>
     <partnerLinks>
         <!-- 
       The 'client' role represents the requester of this service. It is 
@@ -21,7 +37,7 @@
         <partnerLink name="OnlineStore" partnerLinkType="ns6:ManageStock" myRole="ManageStockRequester" partnerRole="ManageStockProvider"/>
         <partnerLink name="OrdersService" partnerLinkType="ns9:OrdersService" partnerRole="OrdersService"/>
         <partnerLink name="CustomerService" partnerLinkType="ns11:CustomerService" partnerRole="CustomerService"/>
-        <partnerLink name="ShippingRules.ShippingRulesService" partnerLinkType="ns12:ShippingRules.ShippingRulesService" partnerRole="IDecisionService"/>
+        <partnerLink name="ShippingRules.ShippingRulesService" partnerLinkType="ns12:IDecisionService_PLT" partnerRole="IDecisionService_Role"/>
     </partnerLinks>
 
     <!-- 
@@ -65,7 +81,7 @@
                         <bpelx:pattern>transformation</bpelx:pattern>
                     </bpelx:annotation>
                     <copy>
-                        <from expression="ora:doXSLTransformForDoc('xsl/Transformation_orderData.xsl', $inputVariable.payload)"/>
+                        <from expression="ora:doXSLTransformForDoc('Transformations/Transformation_orderData.xsl', $inputVariable.payload)"/>
                         <to variable="orderData"/>
                     </copy>
                 </assign>
@@ -93,7 +109,7 @@
                                 <bpelx:pattern>transformation</bpelx:pattern>
                             </bpelx:annotation>
                             <copy>
-                                <from expression="ora:doXSLTransformForDoc('xsl/Transformation_internalstore.xsl', $inputVariable.payload)"/>
+                                <from expression="ora:doXSLTransformForDoc('Transformations/Transformation_internalstore.xsl', $inputVariable.payload)"/>
                                 <to variable="Invoke_internalstore_checkStock_InputVariable" part="payload"/>
                             </copy>
                         </assign>
@@ -106,7 +122,7 @@
                                 <bpelx:pattern>transformation</bpelx:pattern>
                             </bpelx:annotation>
                             <copy>
-                                <from expression="ora:doXSLTransformForDoc('xsl/Transformation_onlinestore.xsl', $inputVariable.payload)"/>
+                                <from expression="ora:doXSLTransformForDoc('Transformations/Transformation_onlinestore.xsl', $inputVariable.payload)"/>
                                 <to variable="Invoke_onlinestore_checkStock_InputVariable" part="payload"/>
                             </copy>
                         </assign>
@@ -119,7 +135,7 @@
                         <bpelx:annotation>
                             <bpelx:general>
                                 <bpelx:property name="userLabel">
-                                    <![CDATA[internalstore=in-stock]]>
+                                    internalstore=in-stock
                                 </bpelx:property>
                             </bpelx:general>
                         </bpelx:annotation>
@@ -146,7 +162,7 @@
                         <bpelx:annotation>
                             <bpelx:general>
                                 <bpelx:property name="userLabel">
-                                    <![CDATA[onlinestore=in-stock]]>
+                                    onlinestore=in-stock
                                 </bpelx:property>
                             </bpelx:general>
                         </bpelx:annotation>
@@ -192,7 +208,7 @@
                 <bpelx:annotation>
                     <bpelx:general>
                         <bpelx:property name="userLabel">
-                            <![CDATA[order completed ?]]>
+                            order completed ?
                         </bpelx:property>
                     </bpelx:general>
                 </bpelx:annotation>
@@ -247,7 +263,7 @@
                                 <to variable="shippingRequest" query="/ns1:shippingRequest/ns1:shippingAddress/ns1:country"/>
                             </copy>
                         </assign>
-                        <scope name="Business_shippingrule" variableAccessSerializable="no" id="BpScp3">
+                        <scope name="BusinessRule_shippingrule" id="BpScp3">
                             <bpelx:annotation>
                                 <bpelx:pattern patternName="bpelx:decide"/>
                             </bpelx:annotation>
@@ -282,7 +298,7 @@
                                 <bpelx:annotation>
                                     <bpelx:general>
                                         <bpelx:property name="userLabel">
-                                            <![CDATA[FEDEX]]>
+                                            FEDEX
                                         </bpelx:property>
                                     </bpelx:general>
                                 </bpelx:annotation>
@@ -308,7 +324,7 @@
                                 <bpelx:annotation>
                                     <bpelx:general>
                                         <bpelx:property name="userLabel">
-                                            <![CDATA[USPS]]>
+                                            USPS
                                         </bpelx:property>
                                     </bpelx:general>
                                 </bpelx:annotation>
@@ -334,7 +350,7 @@
                                 <bpelx:annotation>
                                     <bpelx:general>
                                         <bpelx:property name="userLabel">
-                                            <![CDATA[UPS]]>
+                                            UPS
                                         </bpelx:property>
                                     </bpelx:general>
                                 </bpelx:annotation>
@@ -366,13 +382,4 @@
         -->
         <invoke name="callbackClient" partnerLink="fulfillment_client" portType="client:FulfillmentCallback" operation="processResponse" inputVariable="outputVariable" id="BpInv8"/>
     </sequence>
-</process><!--
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  Oracle JDeveloper BPEL Designer 
-  
-  Created: Thu Mar 10 06:38:21 EST 2016
-  Author:  ramesh
-  Type: BPEL 1.1 Process
-  Purpose: Asynchronous BPEL Process
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--->
+</process>

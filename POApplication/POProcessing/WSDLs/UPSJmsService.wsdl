@@ -4,8 +4,8 @@
      xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
      xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/UPSJmsService"
      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-     xmlns:imp1="http://xmlns.oracle.com/ns/order"
      xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:imp1="http://xmlns.oracle.com/ns/order"
     >
   <plt:partnerLinkType name="Produce_Message_plt" >
     <plt:role name="Produce_Message_role" >

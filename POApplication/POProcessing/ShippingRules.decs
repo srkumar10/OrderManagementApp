@@ -9,13 +9,24 @@
         <catalog>ShippingRules</catalog>
         <pattern name="CallFunctionStateless">
             <arguments>
-                <call>poprocessing.ShippingRules.ShippingRulesService</call>
+                <call>poprocessing.ShippingRules.ShippingRuleService</call>
             </arguments>
         </pattern>
         <pattern name="CallFunctionStateful">
             <arguments>
-                <call>poprocessing.ShippingRules.ShippingRulesService</call>
+                <call>poprocessing.ShippingRules.ShippingRuleService</call>
             </arguments>
         </pattern>
     </decisionService>
+    <schemaInformation>
+        <dictionary fqnPackage="poprocessing" fqnName="ShippingRules" updateNumber="43">
+            <schemaBrowser>
+                <package>com.oracle.xmlns.ns.ordershipment</package>
+                <namespace>http://xmlns.oracle.com/ns/ordershipment</namespace>
+            </schemaBrowser>
+            <schemaImport namespace="http://xmlns.oracle.com/ns/ordershipment" localPart="ordershipment.xsd" schemaLocation="Schemas/ordershipment.xsd">
+                <import namespace="http://xmlns.oracle.com/ns/ordershipment" localPart="ordershipment.xsd" schemaLocation="Schemas/ordershipment.xsd"/>
+            </schemaImport>
+        </dictionary>
+    </schemaInformation>
 </decisionServices>

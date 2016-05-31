@@ -1,9 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/ShippingRules/ShippingRulesService" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:tns="http://xmlns.oracle.com/ShippingRules/ShippingRulesService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:bpelpm="http://xmlns.oracle.com/bpel" xmlns:rules="http://xmlns.oracle.com/bpel/rules" xmlns:ns1="http://xmlns.oracle.com/ns/ordershipment">
-   <import namespace="http://xmlns.oracle.com/ns/ordershipment" schemaLocation="ordershipment.xsd"/>
-   <import namespace="http://xmlns.oracle.com/bpel/rules"
-           schemaLocation="DecisionServicePrimitiveTypes.xsd"/>
+   <import namespace="http://xmlns.oracle.com/ns/ordershipment" schemaLocation="../Schemas/ordershipment.xsd"/>
    <import namespace="http://xmlns.oracle.com/bpel"/>
+   <import namespace="http://xmlns.oracle.com/bpel/rules" schemaLocation="DecisionServicePrimitiveTypes.xsd"/>
    <include schemaLocation="ShippingRulesServiceTypes.xsd"/>
    <element name="callFunctionStateless" type="tns:callFunctionStatelessType"/>
    <complexType name="callFunctionStatelessType">

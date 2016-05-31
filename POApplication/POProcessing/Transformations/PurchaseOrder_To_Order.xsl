@@ -4,7 +4,7 @@
       <!--SPECIFICATION OF MAP SOURCES AND TARGETS, DO NOT MODIFY.-->
       <oracle-xsl-mapper:mapSources>
          <oracle-xsl-mapper:source type="WSDL">
-            <oracle-xsl-mapper:schema location="../WSDLs/ReceivePO.wsdl"/>
+            <oracle-xsl-mapper:schema location="oramds:/apps/POApplication/WSDLs/ReceivePO.wsdl"/>
             <oracle-xsl-mapper:rootElement name="PurchaseOrder" namespace="http://xmlns.oracle.com/ns/order"/>
          </oracle-xsl-mapper:source>
       </oracle-xsl-mapper:mapSources>

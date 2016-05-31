@@ -213,7 +213,7 @@
     </wsdl:binding>
     <wsdl:service name="InternalStoreService">
         <wsdl:port name="InternalStoreServiceSoapHttpPort" binding="tns:InternalStoreServiceSoapHttp">
-            <soap:address location="http://orafmw11.techlabs.local:8001/InternalStoreSDO/InternalStoreService"/>
+            <soap:address location="http://orasoa12.techlabs.local:7004/InternalStoreSDO/InternalStoreService"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

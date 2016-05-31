@@ -40,9 +40,7 @@
     -->
     <bpelx:annotation>
         <bpelx:analysis>
-            <bpelx:property name="wsdlFile">
-                <![CDATA[WSDLs/ManageStock.wsdl]]>
-            </bpelx:property>
+            <bpelx:property name="wsdlFile">oramds:/apps/POApplication/WSDLs/ManageStock.wsdl</bpelx:property>
         </bpelx:analysis>
     </bpelx:annotation>
     <partnerLinks>

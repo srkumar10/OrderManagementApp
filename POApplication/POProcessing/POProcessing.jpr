@@ -463,5 +463,6 @@
       </hash>
    </hash>
    <value n="ProcessName" v="Fulfillment"/>
+   <value n="SOA_WSDL_FOLDER_NAME" v="WSDLs/"/>
    <value n="Template" v="BPEL_ASYNC_PROCESS"/>
 </jpr:project>
