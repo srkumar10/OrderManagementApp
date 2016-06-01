@@ -1,45 +1,45 @@
-2016-05-31 17:08:24.511/1.987 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middleware12c/1221/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
-2016-05-31 17:08:24.567/2.043 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/Middleware12c/1221/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence-override-dev.xml"
-2016-05-31 17:08:24.571/2.047 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/tangosol-coherence-override.xml" is not specified
-2016-05-31 17:08:24.576/2.052 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
-2016-05-31 17:08:24.578/2.054 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
-2016-05-31 17:08:24.581/2.057 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+2016-05-31 22:53:52.992/3.824 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middleware12c/1221/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2016-05-31 22:53:53.056/3.889 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/Middleware12c/1221/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence-override-dev.xml"
+2016-05-31 22:53:53.065/3.897 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/tangosol-coherence-override.xml" is not specified
+2016-05-31 22:53:53.079/3.912 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
+2016-05-31 22:53:53.088/3.921 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
+2016-05-31 22:53:53.093/3.925 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
 
 Oracle Coherence Version 12.2.1.0.0 Build 60603
  Grid Edition: Development mode
 Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
 
-2016-05-31 17:08:25.124/2.600 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded FMW commons version: 12.2.1-0-0-SNAPSHOT b60603
-2016-05-31 17:08:25.129/2.605 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
-2016-05-31 17:08:25.499/2.975 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): The cluster name has not been configured, a value of "SUNKR196's cluster" has been automatically generated
-May 31, 2016 5:08:27 PM oracle.soa.scac.ValidateComposite loadWSDLs
+2016-05-31 22:53:53.244/4.077 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded FMW commons version: 12.2.1-0-0-SNAPSHOT b60603
+2016-05-31 22:53:53.250/4.082 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
+2016-05-31 22:53:53.676/4.509 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): The cluster name has not been configured, a value of "ramesh's cluster" has been automatically generated
+May 31, 2016 10:54:06 PM oracle.soa.scac.ValidateComposite loadWSDLs
 WARNING: Validating WSDLs from WSDLManager....  with option UseSoaInfraMds:false
-May 31, 2016 5:08:27 PM oracle.adf.share.ADFContext getCurrent
+May 31, 2016 10:54:07 PM oracle.adf.share.ADFContext getCurrent
 WARNING: Automatically initializing a DefaultContext for getCurrent.
 Caller should ensure that a DefaultContext is proper for this use.
 Memory leaks and/or unexpected behaviour may occur if the automatic initialization is performed improperly.
 This message may be avoided by performing initADFContext before using getCurrent().
 For more information please enable logging for oracle.adf.share.ADFContext at FINEST level.
-May 31, 2016 5:08:27 PM oracle.adf.share.config.ADFConfigFactory findOrCreateADFConfig
+May 31, 2016 10:54:07 PM oracle.adf.share.config.ADFConfigFactory findOrCreateADFConfig
 INFO: Resource META-INF/adf-config.xml not found on the classpath.
-May 31, 2016 5:08:27 PM oracle.adf.share.config.ADFConfigFactory findOrCreateADFConfig
+May 31, 2016 10:54:07 PM oracle.adf.share.config.ADFConfigFactory findOrCreateADFConfig
 INFO: A default implementation of ADFConfig is being created for application. This can lead to unexpected results in some cases. Please add a basic META-INF/adf-config.xml to your classpath to avoid functional errors.
-2016-05-31 17:08:27.369/4.845 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
-May 31, 2016 5:08:28 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
+2016-05-31 22:54:07.517/18.351 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
+May 31, 2016 10:54:08 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
 INFO: XMLSchema incremental build enabled.
-May 31, 2016 5:08:29 PM oracle.fabric.common.wsdl.WSDLManager loadWSDL
+May 31, 2016 10:54:09 PM oracle.fabric.common.wsdl.WSDLManager loadWSDL
 WARNING: Failed to load WSDL from http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/CreditCardValidation/ValidateCreditCard due to: WSDLException: faultCode=INVALID_WSDL: Invalid XML in document at: http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/CreditCardValidation/ValidateCreditCard, line: 5, column: 62: oracle.xml.parser.v2.XMLParseException: Whitespace required.
 WARNING: Failed to load WSDL from NotificationService.wsdl due to: Error in getting XML input stream: file:/E:/Oracle/JDeveloper12c/mywork/OrderManagementApp/POApplication/POProcessing/NotificationService.wsdl: E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\NotificationService.wsdl (The system cannot find the file specified)
 INFO: validating "ApproveCCOrder.bpel" ...
 WARNING: JRF is unable to determine the current application server platform.
-INFO: Composed "ApproveCCOrder" in 279.1 milliseconds [nodes 75=6+69, 268.7 nodes/sec]
-INFO: Compiled "ApproveCCOrder" in 4.340 seconds
-INFO: Gathered 13 files in 6.8 milliseconds
-INFO: Packaged "ApproveCCOrder" in 73.7 milliseconds
+INFO: Composed "ApproveCCOrder" in 553.2 milliseconds [nodes 75=6+69, 135.6 nodes/sec]
+INFO: Compiled "ApproveCCOrder" in 5.374 seconds
+INFO: Gathered 13 files in 63.8 milliseconds
+INFO: Packaged "ApproveCCOrder" in 294.8 milliseconds
 INFO: validating "Fulfillment.bpel" ...
-INFO: Composed "Fulfillment" in 167.8 milliseconds [nodes 69=3+66, 411.2 nodes/sec]
-INFO: Compiled "Fulfillment" in 1.213 seconds
-INFO: Gathered 10 files in 13.5 milliseconds
-INFO: Packaged "Fulfillment" in 61.4 milliseconds
+INFO: Composed "Fulfillment" in 322.2 milliseconds [nodes 69=3+66, 214.1 nodes/sec]
+INFO: Compiled "Fulfillment" in 2.187 seconds
+INFO: Gathered 10 files in 27.5 milliseconds
+INFO: Packaged "Fulfillment" in 175.7 milliseconds
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=32m; support was removed in 8.0
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0

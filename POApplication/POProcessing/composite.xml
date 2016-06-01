@@ -41,18 +41,18 @@
           location="oramds:/soa/shared/workflow/NotificationService.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard"
           location="oramds:/apps/POApplication/WSDLs/ValidateCreditCard.wsdl" importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock"
-          location="http://LP1937.ouc.local:7004/soa-infra/services/orderManagement/OnlineStore!1.0/apps/POApplication/WSDLs/ManageStock.wsdl"
-          importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory"
-          location="http://LP1937.ouc.local:7004/soa-infra/services/orderManagement/InternalStore!1.0/apps/POApplication/WSDLs/ManageInventory.wsdl"
-          importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ApprovalRules/ApprovalRulesService"
           location="WSDLs/ApprovalRulesService.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ApprovalRules/ApprovalRulesService"
           location="WSDLs/ApprovalRulesServiceWrapper.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ShippingRules/ShippingRulesService"
           location="WSDLs/ShippingRulesService.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock"
+          location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/OnlineStore!1.0/apps/POApplication/WSDLs/ManageStock.wsdl"
+          importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory"
+          location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/InternalStore!1.0/apps/POApplication/WSDLs/ManageInventory.wsdl"
+          importType="wsdl"/>
   <service name="ReceivePO" ui:wsdlLocation="WSDLs/ReceivePO.wsdl">
     <interface.wsdl interface="http://oracle.com/sca/soapservice/POApplication/POProcessing/ReceivePO#wsdl.interface(POProcessing)"/>
     <binding.ws port="http://oracle.com/sca/soapservice/POApplication/POProcessing/ReceivePO#wsdl.endpoint(ReceivePO/POProcessing_pt)">
@@ -144,12 +144,12 @@
         <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/FedExJmsService#wsdl.interface(Produce_Message_ptt)"/>
       </reference>
       <reference name="InternalStore"
-                 ui:wsdlLocation="http://LP1937.ouc.local:7004/soa-infra/services/orderManagement/InternalStore!1.0/apps/POApplication/WSDLs/ManageInventory.wsdl">
+                 ui:wsdlLocation="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/InternalStore!1.0/apps/POApplication/WSDLs/ManageInventory.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventory)"
                         callbackInterface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventoryCallback)"/>
       </reference>
       <reference name="OnlineStore"
-                 ui:wsdlLocation="http://LP1937.ouc.local:7004/soa-infra/services/orderManagement/OnlineStore!1.0/apps/POApplication/WSDLs/ManageStock.wsdl">
+                 ui:wsdlLocation="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/OnlineStore!1.0/apps/POApplication/WSDLs/ManageStock.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.interface(ManageStock)"
                         callbackInterface="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.interface(ManageStockCallback)"/>
       </reference>
@@ -215,20 +215,26 @@
     <binding.jca config="FedExJmsService_jms.jca"/>
   </reference>
   <reference name="InternalStore"
-             ui:wsdlLocation="http://LP1937.ouc.local:7004/soa-infra/services/orderManagement/InternalStore!1.0/apps/POApplication/WSDLs/ManageInventory.wsdl">
+             ui:wsdlLocation="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/InternalStore!1.0/apps/POApplication/WSDLs/ManageInventory.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventory)"
                     callbackInterface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventoryCallback)"/>
     <binding.ws port="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.endpoint(manageinventory_client_ep/ManageInventory_pt)"
-                location="http://LP1937.ouc.local:7004/soa-infra/services/orderManagement/InternalStore/manageinventory_client_ep?WSDL"
+                location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/InternalStore/manageinventory_client_ep?WSDL"
                 soapVersion="1.1"/>
+    <callback>
+      <binding.ws port="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.endpoint(manageinventory_client_ep/ManageInventoryCallback_pt)"/>
+    </callback>
   </reference>
   <reference name="OnlineStore"
-             ui:wsdlLocation="http://LP1937.ouc.local:7004/soa-infra/services/orderManagement/OnlineStore!1.0/apps/POApplication/WSDLs/ManageStock.wsdl">
+             ui:wsdlLocation="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/OnlineStore!1.0/apps/POApplication/WSDLs/ManageStock.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.interface(ManageStock)"
                     callbackInterface="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.interface(ManageStockCallback)"/>
     <binding.ws port="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.endpoint(managestock_client_ep/ManageStock_pt)"
-                location="http://LP1937.ouc.local:7004/soa-infra/services/orderManagement/OnlineStore/managestock_client_ep?WSDL"
+                location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/OnlineStore/managestock_client_ep?WSDL"
                 soapVersion="1.1"/>
+    <callback>
+      <binding.ws port="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.endpoint(managestock_client_ep/ManageStockCallback_pt)"/>
+    </callback>
   </reference>
   <reference name="OrdersService"
              ui:wsdlLocation="http://orasoa12.techlabs.local:7004/OrdersSDO/OrdersService?WSDL">

@@ -13,7 +13,7 @@
    <Fault>
       <severity>warning</severity>
       <loc>/ns:composite/ns:reference[@name='NotificationService1']</loc>
-      <line>251</line>
+      <line>257</line>
       <col>113</col>
       <file>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</file>
       <name>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</name>
