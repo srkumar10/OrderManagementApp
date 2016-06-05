@@ -2,13 +2,23 @@
 <Faults>
    <Fault>
       <severity>warning</severity>
-      <loc>/ns:composite/ns:reference[@name='ValidateCCService']</loc>
-      <line>199</line>
-      <col>114</col>
+      <loc>/ns:composite/ns:reference[@name='InternalStore']</loc>
+      <line>218</line>
+      <col>86</col>
       <file>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</file>
       <name>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</name>
       <fix/>
-      <msg>Failed to Find Binding "ValidateCCService":"{http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard}creditcardvalidation_pt" in WSDL Manager</msg>
+      <msg>Failed to Find Binding "InternalStore":"{http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory}ManageInventory_pt" in WSDL Manager</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc>/ns:composite/ns:reference[@name='InternalStore']</loc>
+      <line>218</line>
+      <col>86</col>
+      <file>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</file>
+      <name>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</name>
+      <fix/>
+      <msg>Failed to Find Binding "InternalStore":"{http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory}ManageInventory_pt" in WSDL Manager</msg>
    </Fault>
    <Fault>
       <severity>warning</severity>
@@ -23,7 +33,7 @@
    <Fault>
       <severity>warning</severity>
       <loc>/process/sequence/switch/case/scope/sequence/scope/sequence/assign/copy</loc>
-      <line>409</line>
+      <line>405</line>
       <col/>
       <file>Fulfillment.bpel</file>
       <name>Fulfillment.bpel</name>

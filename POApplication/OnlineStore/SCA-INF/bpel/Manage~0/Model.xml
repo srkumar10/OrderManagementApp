@@ -8,7 +8,7 @@
   Type: BPEL 1.1 Process
   Purpose: Asynchronous BPEL Process
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
---><process name="ManageStock" targetNamespace="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns1="http://xmlns.techlabs.com/ns/StoreRequest" xmlns:ns2="http://xmlns.techlabs.local/oracle/apps" xmlns:ns3="http://xmlns.techlabs.local/oracle/apps/types/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="/techlabs/common/" id="BpPrc0">
+--><process name="ManageStock" targetNamespace="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns1="http://xmlns.techlabs.com/ns/StoreRequest" xmlns:ns2="http://xmlns.techlabs.local/oracle/apps" xmlns:ns3="http://xmlns.techlabs.local/oracle/apps/types/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="/techlabs/common/" xmlns:ess="http://xmlns.oracle.com/scheduler" id="BpPrc0">
     <!-- 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         PARTNERLINKS                                                      
@@ -76,7 +76,7 @@
         </pick>
         <assign name="Assign_Initialize" id="BpAss2">
             <copy>
-                <from expression="count(bpws:getVariableData('inputVariable','payload','/ns1:StoreRequest/ns1:product'))"/>
+                <from expression="count(bpws:getVariableData('inputVariable','payload','/ns1:StoreRequest/ns1:product'))" bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"/>
                 <to variable="n"/>
             </copy>
             <copy>
@@ -103,40 +103,48 @@
                             </copy>
                         </assign>
                         <invoke name="Invoke_check_onlinestore" inputVariable="Invoke_check_onlinestore_getOnlineStoreView1_InputVariable" outputVariable="Invoke_check_onlinestore_getOnlineStoreView1_OutputVariable" partnerLink="OnlineStoreService" portType="ns2:OnlineStoreService" operation="getOnlineStoreView1" bpelx:invokeAsDetail="no" id="BpInv0"/>
-                        <assign name="Assign_newQty" id="BpAss4">
-                            <copy>
-                                <from expression="bpws:getVariableData('Invoke_check_onlinestore_getOnlineStoreView1_OutputVariable','parameters','/ns3:getOnlineStoreView1Response/ns3:result/ns4:Quantity') - bpws:getVariableData('inputVariable','payload','/ns1:StoreRequest/ns1:product[position()=$n]/ns1:qtyOrdered')"/>
-                                <to variable="inputVariable" part="payload" query="/ns1:StoreRequest/ns1:product[position()=$n]/ns1:qtyOrdered"/>
-                            </copy>
-                        </assign>
                         <switch name="Switch_acquirestock" id="BpSwt0">
-                            <case condition="bpws:getVariableData('inputVariable','payload','/ns1:StoreRequest//ns1:product/ns1:qtyOrdered') &lt; 0">
+                            <case condition="bpws:getVariableData('operation')='check'">
                                 <bpelx:annotation>
                                     <bpelx:general>
                                         <bpelx:property name="userLabel">
-                                            Any out of stock ?
+                                            check operation
                                         </bpelx:property>
                                     </bpelx:general>
                                 </bpelx:annotation>
-                                <sequence id="BpSeq3">
-                                    <assign name="Assign_change_instock_status" id="BpAss5">
-                                        <copy>
-                                            <from expression="false()"/>
-                                            <to variable="inStock"/>
-                                        </copy>
-                                    </assign>
+                                <sequence name="Sequence5" id="BpSeq3">
+                                    <switch name="instock_check" id="BpSwt1">
+                                        <case condition="bpws:getVariableData('Invoke_check_onlinestore_getOnlineStoreView1_OutputVariable','parameters','/ns3:getOnlineStoreView1Response/ns3:result/ns4:Quantity') - bpws:getVariableData('inputVariable','payload','/ns1:StoreRequest/ns1:product[position()=$n]/ns1:qtyOrdered') >= 0">
+                                            <bpelx:annotation>
+                                                <bpelx:general>
+                                                    <bpelx:property name="userLabel">
+                                                        instock
+                                                    </bpelx:property>
+                                                </bpelx:general>
+                                            </bpelx:annotation>
+                                            <empty name="Nochange" id="BpEmp0"/>
+                                        </case>
+                                        <otherwise>
+                                            <assign name="Assign_instock_false" id="BpAss4">
+                                                <copy>
+                                                    <from expression="false()"/>
+                                                    <to bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" variable="inStock"/>
+                                                </copy>
+                                            </assign>
+                                        </otherwise>
+                                    </switch>
                                 </sequence>
                             </case>
                             <case condition="bpws:getVariableData('operation')='acquire'">
                                 <bpelx:annotation>
                                     <bpelx:general>
                                         <bpelx:property name="userLabel">
-                                            acquire stock
+                                            acquire operation
                                         </bpelx:property>
                                     </bpelx:general>
                                 </bpelx:annotation>
                                 <sequence id="BpSeq4">
-                                    <assign name="Assign_update" id="BpAss6">
+                                    <assign name="Assign_update" id="BpAss5">
                                         <copy>
                                             <from variable="inputVariable" part="payload" query="/ns1:StoreRequest/ns1:product[position()=$n]/ns1:prodId"/>
                                             <to variable="Invoke1_updateOnlineStoreView1_InputVariable" part="parameters" query="/ns3:updateOnlineStoreView1/ns3:onlineStoreView1/ns4:ProdId"/>
@@ -149,13 +157,12 @@
                                     <invoke name="Invoke_update_onlinestore" bpelx:invokeAsDetail="no" inputVariable="Invoke1_updateOnlineStoreView1_InputVariable" outputVariable="Invoke1_updateOnlineStoreView1_OutputVariable" partnerLink="OnlineStoreService" portType="ns2:OnlineStoreService" operation="updateOnlineStoreView1" id="BpInv1"/>
                                 </sequence>
                             </case>
-                            <otherwise/>
                         </switch>
                     </sequence>
                 </scope>
             </sequence>
         </bpelx:flowN>
-        <switch name="Switch_callBackResponse" id="BpSwt1">
+        <switch name="Switch_callBackResponse" id="BpSwt2">
             <case condition="bpws:getVariableData('operation') = 'check'">
                 <bpelx:annotation>
                     <bpelx:general>
@@ -165,7 +172,7 @@
                     </bpelx:general>
                 </bpelx:annotation>
                 <sequence name="Sequence3" id="BpSeq5">
-                    <switch name="Switch_check_stock_status" id="BpSwt2">
+                    <switch name="Switch_check_stock_status" id="BpSwt3">
                         <case condition="bpws:getVariableData('inStock') = true()">
                             <bpelx:annotation>
                                 <bpelx:general>
@@ -174,7 +181,7 @@
                                     </bpelx:property>
                                 </bpelx:general>
                             </bpelx:annotation>
-                            <assign name="Assign_instock_status" id="BpAss7">
+                            <assign name="Assign_instock_status" id="BpAss6">
                                 <copy>
                                     <from expression="'in-stock'"/>
                                     <to variable="outputVariable" part="payload" query="/ns1:StoreResponse/ns1:status"/>
@@ -182,7 +189,7 @@
                             </assign>
                         </case>
                         <otherwise>
-                            <assign name="Assign_out-of-status" id="BpAss8">
+                            <assign name="Assign_out-of-status" id="BpAss7">
                                 <copy>
                                     <from expression="'out-of-stock'"/>
                                     <to variable="outputVariable" part="payload" query="/ns1:StoreResponse/ns1:status"/>
@@ -195,7 +202,7 @@
             </case>
             <otherwise>
                 <sequence name="Sequence4" id="BpSeq6">
-                    <assign name="Assign_fulfilled" id="BpAss9">
+                    <assign name="Assign_fulfilled" id="BpAss8">
                         <copy>
                             <from expression="'fulfilled'"/>
                             <to variable="outputVariable" part="payload" query="/ns1:StoreResponse/ns1:status"/>

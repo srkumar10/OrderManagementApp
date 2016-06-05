@@ -18,7 +18,7 @@
         </plnk:role>
     </plnk:partnerLinkType>
     <wsdl:import namespace="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard"
-         location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/CreditCardValidation/ValidateCreditCard?wsdl"/>
+         location="oramds:/apps/POApplication/WSDLs/ValidateCreditCard.wsdl"/>
     <wsdl:types>
         <schema xmlns="http://www.w3.org/2001/XMLSchema">
             <import namespace="http://xmlns.oracle.com/ns/order" schemaLocation="../Schemas/internalorder.xsd"/>

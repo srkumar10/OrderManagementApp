@@ -400,6 +400,19 @@
    </hash>
    <hash n="oracle.tip.tools.ide.fabric.addin.SCAContentSetProvider">
       <hash n="sca-content">
+         <list n="constituent-sets">
+            <hash>
+               <list n="pattern-filters"/>
+               <list n="url-path">
+                  <url path="../OnlineStore/"/>
+               </list>
+            </hash>
+            <hash>
+               <list n="url-path">
+                  <url path="."/>
+               </list>
+            </hash>
+         </list>
          <list n="url-path">
             <url path="."/>
          </list>

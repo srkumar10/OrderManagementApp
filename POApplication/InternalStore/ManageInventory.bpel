@@ -118,11 +118,12 @@
         </pick>
         <assign name="Assign_initialize">
             <copy>
-                <from expression="true()"/>
+                <from expression="true()" bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"/>
                 <to variable="inStock"/>
             </copy>
             <copy>
-                <from expression="count(bpws:getVariableData('inputVariable','payload','/ns3:StoreRequest/ns3:product'))"/>
+                <from expression="count(bpws:getVariableData('inputVariable','payload','/ns3:StoreRequest/ns3:product'))"
+                      bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"/>
                 <to variable="n"/>
             </copy>
         </assign>
@@ -155,7 +156,8 @@
                         </bpelx:annotation>
                         <assign name="Assign_prodinstock">
                             <copy>
-                                <from expression="number(bpws:getVariableData('Invoke_checkinstore_getInternalStoreView1_OutputVariable','parameters','/ns2:getInternalStoreView1Response/ns2:result/ns13:Quantity')) - number(bpws:getVariableData('inputVariable','payload','/ns3:StoreRequest/ns3:product[position()=$n]/ns3:qtyOrdered')) >= 0"/>
+                                <from expression="number(bpws:getVariableData('Invoke_checkinstore_getInternalStoreView1_OutputVariable','parameters','/ns2:getInternalStoreView1Response/ns2:result/ns13:Quantity')) - number(bpws:getVariableData('inputVariable','payload','/ns3:StoreRequest/ns3:product[position()=$n]/ns3:qtyOrdered')) >= 0"
+                                      bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"/>
                                 <to variable="inStock"/>
                             </copy>
                         </assign>
@@ -172,7 +174,8 @@
                                         query="/ns2:updateInternalStoreView1/ns2:internalStoreView1/ns13:ProdId"/>
                                 </copy>
                                 <copy>
-                                    <from expression="number(bpws:getVariableData('Invoke_checkinstore_getInternalStoreView1_OutputVariable','parameters','/ns2:getInternalStoreView1Response/ns2:result/ns13:Quantity')) - number(bpws:getVariableData('inputVariable','payload','/ns3:StoreRequest/ns3:product[position()=$n]/ns3:qtyOrdered'))"/>
+                                    <from expression="number(bpws:getVariableData('Invoke_checkinstore_getInternalStoreView1_OutputVariable','parameters','/ns2:getInternalStoreView1Response/ns2:result/ns13:Quantity')) - number(bpws:getVariableData('inputVariable','payload','/ns3:StoreRequest/ns3:product[position()=$n]/ns3:qtyOrdered'))"
+                                          bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"/>
                                     <to variable="Invoke_update_stock_updateInternalStoreView1_InputVariable"
                                         part="parameters"
                                         query="/ns2:updateInternalStoreView1/ns2:internalStoreView1/ns13:Quantity"/>
@@ -245,7 +248,8 @@
                 <sequence name="Sequence3">
                     <assign name="Assign_fulfilled">
                         <copy>
-                            <from expression="'fulfilled'"/>
+                            <from expression="'fulfilled'"
+                                  bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"/>
                             <to variable="outputVariable" part="payload"
                                 query="/ns3:StoreResponse/ns3:status"/>
                         </copy>

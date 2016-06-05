@@ -4,10 +4,10 @@
    <annotationfile/>
    <iconize/>
    <partnerlink_locations>
-      <partnerlink name="managestock_client" x="0" y="1636" side="left"/>
-      <partnerlink name="OnlineStoreService" x="1002" y="911" side="right"/>
+      <partnerlink name="managestock_client" x="0" y="1618" side="left"/>
+      <partnerlink name="OnlineStoreService" x="1465" y="872" side="right"/>
    </partnerlink_locations>
-   <graph_layout viewport="150,500,981,780" show_swimlanes="true">
+   <graph_layout viewport="0,627,1611,850" show_swimlanes="true">
       <layout_item collapsed="false" xpath="/process" type="process" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/pick" type="pick"/>
@@ -19,6 +19,7 @@
       <layout_item collapsed="false" xpath="/process/sequence/flowN/sequence/scope/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/flowN/sequence/scope/sequence/switch" type="switch"/>
       <layout_item collapsed="false" xpath="/process/sequence/flowN/sequence/scope/sequence/switch/case[1]/sequence" type="sequence"/>
+      <layout_item collapsed="false" xpath="/process/sequence/flowN/sequence/scope/sequence/switch/case[1]/sequence/switch" type="switch"/>
       <layout_item collapsed="false" xpath="/process/sequence/flowN/sequence/scope/sequence/switch/case[2]/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/switch" type="switch"/>
       <layout_item collapsed="false" xpath="/process/sequence/switch/case/sequence" type="sequence"/>

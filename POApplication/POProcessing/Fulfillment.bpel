@@ -70,12 +70,6 @@
         <partnerLink name="FedExJmsService"
                      partnerLinkType="ns4:Produce_Message_plt"
                      partnerRole="Produce_Message_role"/>
-        <partnerLink name="InternalStore" partnerLinkType="ns5:ManageInventory"
-                     myRole="ManageInventoryRequester"
-                     partnerRole="ManageInventoryProvider"/>
-        <partnerLink name="OnlineStore" partnerLinkType="ns6:ManageStock"
-                     myRole="ManageStockRequester"
-                     partnerRole="ManageStockProvider"/>
         <partnerLink name="OrdersService" partnerLinkType="ns9:OrdersService"
                      partnerRole="OrdersService"/>
         <partnerLink name="CustomerService"
@@ -83,6 +77,10 @@
                      partnerRole="CustomerService"/>
         <partnerLink name="ShippingRules.ShippingRulesService" partnerLinkType="ns12:IDecisionService_PLT"
                      partnerRole="IDecisionService_Role"/>
+        <partnerLink name="OnlineStore" partnerLinkType="ns6:ManageStock" partnerRole="ManageStockProvider"
+                     myRole="ManageStockRequester"/>
+        <partnerLink name="InternalStore" partnerLinkType="ns5:ManageInventory" partnerRole="ManageInventoryProvider"
+                     myRole="ManageInventoryRequester"/>
     </partnerLinks>
 
     <!-- 
@@ -247,8 +245,7 @@
                             <receive name="Receive_acquireinternal"
                                      createInstance="no"
                                      variable="Receive_acquireinternal_acquireStockResponse_InputVariable"
-                                     partnerLink="InternalStore"
-                                     portType="ns5:ManageInventoryCallback"
+                                     partnerLink="InternalStore" portType="ns5:ManageInventoryCallback"
                                      operation="acquireStockResponse"/>
                         </sequence>
                     </case>
@@ -290,8 +287,7 @@
                             <receive name="Receive_acquireonline"
                                      createInstance="no"
                                      variable="Receive_acquireonline_acquireStockResponse_InputVariable"
-                                     partnerLink="OnlineStore"
-                                     portType="ns6:ManageStockCallback"
+                                     partnerLink="OnlineStore" portType="ns6:ManageStockCallback"
                                      operation="acquireStockResponse"/>
                         </sequence>
                     </case>

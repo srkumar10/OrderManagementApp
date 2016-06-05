@@ -4,14 +4,8 @@
    <LookupType>LOCAL</LookupType>
    <TaskFlowDeploy>false</TaskFlowDeploy>
    <TaskFlowServer>
-      <hostName>orafmw11.techlabs.local</hostName>
-      <httpPort>8001</httpPort>
+      <hostName/>
+      <httpPort/>
       <httpsPort/>
    </TaskFlowServer>
-   <hwTaskFlow>
-      <WorkflowName>ManualApproval</WorkflowName>
-      <TaskDefinitionNamespace>http://xmlns.oracle.com/POApplication/POProcessing/ManualApproval</TaskDefinitionNamespace>
-      <TaskFlowId>ManualApproval_TaskFlow</TaskFlowId>
-      <TaskFlowFileName>WEB-INF/ManualApproval_TaskFlow.xml</TaskFlowFileName>
-   </hwTaskFlow>
-</hwTaskFlows>
+<hwTaskFlow><WorkflowName>ManualApproval</WorkflowName><TaskDefinitionNamespace>http://xmlns.oracle.com/POApplication/POProcessing/ManualApproval</TaskDefinitionNamespace><TaskFlowId>ManualApproval_TaskFlow</TaskFlowId><TaskFlowFileName>WEB-INF/ManualApproval_TaskFlow.xml</TaskFlowFileName></hwTaskFlow></hwTaskFlows>

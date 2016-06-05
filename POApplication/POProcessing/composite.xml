@@ -22,10 +22,8 @@
           location="WSDLs/USPSJmsService.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/FedExJmsService"
           location="WSDLs/FedExJmsService.wsdl" importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory"
-          location="oramds:/apps/POApplication/WSDLs/ManageInventory.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock"
-          location="oramds:/apps/POApplication/WSDLs/ManageStock.wsdl" importType="wsdl"/>
+          location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/OnlineStore/managestock_client_ep?wsdl" importType="wsdl"/>
   <import namespace="/techlabs/services/common/"
           location="http://orasoa12.techlabs.local:7004/OrdersSDO/OrdersService?WSDL" importType="wsdl"/>
   <import namespace="/techlabs/services/common/" location="WSDLs/OrdersServiceWrapper.wsdl" importType="wsdl"/>
@@ -39,21 +37,21 @@
           importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ias/pcbpel/NotificationService"
           location="oramds:/soa/shared/workflow/NotificationService.wsdl" importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard"
-          location="oramds:/apps/POApplication/WSDLs/ValidateCreditCard.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ApprovalRules/ApprovalRulesService"
           location="WSDLs/ApprovalRulesService.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ApprovalRules/ApprovalRulesService"
           location="WSDLs/ApprovalRulesServiceWrapper.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ShippingRules/ShippingRulesService"
           location="WSDLs/ShippingRulesService.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard"
+          location="oramds:/apps/POApplication/WSDLs/ValidateCreditCard.wsdl"
+          importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock"
-          location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/OnlineStore!1.0/apps/POApplication/WSDLs/ManageStock.wsdl"
+          location="oramds:/apps/POApplication/WSDLs/ManageStock.wsdl"
           importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory"
-          location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/InternalStore!1.0/apps/POApplication/WSDLs/ManageInventory.wsdl"
-          importType="wsdl"/>
-  <service name="ReceivePO" ui:wsdlLocation="WSDLs/ReceivePO.wsdl">
+          location="oramds:/apps/POApplication/WSDLs/ManageInventory.wsdl" importType="wsdl"/>
+  <service name="ReceivePO" ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ReceivePO.wsdl">
     <interface.wsdl interface="http://oracle.com/sca/soapservice/POApplication/POProcessing/ReceivePO#wsdl.interface(POProcessing)"/>
     <binding.ws port="http://oracle.com/sca/soapservice/POApplication/POProcessing/ReceivePO#wsdl.endpoint(ReceivePO/POProcessing_pt)">
       <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">NEVER</property>
@@ -66,7 +64,7 @@
     <implementation.mediator src="RoutePO.mplan"/>
     <componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
                    xmlns:ui="http://xmlns.oracle.com/soa/designer/">
-      <service name="RoutePO" ui:wsdlLocation="WSDLs/ReceivePO.wsdl">
+      <service name="RoutePO" ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ReceivePO.wsdl">
         <interface.wsdl interface="http://oracle.com/sca/soapservice/POApplication/POProcessing/ReceivePO#wsdl.interface(POProcessing)"/>
       </service>
       <reference name="EnrichPO.EnrichPO" ui:wsdlLocation="WSDLs/EnrichPO.wsdl">
@@ -143,16 +141,6 @@
       <reference name="FedExJmsService" ui:wsdlLocation="WSDLs/FedExJmsService.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/FedExJmsService#wsdl.interface(Produce_Message_ptt)"/>
       </reference>
-      <reference name="InternalStore"
-                 ui:wsdlLocation="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/InternalStore!1.0/apps/POApplication/WSDLs/ManageInventory.wsdl">
-        <interface.wsdl interface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventory)"
-                        callbackInterface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventoryCallback)"/>
-      </reference>
-      <reference name="OnlineStore"
-                 ui:wsdlLocation="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/OnlineStore!1.0/apps/POApplication/WSDLs/ManageStock.wsdl">
-        <interface.wsdl interface="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.interface(ManageStock)"
-                        callbackInterface="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.interface(ManageStockCallback)"/>
-      </reference>
       <reference name="OrdersService" ui:wsdlLocation="WSDLs/OrdersServiceWrapper.wsdl">
         <interface.wsdl interface="/techlabs/services/common/#wsdl.interface(OrdersService)"/>
       </reference>
@@ -161,6 +149,15 @@
       </reference>
       <reference name="ShippingRules.ShippingRulesService" ui:wsdlLocation="WSDLs/ShippingRulesService.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/ShippingRules/ShippingRulesService#wsdl.interface(IDecisionService)"/>
+      </reference>
+      <reference name="OnlineStore"
+                 ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ManageStock.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.interface(ManageStock)"
+                        callbackInterface="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.interface(ManageStockCallback)"/>
+      </reference>
+      <reference name="InternalStore" ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ManageInventory.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventory)"
+                        callbackInterface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventoryCallback)"/>
       </reference>
     </componentType>
     <property name="bpel.config.oneWayDeliveryPolicy" type="xs:string" many="false">async.persist</property>
@@ -196,11 +193,14 @@
     <binding.jca config="WritePOFileService_file.jca"/>
     <property name="orderfiles" type="xs:string" many="false" override="may">C:\Oracle\labs\podata</property>
   </reference>
-  <reference name="ValidateCCService" ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ValidateCreditCard.wsdl">
+  <reference name="ValidateCCService"
+             ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ValidateCreditCard.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard#wsdl.interface(creditcardvalidation)"/>
     <binding.ws port="http://xmlns.oracle.com/POApplication/CreditCardValidation/ValidateCreditCard#wsdl.endpoint(ValidateCreditCard/creditcardvalidation_pt)"
-                location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/CreditCardValidation/ValidateCreditCard"
-                supports=""/>
+                location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/CreditCardValidation/ValidateCreditCard?WSDL"
+                soapVersion="1.1">
+      <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">WSDLDriven</property>
+    </binding.ws>
   </reference>
   <reference name="UPSJmsService" ui:wsdlLocation="WSDLs/UPSJmsService.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/POProcessing/UPSJmsService#wsdl.interface(Produce_Message_ptt)"/>
@@ -215,23 +215,23 @@
     <binding.jca config="FedExJmsService_jms.jca"/>
   </reference>
   <reference name="InternalStore"
-             ui:wsdlLocation="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/InternalStore!1.0/apps/POApplication/WSDLs/ManageInventory.wsdl">
+             ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ManageInventory.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventory)"
                     callbackInterface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventoryCallback)"/>
-    <binding.ws port="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.endpoint(manageinventory_client_ep/ManageInventory_pt)"
-                location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/InternalStore/manageinventory_client_ep?WSDL"
-                soapVersion="1.1"/>
+    <binding.ws port="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.endpoint(manageinventory_client_ep/ManageInventory_pt)" location=""/>
     <callback>
-      <binding.ws port="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.endpoint(manageinventory_client_ep/ManageInventoryCallback_pt)"/>
+      <binding.ws port="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.endpoint(managestock_client_ep/ManageStockCallback_pt)"/>
     </callback>
   </reference>
   <reference name="OnlineStore"
-             ui:wsdlLocation="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/OnlineStore!1.0/apps/POApplication/WSDLs/ManageStock.wsdl">
+             ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ManageStock.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.interface(ManageStock)"
                     callbackInterface="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.interface(ManageStockCallback)"/>
     <binding.ws port="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.endpoint(managestock_client_ep/ManageStock_pt)"
                 location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/OnlineStore/managestock_client_ep?WSDL"
-                soapVersion="1.1"/>
+                soapVersion="1.1">
+      <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">WSDLDriven</property>
+    </binding.ws>
     <callback>
       <binding.ws port="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.endpoint(managestock_client_ep/ManageStockCallback_pt)"/>
     </callback>
@@ -257,7 +257,9 @@
   <reference name="NotificationService1" ui:wsdlLocation="oramds:/soa/shared/workflow/NotificationService.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
     <binding.ws port="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.endpoint(NotificationService/JavaPort)"
-                location="NotificationService.wsdl"/>
+                location="NotificationService.wsdl">
+      <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">WSDLDriven</property>
+    </binding.ws>
   </reference>
   <wire>
     <source.uri>ReceivePO</source.uri>
@@ -300,14 +302,6 @@
     <target.uri>FedExJmsService</target.uri>
   </wire>
   <wire>
-    <source.uri>Fulfillment/InternalStore</source.uri>
-    <target.uri>InternalStore</target.uri>
-  </wire>
-  <wire>
-    <source.uri>Fulfillment/OnlineStore</source.uri>
-    <target.uri>OnlineStore</target.uri>
-  </wire>
-  <wire>
     <source.uri>Fulfillment/OrdersService</source.uri>
     <target.uri>OrdersService</target.uri>
   </wire>
@@ -334,5 +328,13 @@
   <wire>
     <source.uri>Fulfillment/ShippingRules.ShippingRulesService</source.uri>
     <target.uri>ShippingRules/ShippingRulesService</target.uri>
+  </wire>
+  <wire>
+    <source.uri>Fulfillment/OnlineStore</source.uri>
+    <target.uri>OnlineStore</target.uri>
+  </wire>
+  <wire>
+    <source.uri>Fulfillment/InternalStore</source.uri>
+    <target.uri>InternalStore</target.uri>
   </wire>
 </composite>

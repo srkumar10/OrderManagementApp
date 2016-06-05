@@ -4,24 +4,24 @@
    <annotationfile/>
    <iconize/>
    <partnerlink_locations>
-      <partnerlink name="fulfillment_client" x="0" y="784" side="left"/>
+      <partnerlink name="fulfillment_client" x="0" y="1370" side="left"/>
       <partnerlink name="ShippingRules.ShippingRulesService" x="0" y="20" side="left"/>
-      <partnerlink name="UPSJmsService" x="1268" y="20" side="right"/>
-      <partnerlink name="FedExJmsService" x="1268" y="79" side="right"/>
-      <partnerlink name="OnlineStore" x="1268" y="138" side="right"/>
-      <partnerlink name="CustomerService" x="1268" y="315" side="right"/>
-      <partnerlink name="USPSJmsService" x="1268" y="197" side="right"/>
-      <partnerlink name="InternalStore" x="1268" y="256" side="right"/>
-      <partnerlink name="OrdersService" x="1268" y="444" side="right"/>
+      <partnerlink name="UPSJmsService" x="1322" y="2328" side="right"/>
+      <partnerlink name="FedExJmsService" x="1322" y="2387" side="right"/>
+      <partnerlink name="CustomerService" x="1322" y="168" side="right"/>
+      <partnerlink name="OnlineStore" x="1322" y="1013" side="right"/>
+      <partnerlink name="OrdersService" x="1322" y="306" side="right"/>
+      <partnerlink name="USPSJmsService" x="1322" y="2446" side="right"/>
+      <partnerlink name="InternalStore" x="1322" y="1072" side="right"/>
    </partnerlink_locations>
-   <graph_layout viewport="0,0,1403,667" show_swimlanes="true">
+   <graph_layout viewport="0,2024,1457,707" show_swimlanes="true">
       <layout_item collapsed="false" xpath="/process" type="process" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[1]" type="scope" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[1]/sequence" type="sequence"/>
-      <layout_item collapsed="true" xpath="/process/sequence/scope[2]" type="scope" showhandlers="true"/>
+      <layout_item collapsed="false" xpath="/process/sequence/scope[2]" type="scope" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[2]/sequence" type="sequence"/>
-      <layout_item collapsed="true" xpath="/process/sequence/scope[2]/sequence/flow" type="flow"/>
+      <layout_item collapsed="false" xpath="/process/sequence/scope[2]/sequence/flow" type="flow"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[2]/sequence/flow/sequence[1]" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[2]/sequence/flow/sequence[2]" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[2]/sequence/switch" type="switch"/>
@@ -32,7 +32,7 @@
       <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope/sequence" type="sequence"/>
       <layout_item collapsed="true" xpath="/process/sequence/switch/case/scope/sequence/scope" type="rule" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope/sequence/scope/sequence" type="sequence"/>
-      <layout_item collapsed="true" xpath="/process/sequence/switch/case/scope/sequence/switch" type="switch"/>
+      <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope/sequence/switch" type="switch"/>
       <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope/sequence/switch/case[1]/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope/sequence/switch/case[2]/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/switch/case/scope/sequence/switch/case[3]/sequence" type="sequence"/>

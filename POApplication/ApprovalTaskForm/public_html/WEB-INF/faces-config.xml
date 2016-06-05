@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<faces-config version="2.2" xmlns="http://java.sun.com/xml/ns/javaee">
+<?xml version="1.0" encoding="windows-1252"?>
+<faces-config version="2.1" xmlns="http://java.sun.com/xml/ns/javaee">
   <application>
     <default-render-kit-id>oracle.adf.rich</default-render-kit-id>
     <locale-config>
@@ -12,23 +12,43 @@
     </resource-bundle>
   </application>
   <converter>
-    <converter-for-class>oracle.bpel.services.datacontrol.types.Number</converter-for-class>
-    <converter-class>oracle.bpel.services.datacontrol.types.CustomNumberConverter</converter-class>
+    <converter-id>dateTimeConvertor</converter-id>
+    <converter-class>oracle.bpel.services.workflow.worklist.adf.DateToStringConvertor</converter-class>
   </converter>
-  <converter>
-    <converter-for-class>oracle.bpel.services.datacontrol.types.XSDate</converter-for-class>
-    <converter-class>oracle.bpel.services.datacontrol.types.XSDateConverter</converter-class>
-  </converter>
-  <converter>
-    <converter-for-class>oracle.bpel.services.datacontrol.types.XSTime</converter-for-class>
-    <converter-class>oracle.bpel.services.datacontrol.types.XSTimeConverter</converter-class>
-  </converter>
-  <converter>
-    <converter-for-class>oracle.bpel.services.datacontrol.types.XSDateTime</converter-for-class>
-    <converter-class>oracle.bpel.services.datacontrol.types.XSDateTimeConverter</converter-class>
-  </converter>
-  <converter>
-    <converter-id>dateToStringConverter</converter-id>
-    <converter-class>oracle.bpel.services.datacontrol.types.DateToStringConverter</converter-class>
-  </converter>
+  <component>
+    <component-type>worklist.dc.taskhistory.TaskHistoryComponentType</component-type>
+    <component-class>worklist.dc.taskhistory.TaskHistoryComponent</component-class>
+  </component>
+  <component>
+    <component-type>worklist.ecm.manageDocments.ManageDocumentsComponentType</component-type>
+    <component-class>worklist.ecm.manageDocments.ManageDocumentsComponent</component-class>
+  </component>
+  <component>
+    <component-type>worklist.dc.identitybrowser.IdentityBrowserComponentType</component-type>
+    <component-class>worklist.dc.identitybrowser.IdentityBrowserComponent</component-class>
+  </component>
+  <component>
+    <component-type>worklist.dc.query.QueryComponentType</component-type>
+    <component-class>worklist.dc.query.QueryComponent</component-class>
+  </component>
+  <component>
+    <component-type>worklist.dc.tasktypebrowser.TaskTypeBrowserComponentType</component-type>
+    <component-class>worklist.dc.tasktypebrowser.TaskTypeBrowserComponent</component-class>
+  </component>
+  <component>
+    <component-type>worklist.dc.requestinfo.RequestInfoDialogComponentType</component-type>
+    <component-class>worklist.dc.requestinfo.RequestInfoDialogComponent</component-class>
+  </component>
+  <component>
+    <component-type>worklist.dc.accessibility.AccessibilityComponentType</component-type>
+    <component-class>worklist.dc.accessibility.AccessibilityComponent</component-class>
+  </component>
+  <component>
+    <component-type>worklist.dc.decomposition.TaskDecomposeComponentType</component-type>
+    <component-class>worklist.dc.decomposition.TaskDecomposeComponent</component-class>
+  </component>
+  <component>
+    <component-type>worklist.dc.upkhelp.UpkHelpComponentType</component-type>
+    <component-class>worklist.dc.upkhelp.UpkHelpComponent</component-class>
+  </component>
 </faces-config>
