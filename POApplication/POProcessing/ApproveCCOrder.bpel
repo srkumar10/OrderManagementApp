@@ -82,11 +82,10 @@
         <partnerLink name="CustomerService"
                      partnerLinkType="ns6:CustomerService"
                      partnerRole="CustomerService"/>
-        <partnerLink name="NotificationService1"
-                     partnerLinkType="ns8:NotificationServiceLink"
-                     partnerRole="NotificationServiceProvider"/>
         <partnerLink name="ApprovalRules.ApprovalRulesService" partnerLinkType="ns9:ApprovalRules.ApprovalRulesService"
                      partnerRole="IDecisionService"/>
+        <partnerLink name="NotificationService1" partnerLinkType="ns8:NotificationServiceLink"
+                     partnerRole="NotificationServiceProvider"/>
     </partnerLinks>
     <!-- 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -444,81 +443,59 @@
                                   variable="customerEV">
                     <bpelx:key keyname="ns7:CustId">bpws:getVariableData('inputVariable','payload','/ns2:Order/ns2:customerId')</bpelx:key>
                 </bpelx:bindEntity>
-                <scope name="Email1">
+                <scope name="Email_Notification">
                     <bpelx:annotation>
-                        <bpelx:pattern patternName="bpelx:email"></bpelx:pattern>
+                        <bpelx:pattern patternName="bpelx:email"/>
                     </bpelx:annotation>
                     <variables>
-                        <variable name="varNotificationReq"
-                                  messageType="ns8:EmailNotificationRequest"/>
-                        <variable name="varNotificationResponse"
-                                  messageType="ns8:ArrayOfResponse"/>
+                        <variable name="varNotificationReq" messageType="ns8:EmailNotificationRequest"/>
+                        <variable name="varNotificationResponse" messageType="ns8:ArrayOfResponse"/>
                         <variable name="NotificationServiceFaultVariable"
                                   messageType="ns8:NotificationServiceErrorMessage"/>
                     </variables>
-                    <sequence name="Sequence5">
+                    <sequence name="Sequence7">
                         <assign name="EmailParamsAssign">
                             <copy>
                                 <from expression="string('Default')"/>
-                                <to variable="varNotificationReq"
-                                    part="EmailPayload"
+                                <to variable="varNotificationReq" part="EmailPayload"
                                     query="/EmailPayload/ns8:FromAccountName"/>
                             </copy>
                             <copy>
                                 <from expression="string('')"/>
-                                <to variable="varNotificationReq"
-                                    part="EmailPayload"
-                                    query="/EmailPayload/ns8:FromUserName"/>
+                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:Bcc"/>
                             </copy>
                             <copy>
                                 <from expression="string('')"/>
-                                <to variable="varNotificationReq"
-                                    part="EmailPayload"
-                                    query="/EmailPayload/ns8:Bcc"/>
+                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:Cc"/>
                             </copy>
                             <copy>
                                 <from expression="string('')"/>
-                                <to variable="varNotificationReq"
-                                    part="EmailPayload"
-                                    query="/EmailPayload/ns8:Cc"/>
-                            </copy>
-                            <copy>
-                                <from expression="string('')"/>
-                                <to variable="varNotificationReq"
-                                    part="EmailPayload"
+                                <to variable="varNotificationReq" part="EmailPayload"
                                     query="/EmailPayload/ns8:ReplyToAddress"/>
                             </copy>
                             <copy>
                                 <from expression="concat(string('&quot;Your Order Status: &quot; '), bpws:getVariableData('outputVariable','payload','/ns2:Order/ns2:status'))"/>
-                                <to variable="varNotificationReq"
-                                    part="EmailPayload"
+                                <to variable="varNotificationReq" part="EmailPayload"
                                     query="/EmailPayload/ns8:Subject"/>
                             </copy>
                             <copy>
                                 <from expression="bpws:getVariableData('customerEV','/ns7:customersVOSDO/ns7:Email')"/>
-                                <to variable="varNotificationReq"
-                                    part="EmailPayload"
-                                    query="/EmailPayload/ns8:To"/>
+                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:To"/>
                             </copy>
                             <copy>
                                 <from expression="concat(string('&lt;p> Dear '), bpws:getVariableData('customerEV','/ns7:customersVOSDO/ns7:FirstName'), string(' &lt;/p> &lt;p> The status of your order is: &lt;b> '), bpws:getVariableData('outputVariable','payload','/ns2:Order/ns2:status'), string(' &lt;/b> &lt;/p> &lt;hr> &lt;p> Thank you for shopping with us. For more information contact customer support on 1-800-NUMBER. &lt;/p>'))"/>
-                                <to variable="varNotificationReq"
-                                    part="EmailPayload"
+                                <to variable="varNotificationReq" part="EmailPayload"
                                     query="/EmailPayload/ns8:Content/ns8:ContentBody"/>
                             </copy>
                             <copy>
                                 <from expression="string('text/html; charset=UTF-8')"/>
-                                <to variable="varNotificationReq"
-                                    part="EmailPayload"
+                                <to variable="varNotificationReq" part="EmailPayload"
                                     query="/EmailPayload/ns8:Content/ns8:MimeType"/>
                             </copy>
                         </assign>
-                        <invoke name="InvokeNotificationService"
-                                portType="ns8:NotificationService"
-                                partnerLink="NotificationService1"
-                                inputVariable="varNotificationReq"
-                                outputVariable="varNotificationResponse"
-                                operation="sendEmailNotification"/>
+                        <invoke name="InvokeNotificationService" portType="ns8:NotificationService"
+                                partnerLink="NotificationService1" inputVariable="varNotificationReq"
+                                outputVariable="varNotificationResponse" operation="sendEmailNotification"/>
                     </sequence>
                 </scope>
             </sequence>

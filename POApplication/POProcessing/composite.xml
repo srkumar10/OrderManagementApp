@@ -35,8 +35,6 @@
           location="oramds:/soa/shared/workflow/TaskServiceInterface.wsdl" importType="wsdl"/>
   <import namespace="/techlabs/services/common/customers" location="WSDLs/CustomerServiceWrapper1.wsdl"
           importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/ias/pcbpel/NotificationService"
-          location="oramds:/soa/shared/workflow/NotificationService.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ApprovalRules/ApprovalRulesService"
           location="WSDLs/ApprovalRulesService.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ApprovalRules/ApprovalRulesService"
@@ -51,6 +49,8 @@
           importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory"
           location="oramds:/apps/POApplication/WSDLs/ManageInventory.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/ias/pcbpel/NotificationService"
+          location="oramds:/soa/shared/workflow/NotificationService.wsdl" importType="wsdl"/>
   <service name="ReceivePO" ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ReceivePO.wsdl">
     <interface.wsdl interface="http://oracle.com/sca/soapservice/POApplication/POProcessing/ReceivePO#wsdl.interface(POProcessing)"/>
     <binding.ws port="http://oracle.com/sca/soapservice/POApplication/POProcessing/ReceivePO#wsdl.endpoint(ReceivePO/POProcessing_pt)">
@@ -115,11 +115,11 @@
       <reference name="CustomerService" ui:wsdlLocation="WSDLs/CustomerServiceWrapper1.wsdl">
         <interface.wsdl interface="/techlabs/services/common/customers#wsdl.interface(CustomerService)"/>
       </reference>
-      <reference name="NotificationService1" ui:wsdlLocation="oramds:/soa/shared/workflow/NotificationService.wsdl">
-        <interface.wsdl interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
-      </reference>
       <reference name="ApprovalRules.ApprovalRulesService" ui:wsdlLocation="WSDLs/ApprovalRulesServiceWrapper.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/ApprovalRules/ApprovalRulesService#wsdl.interface(IDecisionService)"/>
+      </reference>
+      <reference name="NotificationService1" ui:wsdlLocation="oramds:/soa/shared/workflow/NotificationService.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
       </reference>
     </componentType>
     <property name="bpel.config.oneWayDeliveryPolicy" type="xs:string" many="false">async.persist</property>
@@ -218,7 +218,8 @@
              ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ManageInventory.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventory)"
                     callbackInterface="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.interface(ManageInventoryCallback)"/>
-    <binding.ws port="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.endpoint(manageinventory_client_ep/ManageInventory_pt)" location=""/>
+    <binding.ws port="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.endpoint(manageinventory_client_ep/ManageInventory_pt)" 
+                location="http://orasoa12.techlabs.local:7004/soa-infra/services/orderManagement/InternalStore/manageinventory_client_ep?WSDL"/>
     <callback>
       <binding.ws port="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.endpoint(managestock_client_ep/ManageStockCallback_pt)"/>
     </callback>
@@ -256,10 +257,8 @@
   </reference>
   <reference name="NotificationService1" ui:wsdlLocation="oramds:/soa/shared/workflow/NotificationService.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
-    <binding.ws port="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.endpoint(NotificationService/JavaPort)"
-                location="NotificationService.wsdl">
-      <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">WSDLDriven</property>
-    </binding.ws>
+    <binding.wsif port="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.endpoint(NotificationService/JavaPort)"
+                  location="oramds:/soa/shared/workflow/NotificationService.wsdl"/>
   </reference>
   <wire>
     <source.uri>ReceivePO</source.uri>
@@ -318,10 +317,6 @@
     <target.uri>CustomerService</target.uri>
   </wire>
   <wire>
-    <source.uri>ApproveCCOrder/NotificationService1</source.uri>
-    <target.uri>NotificationService1</target.uri>
-  </wire>
-  <wire>
     <source.uri>ApproveCCOrder/ApprovalRules.ApprovalRulesService</source.uri>
     <target.uri>ApprovalRules/ApprovalRulesService</target.uri>
   </wire>
@@ -336,5 +331,9 @@
   <wire>
     <source.uri>Fulfillment/InternalStore</source.uri>
     <target.uri>InternalStore</target.uri>
+  </wire>
+  <wire>
+    <source.uri>ApproveCCOrder/NotificationService1</source.uri>
+    <target.uri>NotificationService1</target.uri>
   </wire>
 </composite>

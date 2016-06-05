@@ -2,36 +2,6 @@
 <Faults>
    <Fault>
       <severity>warning</severity>
-      <loc>/ns:composite/ns:reference[@name='InternalStore']</loc>
-      <line>218</line>
-      <col>86</col>
-      <file>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</file>
-      <name>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</name>
-      <fix/>
-      <msg>Failed to Find Binding "InternalStore":"{http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory}ManageInventory_pt" in WSDL Manager</msg>
-   </Fault>
-   <Fault>
-      <severity>warning</severity>
-      <loc>/ns:composite/ns:reference[@name='InternalStore']</loc>
-      <line>218</line>
-      <col>86</col>
-      <file>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</file>
-      <name>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</name>
-      <fix/>
-      <msg>Failed to Find Binding "InternalStore":"{http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory}ManageInventory_pt" in WSDL Manager</msg>
-   </Fault>
-   <Fault>
-      <severity>warning</severity>
-      <loc>/ns:composite/ns:reference[@name='NotificationService1']</loc>
-      <line>257</line>
-      <col>113</col>
-      <file>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</file>
-      <name>E:\Oracle\JDeveloper12c\mywork\OrderManagementApp\POApplication\POProcessing\composite.xml</name>
-      <fix/>
-      <msg>Failed to Find Binding "NotificationService1":"{http://xmlns.oracle.com/ias/pcbpel/NotificationService}JavaPort" in WSDL Manager</msg>
-   </Fault>
-   <Fault>
-      <severity>warning</severity>
       <loc>/process/sequence/switch/case/scope/sequence/scope/sequence/assign/copy</loc>
       <line>405</line>
       <col/>

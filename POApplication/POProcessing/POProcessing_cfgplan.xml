@@ -107,7 +107,7 @@
                     </attribute>
                 </binding>
             </callback>
-        </reference>
+        </reference>        
     </composite>
     <!--To configure monitor.config: 
    

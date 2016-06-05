@@ -35,8 +35,8 @@
         <partnerLink name="ValidateCCService" partnerLinkType="ns3:ValidateCCService" partnerRole="creditcardvalidation"/>
         <partnerLink name="ManualApproval.TaskService" partnerLinkType="ns5:TaskService" partnerRole="TaskService" myRole="TaskServiceCallbackListener"/>
         <partnerLink name="CustomerService" partnerLinkType="ns6:CustomerService" partnerRole="CustomerService"/>
-        <partnerLink name="NotificationService1" partnerLinkType="ns8:NotificationServiceLink" partnerRole="NotificationServiceProvider"/>
         <partnerLink name="ApprovalRules.ApprovalRulesService" partnerLinkType="ns9:ApprovalRules.ApprovalRulesService" partnerRole="IDecisionService"/>
+        <partnerLink name="NotificationService1" partnerLinkType="ns8:NotificationServiceLink" partnerRole="NotificationServiceProvider"/>
     </partnerLinks>
     <!-- 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -307,7 +307,7 @@
                 <bpelx:bindEntity name="BindEntity_customer" variable="customerEV" id="BpBnd0">
                     <bpelx:key keyname="ns7:CustId">bpws:getVariableData('inputVariable','payload','/ns2:Order/ns2:customerId')</bpelx:key>
                 </bpelx:bindEntity>
-                <scope name="Email1" id="BpScp5">
+                <scope name="Email_Notification" id="BpScp5">
                     <bpelx:annotation>
                         <bpelx:pattern patternName="bpelx:email"/>
                     </bpelx:annotation>
@@ -316,15 +316,11 @@
                         <variable name="varNotificationResponse" messageType="ns8:ArrayOfResponse"/>
                         <variable name="NotificationServiceFaultVariable" messageType="ns8:NotificationServiceErrorMessage"/>
                     </variables>
-                    <sequence name="Sequence5" id="BpSeq11">
+                    <sequence name="Sequence7" id="BpSeq11">
                         <assign name="EmailParamsAssign" id="BpAss16">
                             <copy>
                                 <from expression="string('Default')"/>
                                 <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:FromAccountName"/>
-                            </copy>
-                            <copy>
-                                <from expression="string('')"/>
-                                <to variable="varNotificationReq" part="EmailPayload" query="/EmailPayload/ns8:FromUserName"/>
                             </copy>
                             <copy>
                                 <from expression="string('')"/>
