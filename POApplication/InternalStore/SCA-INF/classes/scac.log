@@ -1,32 +1,32 @@
-2016-06-04 16:15:47.459/2.542 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middleware12c/1221/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
-2016-06-04 16:15:47.534/2.616 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/Middleware12c/1221/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence-override-dev.xml"
-2016-06-04 16:15:47.540/2.622 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/tangosol-coherence-override.xml" is not specified
-2016-06-04 16:15:47.546/2.628 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
-2016-06-04 16:15:47.553/2.635 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
-2016-06-04 16:15:47.556/2.639 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+2016-06-06 13:06:33.229/4.769 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/Middleware12c/1221/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2016-06-06 13:06:33.289/4.828 Oracle Coherence 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/Middleware12c/1221/Oracle_Home/coherence/lib/coherence.jar!/tangosol-coherence-override-dev.xml"
+2016-06-06 13:06:33.293/4.832 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/tangosol-coherence-override.xml" is not specified
+2016-06-06 13:06:33.297/4.836 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
+2016-06-06 13:06:33.301/4.841 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
+2016-06-06 13:06:33.304/4.843 Oracle Coherence 12.2.1.0.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
 
 Oracle Coherence Version 12.2.1.0.0 Build 60603
  Grid Edition: Development mode
 Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
 
-2016-06-04 16:15:47.691/2.774 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded FMW commons version: 12.2.1-0-0-SNAPSHOT b60603
-2016-06-04 16:15:47.697/2.779 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
-2016-06-04 16:15:48.032/3.114 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): The cluster name has not been configured, a value of "ramesh's cluster" has been automatically generated
-Jun 04, 2016 4:15:59 PM oracle.soa.scac.ValidateComposite loadWSDLs
+2016-06-06 13:06:41.459/12.997 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Loaded FMW commons version: 12.2.1-0-0-SNAPSHOT b60603
+2016-06-06 13:06:41.473/13.011 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
+2016-06-06 13:06:42.182/13.721 Oracle Coherence GE 12.2.1.0.0 <Info> (thread=main, member=n/a): The cluster name has not been configured, a value of "sunkr196's cluster" has been automatically generated
+Jun 06, 2016 1:06:42 PM oracle.soa.scac.ValidateComposite loadWSDLs
 WARNING: Validating WSDLs from WSDLManager....  with option UseSoaInfraMds:false
-Jun 04, 2016 4:16:00 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
+Jun 06, 2016 1:06:43 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
 INFO: XMLSchema incremental build enabled.
-Jun 04, 2016 4:16:00 PM com.collaxa.cube.CubeLogger info
+Jun 06, 2016 1:06:43 PM com.collaxa.cube.CubeLogger info
 INFO: validating "ManageInventory.bpel" ...
-Jun 04, 2016 4:16:00 PM oracle.integration.platform.blocks.PlatformConfigurationProvider getPlatformConfigurationProvider
+Jun 06, 2016 1:06:43 PM oracle.integration.platform.blocks.PlatformConfigurationProvider getPlatformConfigurationProvider
 WARNING: JRF is unable to determine the current application server platform.
-Jun 04, 2016 4:16:01 PM com.collaxa.cube.CubeLogger info
-INFO: Composed "ManageInventory" in 176.4 milliseconds [nodes 35=0+35, 198.4 nodes/sec]
-Jun 04, 2016 4:16:03 PM com.collaxa.cube.CubeLogger info
-INFO: Compiled "ManageInventory" in 2.189 seconds
-Jun 04, 2016 4:16:03 PM com.collaxa.cube.CubeLogger info
-INFO: Gathered 5 files in 11.3 milliseconds
-Jun 04, 2016 4:16:03 PM com.collaxa.cube.CubeLogger info
-INFO: Packaged "ManageInventory" in 70.9 milliseconds
+Jun 06, 2016 1:06:44 PM com.collaxa.cube.CubeLogger info
+INFO: Composed "ManageInventory" in 164.7 milliseconds [nodes 35=0+35, 212.5 nodes/sec]
+Jun 06, 2016 1:06:49 PM com.collaxa.cube.CubeLogger info
+INFO: Compiled "ManageInventory" in 5.510 seconds
+Jun 06, 2016 1:06:49 PM com.collaxa.cube.CubeLogger info
+INFO: Gathered 5 files in 6.1 milliseconds
+Jun 06, 2016 1:06:49 PM com.collaxa.cube.CubeLogger info
+INFO: Packaged "ManageInventory" in 39.2 milliseconds
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=32m; support was removed in 8.0
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0

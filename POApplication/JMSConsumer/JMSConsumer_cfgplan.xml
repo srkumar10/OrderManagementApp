@@ -43,7 +43,7 @@
 	<replace>http://my-new-server:8889/myservice</replace>-->
       <reference name="WriteShippingRequestMessage">
          <property name="shiporders_location">
-            <replace>C:\Oracle\labs\podata</replace>
+            <replace>E:\Oracle\JDeveloper12c\labs\output</replace>
          </property>
          <binding type="jca"/>
       </reference>

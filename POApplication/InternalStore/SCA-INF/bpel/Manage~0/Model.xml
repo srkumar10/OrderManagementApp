@@ -83,7 +83,7 @@
         </pick>
         <assign name="Assign_initialize" id="BpAss2">
             <copy>
-                <from expression="true()"/>
+                <from expression="true()" bpelx:language="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"/>
                 <to variable="inStock"/>
             </copy>
             <copy>

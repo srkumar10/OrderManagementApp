@@ -399,4 +399,5 @@
          </list>
       </hash>
    </hash>
+   <value n="SOA_WSDL_FOLDER_NAME" v="WSDLs/"/>
 </jpr:project>

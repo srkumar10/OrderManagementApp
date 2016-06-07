@@ -16,7 +16,9 @@
           location="WSDLs/WriteShippingRequestMessage.wsdl" importType="wsdl"/>
   <service name="JMSConsumer" ui:wsdlLocation="WSDLs/JMSConsumer.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/JMSConsumer/JMSConsumer#wsdl.interface(Consume_Message_ptt)"/>
-    <binding.jca config="JMSConsumer_jms.jca"/>
+    <binding.jca config="JMSConsumer_jms.jca">
+      <property name="useRejectedMessageRecovery" type="xs:string" many="false" override="may">true</property>
+    </binding.jca>
   </service>
   <property name="originalProductVersion" type="xs:string" many="false">11.1.1.9.0</property>
   <property name="productVersion" type="xs:string" many="false">12.2.1.0.0.151013</property>
@@ -37,8 +39,7 @@
              ui:wsdlLocation="WSDLs/WriteShippingRequestMessage.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/file/POApplication/JMSConsumer/WriteShippingRequestMessage#wsdl.interface(Write_ptt)"/>
     <binding.jca config="WriteShippingRequestMessage_file.jca"/>
-    <property name="shiporders_location" type="xs:string" many="false"
-              override="may">C:\Oracle\labs\podata</property>
+    <property name="shiporders_location" type="xs:string" many="false" override="may"></property>
   </reference>
   <wire>
     <source.uri>JMSConsumer</source.uri>

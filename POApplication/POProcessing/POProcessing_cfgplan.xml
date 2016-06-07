@@ -64,7 +64,7 @@
 	<replace>http://my-new-server:8889/myservice</replace>-->
         <reference name="WritePOFileService">
             <property name="orderfiles">
-                <replace>C:\Oracle\labs\podata</replace>
+                <replace>E:\Oracle\JDeveloper12c\labs\output</replace>
             </property>
             <binding type="jca"/>
         </reference>

@@ -4,8 +4,8 @@
      xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
      xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/file/POApplication/JMSConsumer/WriteShippingRequestMessage"
-     xmlns:imp1="http://xmlns.oracle.com/ns/order"
      xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:imp1="http://xmlns.oracle.com/ns/order"
     >
   <plt:partnerLinkType name="Write_plt" >
     <plt:role name="Write_role" >

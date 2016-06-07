@@ -5,8 +5,8 @@
      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
      xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/jms/POApplication/JMSConsumer/JMSConsumer"
      xmlns:pc="http://xmlns.oracle.com/pcbpel/"
-     xmlns:imp1="http://xmlns.oracle.com/ns/order"
      xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:imp1="http://xmlns.oracle.com/ns/order"
     >
   <plt:partnerLinkType name="Consume_Message_plt" >
     <plt:role name="Consume_Message_role" >
