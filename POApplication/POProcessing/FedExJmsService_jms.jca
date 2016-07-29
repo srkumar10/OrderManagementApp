@@ -1,10 +1,10 @@
 <adapter-config name="FedExJmsService" adapter="jms" wsdlLocation="WSDLs/FedExJmsService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
   
-  <connection-factory UIConnectionName="orasoa12" location="eis/jms/soademoQueue" UIJmsProvider="WLSJMS"/>
+  <connection-factory UIConnectionName="orafmw12" location="eis/jms/demoFulfillmentQueue" UIJmsProvider="WLSJMS"/>
   <endpoint-interaction portType="Produce_Message_ptt" operation="Produce_Message">
     <interaction-spec className="oracle.tip.adapter.jms.outbound.JmsProduceInteractionSpec">
       <property name="TimeToLive" value="0"/>
-      <property name="DestinationName" value="jms/soademoQueue"/>
+      <property name="DestinationName" value="jms/demoFulfillmentQueue"/>
       <property name="DeliveryMode" value="Persistent"/>
       <property name="PayloadType" value="TextMessage"/>
     </interaction-spec>

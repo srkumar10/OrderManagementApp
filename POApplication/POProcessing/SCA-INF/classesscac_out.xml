@@ -3,7 +3,7 @@
    <Fault>
       <severity>warning</severity>
       <loc>/process/sequence/switch/case/scope/sequence/scope/sequence/assign/copy</loc>
-      <line>405</line>
+      <line>403</line>
       <col/>
       <file>Fulfillment.bpel</file>
       <name>Fulfillment.bpel</name>

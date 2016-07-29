@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAConfigPlan xmlns:jca="http://platform.integration.oracle/blocks/adapter/fw/metadata"
+               xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+               xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy"
+               xmlns:edl="http://schemas.oracle.com/events/edl" xmlns="http://schemas.oracle.com/soa/configplan">
+    <composite name="POProcessing">
+        <!--Add search and replace rules for the import section of a composite
+	Example:
+	<searchReplace>
+		<search>http://my-dev-server</search>
+		<replace>http://my-test-server</replace>
+	<searchReplace>
+	<searchReplace>
+		<search>8888</search>
+		<replace>8889</replace>
+	<searchReplace>-->
+        <import>
+            <searchReplace>
+                <search>http://localhost:7101</search>
+                <replace>http://localhost:7101</replace>
+            </searchReplace>
+        </import>
+        <service name="ReceivePO">
+            <!--Add search and replace rules for the binding properties-->
+            <binding type="ws">
+                <attribute name="port">
+                    <replace>http://oracle.com/sca/soapservice/POApplication/POProcessing/ReceivePO#wsdl.endpoint(ReceivePO/POProcessing_pt)</replace>
+                </attribute>
+                <property name="weblogic.wsee.wsat.transaction.flowOption">
+                    <replace>NEVER</replace>
+                </property>
+            </binding>
+        </service>
+        <property name="productVersion">
+            <replace>11.1.1.9.0</replace>
+        </property>
+        <!--Add search and replace rules for the component properties
+	For components and service/reference bindings, you can add policy references.
+	Example:
+	<component name="*">
+		<wsp:PolicyReference orawsp:category="management" orawsp:status="enabled" URI="oracle/log_policy"/>
+	</component>-->
+        <component name="ApproveCCOrder">
+            <property name="bpel.config.oneWayDeliveryPolicy">
+                <replace>async.persist</replace>
+            </property>
+        </component>
+        <component name="Fulfillment">
+            <property name="bpel.config.oneWayDeliveryPolicy">
+                <replace>async.persist</replace>
+            </property>
+        </component>
+        <!--Add search and replace rules for the reference properties
+	Example:
+	<searchReplace>
+		<search>http://my-dev-server</search>
+		<replace>http://my-test-server</replace>
+	<searchReplace>
+	<searchReplace>
+		<search>8888
+		<replace>8889</replace>
+	<searchReplace>
+	or provide a new replace value like:
+	<replace>http://my-new-server:8889/myservice</replace>-->
+        <reference name="WritePOFileService">
+            <property name="orderfiles">
+                <replace>E:\Oracle\JDeveloper12c\labs\output</replace>
+            </property>
+            <binding type="jca"/>
+        </reference>
+        <reference name="InternalStore">
+            <binding type="ws">
+                <attribute name="port">
+                    <replace>http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.endpoint(manageinventory_client_ep/ManageInventory_pt)</replace>
+                </attribute>
+                <attribute name="location">
+                    <replace>http://localhost:7101/soa-infra/services/orderManagement/InternalStore/manageinventory_client_ep?WSDL</replace>
+                </attribute>
+                <property name="weblogic.wsee.wsat.transaction.flowOption">
+                    <replace>WSDLDriven</replace>
+                </property>
+            </binding>
+            <callback>
+                <binding type="ws">
+                    <attribute name="port">
+                        <replace>http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory#wsdl.endpoint(manageinventory_client_ep/ManageInventoryCallback_pt)</replace>
+                    </attribute>
+                </binding>
+            </callback>
+        </reference>
+        <reference name="OnlineStore">
+            <binding type="ws">
+                <attribute name="port">
+                    <replace>http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.endpoint(managestock_client_ep/ManageStock_pt)</replace>
+                </attribute>
+                <attribute name="location">
+                    <replace>http://localhost:7101/soa-infra/services/orderManagement/OnlineStore/managestock_client_ep?WSDL</replace>
+                </attribute>
+                <property name="weblogic.wsee.wsat.transaction.flowOption">
+                    <replace>WSDLDriven</replace>
+                </property>
+            </binding>
+            <callback>
+                <binding type="ws">
+                    <attribute name="port">
+                        <replace>http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.endpoint(managestock_client_ep/ManageStockCallback_pt)</replace>
+                    </attribute>
+                </binding>
+            </callback>
+        </reference>        
+    </composite>
+    <!--To configure monitor.config: 
+   
+	<property name="enabled"><replace>true</replace></property>
+	<property name="dataObjectsFolder"><searchReplace><search>mydev</search><replace>myproduction</replace></searchReplace></property>
+	
+	sample properties to configure for file/ftp adapter: 
+	<jca:property name="PhysicalDirectory"><replace>c:\temp</replace></jca:property>
+	<jca:property name="DeleteFile"><replace>true</replace></jca:property>
+	<jca:property name="PollingFrequency"><replace>3</replace></jca:property>
+	
+	To add search and replace rules for wsdls, xsd and jca files
+	Example:
+	<searchReplace>
+		<search>http://my-dev-server</search>
+		<replace>http://my-test-server</replace>
+	<searchReplace>
+	<searchReplace>
+		<search>8888</search>
+		<replace>8889</replace>
+	<searchReplace>
+	-->
+    <wsdlAndSchema name="ApproveCCOrder.wsdl|EnrichPO.wsdl|Fulfillment.wsdl|ReceivePO.wsdl|WritePOFileService.wsdl|WritePOFileService_file.jca|xsd/fulfillmentRequest.xsd|xsd/fulfillmentResponse.xsd|xsd/internalorder.xsd|xsd/po.xsd">
+        <searchReplace>
+            <search/>
+            <replace/>
+        </searchReplace>
+    </wsdlAndSchema>
+</SOAConfigPlan>

@@ -27,6 +27,6 @@
    <entry key="CREDITCARDS.CARD_TYPE:db_column_type">VARCHAR2</entry>
    <entry key="CREDITCARDS.CREDIT_LIMIT:db_column_not_null">false</entry>
    <entry key="CREDITCARDS.CUST_ID:db_column_type">VARCHAR2</entry>
-   <entry key="CREDITCARDS.RATING:db_column_not_null">false</entry>
    <entry key="CREDITCARDS.STATUS:db_column_type">VARCHAR2</entry>
+   <entry key="CREDITCARDS.RATING:db_column_not_null">false</entry>
 </properties>

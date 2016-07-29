@@ -13,5 +13,5 @@
             <plnk:portType name="tns:OrdersService"/>
         </plnk:role>
     </plnk:partnerLinkType>
-    <wsdl:import namespace="/techlabs/services/common/" location="http://orasoa12.techlabs.local:7004/OrdersSDO/OrdersService?WSDL"/>
+    <wsdl:import namespace="/techlabs/services/common/" location="oramds:/apps/POApplication/WSDLs/OrdersService.wsdl"/>
 </wsdl:definitions>

@@ -131,6 +131,9 @@
          <string v=".exm"/>
          <string v=".xml"/>
       </list>
+      <list n="excludedUrls">
+         <string v="fXSLNonDeployedFiles"/>
+      </list>
       <value n="internalEncoding" v="Cp1252"/>
       <list n="Javac.commandline.optionlist">
          <string v="-g"/>
@@ -153,6 +156,20 @@
             <hash n="fileGroups">
                <list n="groups">
                   <hash>
+                     <value n="displayName" v="Application Libraries"/>
+                     <hash n="filters">
+                        <list n="rules">
+                           <hash>
+                              <value n="pattern" v="**"/>
+                              <value n="type" v="0"/>
+                           </hash>
+                        </list>
+                     </hash>
+                     <value n="internalName" v="libraries"/>
+                     <value n="targetWithinJar" v="lib"/>
+                     <value n="type" v="3"/>
+                  </hash>
+                  <hash>
                      <list n="contributors">
                         <hash>
                            <url n="location" path="."/>
@@ -163,6 +180,10 @@
                      <hash n="filters">
                         <list n="rules">
                            <hash>
+                              <value n="pattern" v="**/XSLNonDeployedFiles"/>
+                              <value n="type" v="1"/>
+                           </hash>
+                           <hash>
                               <value n="pattern" v="SCA-INF/bpel"/>
                               <value n="type" v="1"/>
                            </hash>
@@ -171,7 +192,7 @@
                               <value n="type" v="1"/>
                            </hash>
                            <hash>
-                              <value n="pattern" v=".rulesdesigner/jaxb_classes"/>
+                              <value n="pattern" v="**/.rulesdesigner/jaxb_classes"/>
                               <value n="type" v="1"/>
                            </hash>
                            <hash>
@@ -179,11 +200,11 @@
                               <value n="type" v="1"/>
                            </hash>
                            <hash>
-                              <value n="pattern" v="mdssys"/>
+                              <value n="pattern" v="**/mdssys"/>
                               <value n="type" v="1"/>
                            </hash>
                            <hash>
-                              <value n="pattern" v=".designer"/>
+                              <value n="pattern" v="**/.designer"/>
                               <value n="type" v="1"/>
                            </hash>
                            <hash>
@@ -207,98 +228,21 @@
                               <value n="type" v="1"/>
                            </hash>
                            <hash>
-                              <value n="pattern" v="WEB-INF/temp/**"/>
+                              <value n="pattern" v="META-INF/*.xml"/>
                               <value n="type" v="1"/>
                            </hash>
                            <hash>
-                              <value n="pattern" v="WEB-INF/classes/jsp_servlet/**"/>
+                              <value n="pattern" v="SCA-INF/patch.xml"/>
                               <value n="type" v="1"/>
                            </hash>
-                           <hash>
-                              <value n="pattern" v=".wlsjsps/"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v=".wlLibs/"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="**/.svn/"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="**/CVS/"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="**/.ade_path"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="**/.data/**"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="**.cdi"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="**.contrib"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="**.keep"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="**.rvi"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v=".jsps/"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v=".tags/"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v=".dtags/"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="**/*.jht"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="**/*.jjt"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="**/*.jxt"/>
-                              <value n="type" v="1"/>
-                           </hash>
-                           <hash>
-                              <value n="pattern" v="**"/>
-                           </hash>
-                        </list>
-                     </hash>
-                     <value n="internalName" v="sar-files"/>
-                     <value n="type" v="1"/>
-                  </hash>
-                  <hash>
-                     <value n="displayName" v="Application Libraries"/>
-                     <hash n="filters">
-                        <list n="rules">
                            <hash>
                               <value n="pattern" v="**"/>
                               <value n="type" v="0"/>
                            </hash>
                         </list>
                      </hash>
-                     <value n="internalName" v="libraries"/>
-                     <value n="targetWithinJar" v="lib"/>
-                     <value n="type" v="3"/>
+                     <value n="internalName" v="sar-files"/>
+                     <value n="type" v="1"/>
                   </hash>
                </list>
             </hash>
@@ -318,6 +262,9 @@
    </hash>
    <hash n="oracle.jdeveloper.model.PathsConfiguration">
       <hash n="javaContentSet">
+         <list n="pattern-filters">
+            <string v="+**"/>
+         </list>
          <list n="url-path">
             <url path="SCA-INF/src/"/>
          </list>

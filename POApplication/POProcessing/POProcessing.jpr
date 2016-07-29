@@ -140,6 +140,9 @@
          <string v=".exm"/>
          <string v=".xml"/>
       </list>
+      <list n="excludedUrls">
+         <string v="fXSLNonDeployedFiles"/>
+      </list>
       <value n="internalEncoding" v="UTF-8"/>
       <list n="Javac.commandline.optionlist">
          <string v="-g"/>

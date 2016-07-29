@@ -13,5 +13,5 @@
             <plnk:portType name="tns:CustomerService"/>
         </plnk:role>
     </plnk:partnerLinkType>
-    <wsdl:import namespace="/techlabs/services/common/customers" location="http://orasoa12.techlabs.local:7004/CustomersSDO/CustomerService?WSDL"/>
+    <wsdl:import namespace="/techlabs/services/common/customers" location="oramds:/apps/POApplication/WSDLs/CustomerService.wsdl"/>
 </wsdl:definitions>

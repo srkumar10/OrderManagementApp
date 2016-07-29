@@ -72,15 +72,13 @@
                      partnerRole="Produce_Message_role"/>
         <partnerLink name="OrdersService" partnerLinkType="ns9:OrdersService"
                      partnerRole="OrdersService"/>
-        <partnerLink name="CustomerService"
-                     partnerLinkType="ns11:CustomerService"
-                     partnerRole="CustomerService"/>
         <partnerLink name="ShippingRules.ShippingRulesService" partnerLinkType="ns12:IDecisionService_PLT"
                      partnerRole="IDecisionService_Role"/>
         <partnerLink name="OnlineStore" partnerLinkType="ns6:ManageStock" partnerRole="ManageStockProvider"
                      myRole="ManageStockRequester"/>
         <partnerLink name="InternalStore" partnerLinkType="ns5:ManageInventory" partnerRole="ManageInventoryProvider"
                      myRole="ManageInventoryRequester"/>
+        <partnerLink name="CustomerService" partnerLinkType="ns11:CustomerService" partnerRole="CustomerService"/>
     </partnerLinks>
 
     <!-- 

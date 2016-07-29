@@ -24,7 +24,7 @@
             <import namespace="http://xmlns.oracle.com/ns/order" schemaLocation="../Schemas/internalorder.xsd"/>
         </schema>
         <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <xsd:import namespace="/techlabs/services/common/customers/types/" schemaLocation="http://orasoa12.techlabs.local:7004/CustomersSDO/CustomerService?XSD=/techlabs/services/common/serviceinterface/CustomerService.xsd"/>
+            <xsd:import namespace="/techlabs/services/common/customers/types/" schemaLocation="http://orafmw12.techlabs.com:7003/CustomersSDO/CustomerService?XSD=/techlabs/services/common/serviceinterface/CustomerService.xsd"/>
         </xsd:schema>
     </wsdl:types>
     <wsdl:message name="ApproveCCOrderResponseMessage">

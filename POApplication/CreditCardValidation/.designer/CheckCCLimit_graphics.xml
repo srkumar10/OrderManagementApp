@@ -4,10 +4,10 @@
    <annotationfile/>
    <iconize/>
    <partnerlink_locations>
-      <partnerlink name="checkcclimit_client" x="4" y="448" side="left"/>
-      <partnerlink name="CreditCardDBService" x="898" y="284" side="right"/>
+      <partnerlink name="checkcclimit_client" x="0" y="454" side="left"/>
+      <partnerlink name="CreditCardDBService" x="1038" y="288" side="right"/>
    </partnerlink_locations>
-   <graph_layout viewport="0,388,1035,535" show_swimlanes="true">
+   <graph_layout viewport="0,0,1193,1115" show_swimlanes="true">
       <layout_item collapsed="false" xpath="/process" type="process" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/faultHandlers/catch" type="catch"/>
       <layout_item collapsed="false" xpath="/process/faultHandlers/catch/sequence" type="sequence"/>

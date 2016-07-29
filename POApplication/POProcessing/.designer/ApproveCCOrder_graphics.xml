@@ -4,15 +4,15 @@
    <annotationfile/>
    <iconize/>
    <partnerlink_locations>
-      <partnerlink name="approveccorder_client" x="0" y="1078" side="left"/>
-      <partnerlink name="NotificationService1" x="0" y="20" side="left"/>
-      <partnerlink name="ApprovalRules.ApprovalRulesService" x="0" y="79" side="left"/>
-      <partnerlink name="Fulfillment.fulfillment_client" x="1261" y="1268" side="right"/>
-      <partnerlink name="ManualApproval.TaskService" x="1261" y="20" side="right"/>
-      <partnerlink name="ValidateCCService" x="1261" y="430" side="right"/>
-      <partnerlink name="CustomerService" x="1261" y="237" side="right"/>
+      <partnerlink name="approveccorder_client" x="0" y="1065" side="left"/>
+      <partnerlink name="NotificationService1" x="0" y="18" side="left"/>
+      <partnerlink name="ApprovalRules.ApprovalRulesService" x="0" y="75" side="left"/>
+      <partnerlink name="Fulfillment.fulfillment_client" x="1221" y="1247" side="right"/>
+      <partnerlink name="ManualApproval.TaskService" x="1221" y="18" side="right"/>
+      <partnerlink name="ValidateCCService" x="1221" y="424" side="right"/>
+      <partnerlink name="CustomerService" x="1221" y="231" side="right"/>
    </partnerlink_locations>
-   <graph_layout viewport="64,1415,1398,701" show_swimlanes="true">
+   <graph_layout viewport="0,0,995,609" show_swimlanes="true">
       <layout_item collapsed="false" xpath="/process" type="process" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[1]" type="scope" showhandlers="true"/>

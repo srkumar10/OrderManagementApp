@@ -8,7 +8,7 @@
         <Contents>thin</Contents>
       </StringRefAddr>
       <StringRefAddr addrType="hostname">
-        <Contents>orasoa12.techlabs.local</Contents>
+        <Contents>orafmw12.techlabs.com</Contents>
       </StringRefAddr>
       <SecureRefAddr addrType="password"/>
       <StringRefAddr addrType="subtype">
@@ -17,11 +17,11 @@
       <StringRefAddr addrType="port">
         <Contents>1521</Contents>
       </StringRefAddr>
+      <StringRefAddr addrType="serviceName">
+        <Contents>oradb12.techlabs.com</Contents>
+      </StringRefAddr>
       <StringRefAddr addrType="user">
         <Contents>soademo</Contents>
-      </StringRefAddr>
-      <StringRefAddr addrType="sid">
-        <Contents>oradb12</Contents>
       </StringRefAddr>
     </RefAddresses>
   </Reference>

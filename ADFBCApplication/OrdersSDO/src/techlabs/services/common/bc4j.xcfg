@@ -1,4 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
+<!---->
 <BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
    <AppModuleConfigBag ApplicationName="techlabs.services.OrdersSDOAppModule" default="OrdersService">
       <AppModuleConfig name="OrdersSDOAppModuleLocal" ApplicationName="techlabs.services.OrdersSDOAppModule" DeployPlatform="LOCAL" jbo.project="techlabs.OrdersSDO">
@@ -11,7 +12,7 @@
          <Custom JDBCDataSource="java:comp/env/jdbc/SOADEMODS"/>
       </AppModuleConfig>
       <AppModuleConfig DeployPlatform="SI" jbo.project="techlabs.OrdersSDO" name="OrdersService" ApplicationName="techlabs.services.OrdersSDOAppModule">
-         <Database jbo.locking.mode="optimistic"/>
+         <Database jbo.locking.mode="optimistic" JDBCDataSource="jdbc/soademo"/>
          <Security AppModuleJndiName="techlabs.services.OrdersSDOAppModule"/>
          <Custom JDBCDataSource="jdbc/soademoDS"/>
       </AppModuleConfig>
