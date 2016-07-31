@@ -1,29 +1,29 @@
-2016-07-28 15:41:18.751/1.941 Oracle Coherence 12.2.1.1.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/orafmw12.2.1.1/coherence/lib/coherence.jar!/tangosol-coherence.xml"
-2016-07-28 15:41:18.816/2.006 Oracle Coherence 12.2.1.1.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/orafmw12.2.1.1/coherence/lib/coherence.jar!/tangosol-coherence-override-dev.xml"
-2016-07-28 15:41:18.821/2.011 Oracle Coherence 12.2.1.1.0 <D5> (thread=main, member=n/a): Optional configuration override "/tangosol-coherence-override.xml" is not specified
-2016-07-28 15:41:18.826/2.016 Oracle Coherence 12.2.1.1.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
-2016-07-28 15:41:18.829/2.020 Oracle Coherence 12.2.1.1.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
-2016-07-28 15:41:18.833/2.024 Oracle Coherence 12.2.1.1.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
+2016-07-31 08:32:10.369/3.168 Oracle Coherence 12.2.1.1.0 <Info> (thread=main, member=n/a): Loaded operational configuration from "jar:file:/C:/Oracle/fmw12.2.1.1/coherence/lib/coherence.jar!/tangosol-coherence.xml"
+2016-07-31 08:32:10.453/3.252 Oracle Coherence 12.2.1.1.0 <Info> (thread=main, member=n/a): Loaded operational overrides from "jar:file:/C:/Oracle/fmw12.2.1.1/coherence/lib/coherence.jar!/tangosol-coherence-override-dev.xml"
+2016-07-31 08:32:10.490/3.288 Oracle Coherence 12.2.1.1.0 <D5> (thread=main, member=n/a): Optional configuration override "/tangosol-coherence-override.xml" is not specified
+2016-07-31 08:32:10.512/3.310 Oracle Coherence 12.2.1.1.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-config.xml" is not specified
+2016-07-31 08:32:10.530/3.328 Oracle Coherence 12.2.1.1.0 <D5> (thread=main, member=n/a): Optional configuration override "cache-factory-builder-config.xml" is not specified
+2016-07-31 08:32:10.551/3.349 Oracle Coherence 12.2.1.1.0 <D5> (thread=main, member=n/a): Optional configuration override "/custom-mbeans.xml" is not specified
 
 Oracle Coherence Version 12.2.1.1.0 Build 63073
  Grid Edition: Development mode
 Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
 
-2016-07-28 15:41:18.949/2.140 Oracle Coherence GE 12.2.1.1.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
-2016-07-28 15:41:19.339/2.529 Oracle Coherence GE 12.2.1.1.0 <Info> (thread=main, member=n/a): The cluster name has not been configured, a value of "sunkr196's cluster" has been automatically generated
-Jul 28, 2016 3:41:20 PM oracle.soa.scac.ValidateComposite loadWSDLs
+2016-07-31 08:32:10.702/3.501 Oracle Coherence GE 12.2.1.1.0 <Info> (thread=main, member=n/a): Created cache factory com.tangosol.net.DefaultConfigurableCacheFactory
+2016-07-31 08:32:11.178/3.977 Oracle Coherence GE 12.2.1.1.0 <Info> (thread=main, member=n/a): The cluster name has not been configured, a value of "ramesh's cluster" has been automatically generated
+Jul 31, 2016 8:32:12 AM oracle.soa.scac.ValidateComposite loadWSDLs
 WARNING: Validating WSDLs from WSDLManager....  with option UseSoaInfraMds:false
-Jul 28, 2016 3:41:20 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
+Jul 31, 2016 8:32:12 AM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
 INFO: XMLSchema incremental build enabled.
-Jul 28, 2016 3:41:20 PM com.collaxa.cube.CubeLogger info
+Jul 31, 2016 8:32:13 AM com.collaxa.cube.CubeLogger info
 INFO: validating "CheckCCLimit.bpel" ...
-Jul 28, 2016 3:41:21 PM com.collaxa.cube.CubeLogger info
-INFO: Composed "CheckCCLimit" in 124.4 milliseconds [nodes 21=0+21, 168.8 nodes/sec]
-Jul 28, 2016 3:41:23 PM com.collaxa.cube.CubeLogger info
-INFO: Compiled "CheckCCLimit" in 2.492 seconds
-Jul 28, 2016 3:41:23 PM com.collaxa.cube.CubeLogger info
-INFO: Gathered 4 files in 5.1 milliseconds
-Jul 28, 2016 3:41:23 PM com.collaxa.cube.CubeLogger info
-INFO: Packaged "CheckCCLimit" in 37.3 milliseconds
+Jul 31, 2016 8:32:15 AM com.collaxa.cube.CubeLogger info
+INFO: Composed "CheckCCLimit" in 558.6 milliseconds [nodes 21=0+21, 37.6 nodes/sec]
+Jul 31, 2016 8:32:22 AM com.collaxa.cube.CubeLogger info
+INFO: Compiled "CheckCCLimit" in 7.433 seconds
+Jul 31, 2016 8:32:22 AM com.collaxa.cube.CubeLogger info
+INFO: Gathered 4 files in 19.8 milliseconds
+Jul 31, 2016 8:32:22 AM com.collaxa.cube.CubeLogger info
+INFO: Packaged "CheckCCLimit" in 198.5 milliseconds
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=32m; support was removed in 8.0
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0

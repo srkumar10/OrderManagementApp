@@ -9,7 +9,7 @@
           importType="wsdl"/>
   <import namespace="http://xmlns.techlabs.local/oracle/apps" location="WSDLs/OnlineStoreServiceWrapper.wsdl"
           importType="wsdl"/>
-  <import namespace="http://xmlns.techlabs.local/oracle/apps" location="WSDLs/OnlineStoreService.wsdl"
+  <import namespace="http://xmlns.techlabs.local/oracle/apps" location="WSDLs/OnlineStoreServiceWrapper.wsdl"
           importType="wsdl"/>
   <service name="managestock_client_ep" ui:wsdlLocation="oramds:/apps/POApplication/WSDLs/ManageStock.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/POApplication/OnlineStore/ManageStock#wsdl.interface(ManageStock)"
@@ -37,7 +37,7 @@
     <property name="bpel.config.oneWayDeliveryPolicy" type="xs:string" many="false">async.persist</property>
   </component>
   <reference name="OnlineStoreService"
-             ui:wsdlLocation="WSDLs/OnlineStoreService.wsdl">
+             ui:wsdlLocation="WSDLs/OnlineStoreServiceWrapper.wsdl">
     <interface.wsdl interface="http://xmlns.techlabs.local/oracle/apps#wsdl.interface(OnlineStoreService)"/>
     <binding.adf serviceName="{http://xmlns.techlabs.local/oracle/apps}OnlineStoreService"
                  registryName="OnlineStoreSDO_OnlineStoreSDOProfile_JBOServiceRegistry"/>

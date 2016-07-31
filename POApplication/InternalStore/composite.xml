@@ -4,7 +4,7 @@
            xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
            xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy" xmlns:ui="http://xmlns.oracle.com/soa/designer/">
-  <import namespace="http://xmlns.techlabs.local/oracle/apps" location="WSDLs/InternalStoreService.wsdl"
+  <import namespace="http://xmlns.techlabs.local/oracle/apps" location="WSDLs/InternalStoreServiceWrapper.wsdl"
           importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/POApplication/InternalStore/ManageInventory"
           location="oramds:/apps/POApplication/WSDLs/ManageInventory.wsdl" importType="wsdl"/>
@@ -35,7 +35,7 @@
     </componentType>
     <property name="bpel.config.oneWayDeliveryPolicy" type="xs:string" many="false">async.persist</property>
   </component>
-  <reference name="InternalStoreService" ui:wsdlLocation="WSDLs/InternalStoreService.wsdl">
+  <reference name="InternalStoreService" ui:wsdlLocation="WSDLs/InternalStoreServiceWrapper.wsdl">
     <interface.wsdl interface="http://xmlns.techlabs.local/oracle/apps#wsdl.interface(InternalStoreService)"/>
     <binding.adf serviceName="{http://xmlns.techlabs.local/oracle/apps}InternalStoreService"
                  registryName="InternalStoreSDO_InternalStoreSDOProfile_JBOServiceRegistry"/>
